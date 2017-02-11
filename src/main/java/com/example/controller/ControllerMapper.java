@@ -22,4 +22,11 @@ public class ControllerMapper {
 		String s = service.addAccount();
 		service.connectDatabase(s);
 	}
+	
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public void Edit(){
+		service.connection();
+		String s = service.editAccout();
+		service.connectDatabase(s);
+	}
 }

@@ -40,5 +40,9 @@ public class MyService {
 		return query;		
 	}
 	
+	public String editAccout(){
+		String query =
+		return query;
+	}
 	
 }
