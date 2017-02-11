@@ -32,7 +32,7 @@ public class ApplicationDomainApplication {
 	
 	public static void connectDatabase(String query){
 		connection();
-		String url = "jdbc:mysql://localhost/chart_of_accounts";
+		String url = "jdbc:mysql://localhost/c_o_a";
 		String username = "root";
 		String password = "";
 		try {

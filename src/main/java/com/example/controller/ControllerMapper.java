@@ -23,7 +23,7 @@ public class ControllerMapper {
 		service.connectDatabase(s);
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
 	public void Edit(){
 		service.connection();
 		String s = service.editAccout();
