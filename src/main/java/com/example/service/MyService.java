@@ -41,7 +41,8 @@ public class MyService {
 	}
 	
 	public String editAccout(){
-		String query =
+		String query ="UPDATE accounts (Account Code, Account Name, Account Type, Normal Side, Initial Balance, Order, Comment, Added By, Added On, Active, Group, Event Log ID,Error Code ID"
+				+ "values(100,'Cash','Asset, 'Left', 0.00, 1, 'Done', 'Miguel Betancourt',2017:02:10:12:08:01, 'Yes', 'Current Asset', 1, 1";
 		return query;
 	}
 	
