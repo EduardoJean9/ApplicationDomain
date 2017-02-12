@@ -10,14 +10,28 @@ public class MyService {
 	 public void connection(){
 		 try {
 				Class.forName("com.mysql.jdbc.Driver");
-				System.out.println("Worked");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	 }
 	
-	public void connectDatabase(String query){
+	public void connectDatabaseUpdate(String query){
+		connection();
+		String url = "jdbc:mysql://localhost/chart_of_accounts";
+		String username = "root";
+		String password = "";
+		try {
+			Connection con = DriverManager.getConnection(url,username,password);
+			Statement stat = con.createStatement();
+			stat.executeUpdate(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void connectDatabaseExecute(String query){
 		connection();
 		String url = "jdbc:mysql://localhost/chart_of_accounts";
 		String username = "root";
@@ -26,7 +40,6 @@ public class MyService {
 			Connection con = DriverManager.getConnection(url,username,password);
 			Statement stat = con.createStatement();
 			stat.executeQuery(query);
-			System.out.println("Good");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -34,15 +47,23 @@ public class MyService {
 	}
 	
 	public String addAccount(){
-		String query = "INSERT INTO accounts (Account Code, Account Name, Account Type, Normal Side, Initial Balance, Order, Comment, Added By, Added On, Active, Group, Event Log ID,Error Code ID"
-					+ "values(100,'Cash','Asset, 'Left', 0.00, 1, 'Done', 'Skip Bassey',2017:02:09:12:08:01, 'Yes', 'Current Asset', 1, 1";
-		
+		String query = "INSERT INTO `accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`, `Added On`, `Active`, `Group`, `Event Log ID`, `Error Code ID`)" 
+				+ "VALUES (100,'Cash','Asset','Left',0.00,1,'Done','Skip Bassey','2017:02:09:12:08:01','Yes','Current Asset',1,1)";
 		return query;		
 	}
 	
 	public String editAccout(){
-		String query ="UPDATE accounts (Account Code, Account Name, Account Type, Normal Side, Initial Balance, Order, Comment, Added By, Added On, Active, Group, Event Log ID,Error Code ID"
-				+ "values(100,'Cash','Asset, 'Left', 100.58, 1, 'Done', 'Miguel Betancourt',2017:02:10:12:08:01, 'Yes', 'Current Asset', 1, 1";
+		String query ="UPDATE `accounts` SET `Normal Side` = 'Right' WHERE `Account Name` = 'Cash'";
+		return query;
+	}
+	
+	public String viewAccount(){
+		String query = "SELECT * FROM `Acounts`";
+		return query;
+	}
+	
+	public String deactivateAccount(){
+		String query = "UPDATE `accounts` SET `Active` = 'No' WHERE `Account Name` = 'Cash'";
 		return query;
 	}
 	
