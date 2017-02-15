@@ -1,3 +1,8 @@
+<?php
+   $connection = mysqli_connect("localhost", "root", null, "application_domain") 
+   or die('Error connecting to MySQL server.');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,18 +42,28 @@
     <div class="navbar">
       <ul class="navbar-container">
         <li><a href="#" class="left-underline nav-button brand-logo">Brand Logo</a></li>
-        <li class="nav-item"><a href="#section-3" class="left-underline nav-button" data-scroll>PlaceHolder1</a></li>
-        <li class="nav-item"><a href="#section-2" class="left-underline nav-button" data-scroll>PlaceHolder 2</a></li>
-        <li class="nav-item active"><a href="#section-1" class="left-underline nav-button" data-scroll>Placeholder3</a></li>
+        <li class="nav-item"><a href="#section-3" class="left-underline nav-button" data-scroll>Journal Entries</a></li>
+        <li class="nav-item"><a href="ChartofAccountsBasicPage.php" class="left-underline nav-button" data-scroll>Chart of Accounts</a></li>
+        <li class="nav-item active"><a href="HomePage.php" class="left-underline nav-button" data-scroll>Home</a></li>
       </ul>
     </div>
 
     <!-- Page Content -->
     <div class="container">
 
-    <p>This is the home page</p>
+    <form action="login.php" method="POST">
+    
+    <label>User</label>
+    <input type="text" name="myUsername">
+    
+    <label>Password</label>
+    <input type="text" name="myPassword">
 
-        
+    <input type="submit" name="loginBTN" value="login">
+    
+
+    </form>
+
         
     </div>
 

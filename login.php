@@ -1,121 +1,52 @@
 <?php
-   ob_start();
-   session_start();
-?>
+   $connection = mysqli_connect("localhost", "root", null, "application_domain")
+      or die('Error connecting to MySQL server.');
 
-<?
-   // error_reporting(E_ALL);
-   // ini_set("display_errors", 1);
-?>
+   $myUsername = $_POST['myUsername'];
+   $myPassword = $_POST['myPassword'];
 
-<html lang = "en">
-   
-   <head>
-      <title>Tutorialspoint.com</title>
-      <link href = "css/bootstrap.min.css" rel = "stylesheet">
-      
-      <style>
-         body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #ADABAB;
-         }
-         
-         .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-            color: #017572;
-         }
-         
-         .form-signin .form-signin-heading,
-         .form-signin .checkbox {
-            margin-bottom: 10px;
-         }
-         
-         .form-signin .checkbox {
-            font-weight: normal;
-         }
-         
-         .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-         }
-         
-         .form-signin .form-control:focus {
-            z-index: 2;
-         }
-         
-         .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-            border-color:#017572;
-         }
-         
-         .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-color:#017572;
-         }
-         
-         h2{
-            text-align: center;
-            color: #017572;
-         }
-      </style>
-      
-   </head>
-	
-   <body>
-      
-      <h2>Enter Username and Password</h2> 
-      <div class = "container form-signin">
-         
-         <?php
-            $msg = '';
+   $sql = "SELECT * FROM `login_info` ";
+
+
+
+
+
+mysqli_select_db($connection, "application_domain");
+$myData = mysqli_query($connection, $sql);
+
+while($record == mysqli_fetch_array($myData))
+{
+   if ($myUsername == $record['Username'] && $myPassword == $record['Password'])
+   {
+      echo "Logged in";
+   }
+   else
+      echo "Failed";
+}
+
+
+
+           /* 
+           if($_SERVER["REQUEST_METHOD"] == "POST") {
+
             
-            if (isset($_POST['login']) && !empty($_POST['username']) 
-               && !empty($_POST['password'])) {
-				
-               if ($_POST['username'] == 'tutorialspoint' && 
-                  $_POST['password'] == '1234') {
-                  $_SESSION['valid'] = true;
-                  $_SESSION['timeout'] = time();
-                  $_SESSION['username'] = 'tutorialspoint';
-                  
-                  header("Location: template.html");
+               
+               $result = mysqli_query($connection,$sql);
+               //$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+               //$active = $row['active'];
+      
+               $count = mysqli_num_rows($result);
+      
+               // If result matched $myusername and $mypassword, table row must be 1 row
+      
+               if($count == 1) {
+                  session_register("myusername");
+                  $_SESSION['login_user'] = $myusername;
+         
+                  header("location: HomePage.php");
                }else {
-                  $msg = 'Wrong username or password';
+                  echo "Your Login Name or Password is invalid";
                }
             }
-         ?>
-      </div> <!-- /container -->
-      
-      <div class = "container">
-      
-         <form class = "form-signin" role = "form" 
-            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-            ?>" method = "post">
-            <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
-            <input type = "text" class = "form-control" 
-               name = "username" placeholder = "username = tutorialspoint" 
-               required autofocus></br>
-            <input type = "password" class = "form-control"
-               name = "password" placeholder = "password = 1234" required>
-            <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-               name = "login">Login</button>
-         </form>
-			
-         Click here to clean <a href = "logout.php" tite = "Logout">Session.
-         
-      </div> 
-      
-   </body>
-</html>
+            */
+?>
