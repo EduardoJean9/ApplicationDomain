@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -74,6 +74,13 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                
+
+
+
+
+
+
                 
             </div>
         </div>
