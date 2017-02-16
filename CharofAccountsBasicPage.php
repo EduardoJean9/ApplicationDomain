@@ -1,3 +1,7 @@
+<?php
+    include 'php/ChartofAccountsfunc.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +50,19 @@
     <!-- Page Content -->
     <div class="container">
 
-   
+   <table>
+       <tr>
+            <th>Code</th>
+           <th>Account Name</th>
+           <th>Account Type</th>
+           <th>Normal Side</th>
+           <th>Active</th>
+           <th>Comment</th>
+       </tr>
+       <?php
+        loadBasicCOA();
+       ?>
+   </table>
 
         
         
