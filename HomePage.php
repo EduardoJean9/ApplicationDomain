@@ -14,16 +14,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Main Page</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/template.css" rel = "stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
     body {
         padding-top: 70px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
     </style>
 
@@ -39,36 +39,65 @@
 <body>
 
     <!-- Navigation -->
-    <div class="navbar">
-      <ul class="navbar-container">
-        <li><a href="#" class="left-underline nav-button brand-logo">Brand Logo</a></li>
-        <li class="nav-item"><a href="#section-3" class="left-underline nav-button" data-scroll>Journal Entries</a></li>
-        <li class="nav-item"><a href="ChartofAccountsBasicPage.php" class="left-underline nav-button" data-scroll>Chart of Accounts</a></li>
-        <li class="nav-item active"><a href="HomePage.php" class="left-underline nav-button" data-scroll>Home</a></li>
-      </ul>
-    </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="MainPage.php">Application Domain</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Chart Of Accounts <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="ChartOfAccountsBasic.php">Chart Of Accounts Basic</a></li>
+          <li><a href="ChartOfAccountsDetailed.php">Chart Of Accounts Detailed</a></li>
+        </ul>
+      </li>
+                    <li>
+                        <a href="#">Journal</a>
+                    </li>
+                    <li>
+                        <a href="#">Placeholder</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
     <!-- Page Content -->
     <div class="container">
 
-    <form action="login.php" method="POST">
-    
-    <label>User</label>
-    <input type="text" name="myUsername">
-    
-    <label>Password</label>
-    <input type="text" name="myPassword">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!-- PASTE CONTENT HERE -->
 
-    <input type="submit" name="loginBTN" value="login">
-    
+                <div class="container">
 
-    </form>
+                    <form action="login.php" method="POST">
+                    <label>User</label>
+                    <input type="text" name="myUsername">
+                    <label>Password</label>
+                    <input type="text" name="myPassword">
+                    <input type="submit" name="loginBTN" value="login">
+                    </form>
+                    
+                </div>
 
-        
+            </div>
+        </div>
+        <!-- /.row -->
+
     </div>
-
     <!-- /.container -->
-
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
