@@ -40,7 +40,7 @@
     <!-- Navigation -->
     <div class="navbar">
       <ul class="navbar-container">
-        <li><a href="#" class="left-underline nav-button brand-logo">Brand Logo</a></li>
+        <li><a href="HomePage.php" class="left-underline nav-button brand-logo">Brand Logo</a></li>
         <li class="nav-item"><a href="#section-3" class="left-underline nav-button" data-scroll>PlaceHolder1</a></li>
         <li class="nav-item"><a href="#section-2" class="left-underline nav-button" data-scroll>PlaceHolder 2</a></li>
         <li class="nav-item active"><a href="#section-1" class="left-underline nav-button" data-scroll>Placeholder3</a></li>
