@@ -18,6 +18,7 @@ function loadBasicCOA(){
     	 echo "<td>" . $record['Account Name'] . "</td>";
     	 echo "<td>" . $record['Account Type'] . "</td>";
     	 echo "<td>" . $record['Normal Side'] . "</td>";
+    	 echo "<td>" . $record['Initial Balance'] . "</td>";
     	 echo "<td>" . $record['Active'] . "</td>";
     	 echo "<td>" . $record['Comment'] . "</td>";
     	 echo "</tr>";

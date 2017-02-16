@@ -79,18 +79,18 @@
                 <!-- PASTE CONTENT HERE -->
                 <table>
                     <tr>
-                      <th>Code</th>  
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Normal Side</th>
-                      <th></th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Normal Side</th>
+                        <th>Initial Balance</th>
+                        <th>Active</th>
+                        <th>Comment</th>
                     </tr>
-                    <?<?php 
-                        loadDetailedCOA();
-                     ?>
+                <?php
+                    loadBasicCOA();
+                ?>
                 </table>
-
-                
             </div>
         </div>
         <!-- /.row -->

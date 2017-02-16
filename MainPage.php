@@ -1,6 +1,8 @@
 <?php
-    include 'php/ChartofAccountsfunc.php';
+   $connection = mysqli_connect("localhost", "root", null, "application_domain") 
+   or die('Error connecting to MySQL server.');
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
+    <title>Main Page</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -47,15 +49,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Application Domain</a>
+                <a class="navbar-brand" href="MainPage.php">Application Domain</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Chart Of Accounts <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Chart Of Accounts Basic</a></li>
-          <li><a href="#">Chart Of Accounts Detailed</a></li>
+          <li><a href="ChartOfAccountsBasic.php">Chart Of Accounts Basic</a></li>
+          <li><a href="ChartOfAccountsDetailed.php">Chart Of Accounts Detailed</a></li>
         </ul>
       </li>
                     <li>
@@ -77,20 +79,19 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <table>
-                    <tr>
-                      <th>Code</th>  
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Normal Side</th>
-                      <th></th>
-                    </tr>
-                    <?<?php 
-                        loadDetailedCOA();
-                     ?>
-                </table>
 
-                
+                <div class="container">
+
+                    <form action="login.php" method="POST">
+                    <label>User</label>
+                    <input type="text" name="myUsername">
+                    <label>Password</label>
+                    <input type="text" name="myPassword">
+                    <input type="submit" name="loginBTN" value="login">
+                    </form>
+                    
+                </div>
+
             </div>
         </div>
         <!-- /.row -->
