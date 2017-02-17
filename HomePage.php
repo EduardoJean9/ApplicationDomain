@@ -17,6 +17,7 @@
     <title>Main Page</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/homepage.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -80,7 +81,7 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <div class="container">
+                <div id="loginForm" class="container">
 
                     <form action="php/login.php" method="POST">
                     <label>User</label>

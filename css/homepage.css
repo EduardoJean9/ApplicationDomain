@@ -1,0 +1,15 @@
+#loginForm{
+	border: solid gray 1px;
+	height: 145px;
+	max-height: 145px;
+	width: 240px;
+	max-width: 240px;
+	border-radius: 5px;
+	margin: 100px auto;
+	background: white;
+}
+#btn{
+	color: #fff;
+	background: #337ab7;
+	padding: 5px;
+}
