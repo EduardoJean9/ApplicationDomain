@@ -83,9 +83,18 @@
                       <th>Name</th>
                       <th>Type</th>
                       <th>Normal Side</th>
-                      <th></th>
+                      <th>Initial Balance</th>
+                      <th>Order</th>
+                      <th>Added By</th>
+                      <th>Added On</th>
+                      <th>Active</th>
+                      <th>Group</th>
+                      <th>Event Log</th>
+                      <th>Error Code</th>
+                      <th>Comment</th>
                     </tr>
-                    <?<?php 
+
+                    <?php 
                         loadDetailedCOA();
                      ?>
                 </table>
