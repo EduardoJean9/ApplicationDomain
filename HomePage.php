@@ -82,12 +82,15 @@
 
                 <div class="container">
 
-                    <form action="login.php" method="POST">
+                    <form action="php/login.php" method="POST">
                     <label>User</label>
-                    <input type="text" name="myUsername">
+                    <input type="text" id="MyUsername" name="MyUsername">
+                    
                     <label>Password</label>
-                    <input type="text" name="myPassword">
-                    <input type="submit" name="loginBTN" value="login">
+                    <input type="password" id="MyPassword" name="MyPassword">
+                    
+                    <input type="submit" id="btn" value="Login">
+                    
                     </form>
                     
                 </div>
