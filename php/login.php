@@ -1,8 +1,10 @@
 <?php
+   
 
    // Get values passed from form in HomePage.php file
    $Username = $_POST['MyUsername'];
    $Password = $_POST['MyPassword'];
+   $message ="";
 
    // Connection to database
    $connection = mysqli_connect("localhost", "root", null, "application_domain") 
@@ -18,8 +20,10 @@
       or die("Failed to query database ".mysqli_error($connection));
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
-      header("Location: /ApplicationDomain/HomePage.php");
+      $message = "Successful login";
+      header("Location: /ApplicationDomain/HomePage.php"); 
    } else {
-      echo "Failed to login!";
+      $message = "Failed to login";
+      header("Location: /ApplicationDomain/HomePage.php"); 
    }
 ?>

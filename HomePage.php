@@ -81,18 +81,17 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <div id="loginForm" class="container">
+                <div  id="loginForm" class="container">
 
                     <form action="php/login.php" method="POST">
                     <label>User</label>
                     <input type="text" id="MyUsername" name="MyUsername">
-                    
                     <label>Password</label>
                     <input type="password" id="MyPassword" name="MyPassword">
-                    
                     <input type="submit" id="btn" value="Login">
-                    
+                
                     </form>
+
                     
                 </div>
 
