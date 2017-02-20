@@ -1,5 +1,4 @@
 <?php
-   
 
    // Get values passed from form in HomePage.php file
    $Username = $_POST['MyUsername'];
@@ -20,10 +19,10 @@
       or die("Failed to query database ".mysqli_error($connection));
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
-      $message = "Successful login";
-      header("Location: /ApplicationDomain/HomePage.php"); 
+      echo "Successful login";
+      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); 
    } else {
-      $message = "Failed to login";
-      header("Location: /ApplicationDomain/HomePage.php"); 
+      echo "Failed to login";
+      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); 
    }
 ?>
