@@ -74,7 +74,40 @@
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <!-- PASTE CONTENT HERE -->
+                <h3> Journalizing </h3>
+                
+<!-- Input Here-->  
+<div class="well">
+        <div class="form-group"> 
+    <label for="sel1"> Type:</label>
+  <select class="form-control" id="sel1">
+    <option>Debit</option>
+    <option>Credit</option>
+  </select>
+    </div>
+    
+     <div class="form-group">
+      <label for="usr">Amount:</label>
+      <input type="text" class="form-control" id="usr">
+    </div> 
+    
+    <div class="form-group">
+  <label for="sel1">Account Name:</label>
+  <select class="form-control" id="sel1">
+    <option>Cash</option>
+    <option></option>
+    <option></option>
+    <option></option>
+  </select>
+<label for="sel1"> To Account Type:</label>
+  <select class="form-control" id="sel1">
+    <option></option>
+    <option></option>
+  </select>
+</div>
+
+    <button type="button" class="btn btn-success">Submit</button>
+
                 
 
 
