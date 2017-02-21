@@ -94,11 +94,11 @@
                     <label>Password</label>
                     <input type="password" id="MyPassword" name="MyPassword">
                     <input type="submit" id="btn" value="Login">
-<<<<<<< Updated upstream
+<!--<<<<<<< Updated upstream-->
                     <label></label>
                 
-=======
->>>>>>> Stashed changes
+<!--=======-->
+<!-->>>>>>> Stashed changes-->
                     </form>
 
                     <?php

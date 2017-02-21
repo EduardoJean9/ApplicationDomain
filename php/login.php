@@ -1,8 +1,8 @@
 <?php
-<<<<<<< Updated upstream
-=======
+// <<<<<<< Updated upstream
+//=======
    session_start()!= false or die('Could not start session');
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
    // Get values passed from form in HomePage.php file
    $Username = $_POST['MyUsername'];
@@ -24,18 +24,18 @@
 
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
-<<<<<<< Updated upstream
-      echo "Successful login";
+//<<<<<<< Updated upstream
+/*      echo "Successful login";
       header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); 
    } else {
       echo "Failed to login";
-      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); 
-=======
+      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); */
+//=======
       $_SESSIONS['logged_in'] = $Username;
       header("Location: /ApplicationDomain/HomePage.php"); 
    } else {
       $_SESSIONS['logged_in'] = "Incorrect username or password";
       //header("Location: /ApplicationDomain/HomePage.php"); 
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
    }
 ?>
