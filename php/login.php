@@ -25,17 +25,22 @@
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
 //<<<<<<< Updated upstream
-/*      echo "Successful login";
-      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); 
+      header( "Refresh:3;Location:/ApplicationDomain/ChartOfAccountsBasicPage.php" ); 
+      echo "Successful login\n.";
+      echo 'You\'ll be redirected in about 3 secs. ';
+      
+      exit;
    } else {
+      header("Refresh:1 ; Location: /ApplicationDomain/HomePage.php");
       echo "Failed to login";
-      header("Refresh: 1 ; Location: /ApplicationDomain/HomePage.php"); */
+      
+      exit; 
 //=======
-      $_SESSIONS['logged_in'] = $Username;
+      /*$_SESSIONS['logged_in'] = $Username;
       header("Location: /ApplicationDomain/HomePage.php"); 
    } else {
       $_SESSIONS['logged_in'] = "Incorrect username or password";
-      //header("Location: /ApplicationDomain/HomePage.php"); 
+      //header("Location: /ApplicationDomain/HomePage.php"); */
 //>>>>>>> Stashed changes
    }
 ?>

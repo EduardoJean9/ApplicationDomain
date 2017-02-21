@@ -97,8 +97,6 @@
 <!--<<<<<<< Updated upstream-->
                     <label></label>
                 
-<!--=======-->
-<!-->>>>>>> Stashed changes-->
                     </form>
 
                     <?php
