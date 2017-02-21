@@ -1,6 +1,9 @@
 <?php
    $connection = mysqli_connect("localhost", "root", null, "application_domain") 
    or die('Error connecting to MySQL server.');
+
+   session_start()!= false or die('Could not start session');
+
 ?>
 
 <!DOCTYPE html>
@@ -85,14 +88,26 @@
                 <div  id="loginForm" class="container">
 
                     <form action="php/login.php" method="POST">
-                    <label>User</label>
+                    <br>
+                    <label>User</label><br>
                     <input type="text" id="MyUsername" name="MyUsername">
                     <label>Password</label>
                     <input type="password" id="MyPassword" name="MyPassword">
                     <input type="submit" id="btn" value="Login">
+<<<<<<< Updated upstream
                     <label></label>
                 
+=======
+>>>>>>> Stashed changes
                     </form>
+
+                    <?php
+                    if(isset($_SESSIONS['logged_in'])){
+                        $log = $_POST['logged_in'];
+                        echo "<p>" . $log . "</p>";
+                    }
+                    ?>
+
 
                     
                 </div>
