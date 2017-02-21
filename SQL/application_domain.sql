@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2017 at 04:26 AM
+-- Generation Time: Feb 21, 2017 at 11:34 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -61,55 +61,6 @@ INSERT INTO `chart_of_accounts` (`Account Code`, `Account Name`, `Account Type`,
 (401, 'Delivery Fees', 'Revenue', 'Right', 0, 13, 'Done', 'Skip Bassey', '2017-02-21 03:22:37', 'yes', 'Revenue', 1, 1),
 (412, 'Rent Revenue', 'Revenue', 'Right', 123, 14, 'Done', 'Skip Bassey', '2017-02-21 03:22:37', 'yes', 'Revenue', 1, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `event_log`
---
-
-CREATE TABLE `event_log` (
-  `Event Log ID` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Username` varchar(50) NOT NULL,
-  `Description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `journal`
---
-
-CREATE TABLE `journal` (
-  `Journal ID` int(11) NOT NULL,
-  `Date` date NOT NULL,
-  `Account Name` varchar(30) NOT NULL,
-  `Account Reference` int(11) NOT NULL,
-  `Type` enum('Credit','Debt') NOT NULL,
-  `Amount` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login_info`
---
-
-CREATE TABLE `login_info` (
-  `ID` int(11) NOT NULL,
-  `Username` varchar(20) NOT NULL,
-  `Password` varchar(20) NOT NULL,
-  `Admin` enum('yes','no') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `login_info`
---
-
-INSERT INTO `login_info` (`ID`, `Username`, `Password`, `Admin`) VALUES
-(1, 'admin', 'admin', 'yes'),
-(2, 'mbetanc2', 'asdf', 'yes');
-
 --
 -- Indexes for dumped tables
 --
@@ -120,43 +71,6 @@ INSERT INTO `login_info` (`ID`, `Username`, `Password`, `Admin`) VALUES
 ALTER TABLE `chart_of_accounts`
   ADD PRIMARY KEY (`Account Code`);
 
---
--- Indexes for table `event_log`
---
-ALTER TABLE `event_log`
-  ADD PRIMARY KEY (`Event Log ID`);
-
---
--- Indexes for table `journal`
---
-ALTER TABLE `journal`
-  ADD PRIMARY KEY (`Journal ID`);
-
---
--- Indexes for table `login_info`
---
-ALTER TABLE `login_info`
-  ADD PRIMARY KEY (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `event_log`
---
-ALTER TABLE `event_log`
-  MODIFY `Event Log ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `journal`
---
-ALTER TABLE `journal`
-  MODIFY `Journal ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `login_info`
---
-ALTER TABLE `login_info`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
