@@ -24,17 +24,13 @@
 
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
-//<<<<<<< Updated upstream
-      header( "Refresh:3;Location:/ApplicationDomain/ChartOfAccountsBasicPage.php" ); 
-      echo "Successful login\n.";
-      echo 'You\'ll be redirected in about 3 secs. ';
-      
-      exit;
+//<<<<<<< Updated upstream 
+      header( "Refresh: 2; url=/ApplicationDomain/ChartOfAccountsBasicPage.php" );
+      echo "Successful login. You'll be redirected in about 2 secs.";
+
    } else {
-      header("Refresh:1 ; Location: /ApplicationDomain/HomePage.php");
-      echo "Failed to login";
-      
-      exit; 
+      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php"); 
+      echo "Failed to login. You'll be redirected in about 2 secs.";
 //=======
       /*$_SESSIONS['logged_in'] = $Username;
       header("Location: /ApplicationDomain/HomePage.php"); 
