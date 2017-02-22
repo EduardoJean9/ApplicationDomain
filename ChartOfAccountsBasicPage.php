@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include 'php/ChartofAccountsfunc.php';
 ?>
 <!DOCTYPE html>

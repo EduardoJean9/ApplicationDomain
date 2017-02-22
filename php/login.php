@@ -26,17 +26,13 @@
    if ($row['Username'] == $Username && $row['Password'] == $Password){
 //<<<<<<< Updated upstream 
       header( "Refresh: 2; url=/ApplicationDomain/ChartOfAccountsBasicPage.php" );
+      $_SESSIONS['logged_in_as'] = $Username;
       echo "Successful login. You'll be redirected in about 2 secs.";
 
    } else {
-      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php"); 
+      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php");
+      $_SESSIONS['logged_in_status'] = "please log in again."; 
       echo "Failed to login. You'll be redirected in about 2 secs.";
-//=======
-      /*$_SESSIONS['logged_in'] = $Username;
-      header("Location: /ApplicationDomain/HomePage.php"); 
-   } else {
-      $_SESSIONS['logged_in'] = "Incorrect username or password";
-      //header("Location: /ApplicationDomain/HomePage.php"); */
 //>>>>>>> Stashed changes
    }
 ?>
