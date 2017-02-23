@@ -1,7 +1,7 @@
 <?php
-	session_start()!= false or die('Could not start session');
-	$_SESSIONS['two'] = "123";
+	session_start();
 
+	$_SESSION['one']= "Miguel";
 ?>
 <!DOCTYPE html>
 <html>
