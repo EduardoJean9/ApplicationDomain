@@ -65,17 +65,16 @@ CREATE TABLE `event_log` (
 --
 -- Table structure for table `journal`
 --
-
 DROP TABLE IF EXISTS `journal`;
 CREATE TABLE `journal` (
-  `Journal ID` int(11) NOT NULL,
+  `Journal ID` int(11) NOT NULL Auto_Increment,
   `Date` date NOT NULL,
   `Account Name` varchar(30) NOT NULL,
-  `Account Reference` int(11) NOT NULL,
+  `Account Reference` int(11),
   `Type` enum('Credit','Debt') NOT NULL,
-  `Amount` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+  `Amount` double NOT NULL,
+    PRIMARY KEY (`Journal ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 -- --------------------------------------------------------
 
 --
