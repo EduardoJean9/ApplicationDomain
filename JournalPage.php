@@ -77,40 +77,67 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-lg-12 text-center">
+            <div class="col-lg-12">
                 <h3> Journalizing </h3>
                 
-<!-- Input Here-->  
+<!-- Input Here--> 
+
 <div class="well">
-        <div class="form-group"> 
-    <label for="sel1"> Type:</label>
-  <select class="form-control" id="sel1">
-    <option>Debit</option>
-    <option>Credit</option>
-  </select>
-    </div>
-    
-     <div class="form-group">
-      <label for="usr">Amount:</label>
-      <input type="text" class="form-control" id="usr">
-    </div> 
-    
-    <div class="form-group">
-  <label for="sel1">Account Name:</label>
-  <select class="form-control" id="sel1">
+<form id="myForm" action="journalFunct.php" method="GET">
+
+<table style="width:100%">
+    <tr>
+    <th>Account Name</th>
+    <th>Type</th> 
+    <th>Amount</th>
+  </tr>
+  <tr>
+  <td> <label for="account"></label>
+  <select class="form-control" id="fromAccount" name="fromAccount">
     <option>Cash</option>
     <option></option>
     <option></option>
     <option></option>
-  </select>
-<label for="sel1"> To Account Type:</label>
-  <select class="form-control" id="sel1">
+  </select></td>
+    <td> <label for="type"></label>
+  <select class="form-control" id="type" name="type">
+    <option>Debit</option>
+    <option>Credit</option>
     <option></option>
     <option></option>
-  </select>
-</div>
+  </select></td>
+     <td> <label for="Amount"></label>
+  <input name="amount" id="amount" type="text" value="0.00" /></td>
+  </tr>
+  <tr>
+  <td> <label for="account1"></label>
+  <select class="form-control" id="toAccount" name="toAccount">
+    <option>Liabilities</option>
+    <option></option>
+    <option></option>
+    <option></option>
+  </select></td>
+    <td> <label for="type1"></label>
+  <select class="form-control" id="type1" name="type1">
+    <option>Debit</option>
+    <option>Credit</option>
+    <option></option>
+    <option></option>
+  </select></td>
+     <td> <label for="Amount1"></label>
+  <input name="amount1" id="amount1" type="text" value="0.00" /></td>
+  </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
+</td>
+        
+    </tr>
+</table>  
+    </form>
 
-    <button type="button" class="btn btn-success">Submit</button>
+
 
                 
 
