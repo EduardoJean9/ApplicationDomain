@@ -51,14 +51,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="MainPage.php">Application Domain</a>
+                <a class="navbar-brand" href="HomePage.php">Application Domain</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Chart Of Accounts <span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="AcccountsPage.php">Accounts</a></li>
+          <li><a href="AccountsPage.php">Accounts</a></li>
           <li><a href="ChartOfAccountsBasicPage.php">Chart Of Accounts Basic</a></li>
           <li><a href="ChartOfAccountsDetailedPage.php">Chart Of Accounts Detailed</a></li>
         </ul>
