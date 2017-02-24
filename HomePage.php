@@ -93,12 +93,11 @@
                     <input type="password" id="MyPassword" name="MyPassword">
                     <input type="submit" id="btn" value="Login">
 <!--<<<<<<< Updated upstream-->
-                    <label>Hello 
                     <?php if (isset($_SESSIONS['logged_in_as']))
                     {
-                        echo $_SESSIONS['logged_in_as'];
+                        echo "<label>Hello " . $_SESSIONS['logged_in_as'] . "</label>";
                         }
-                        ?></label>
+                        ?>
                 
                     </form>
 
