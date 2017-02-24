@@ -30,10 +30,5 @@
    } else {
       header( "Refresh: 2; url=/ApplicationDomain/HomePage.php");
       echo "Failed to login. You'll be redirected in about 2 secs.";
-<<<<<<< Updated upstream
-//>>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
    }
 ?>
