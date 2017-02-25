@@ -80,8 +80,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3> Journalizing </h3>
-                
-<!-- Input Here--> 
+
+<!-- Input Here-->
 
 <div class="well">
 <form id="myForm" action="journalFunct.php" method="GET">
@@ -89,7 +89,7 @@
 <table style="width:100%">
     <tr>
     <th>Account Name</th>
-    <th>Type</th> 
+    <th>Type</th>
     <th>Amount</th>
   </tr>
   <tr>
@@ -133,14 +133,14 @@
         <td></td>
         <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
 </td>
-        
+
     </tr>
-</table>  
+</table>
     </form>
 
 
 
-                
+
 
 
 

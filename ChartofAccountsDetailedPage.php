@@ -1,7 +1,7 @@
 <?php
     session_start();
     include 'php/ChartofAccountsfunc.php';
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +82,7 @@
                 <!-- PASTE CONTENT HERE -->
                 <table>
                     <tr>
-                      <th>Code</th>  
+                      <th>Code</th>
                       <th>Name</th>
                       <th>Type</th>
                       <th>Normal Side</th>
@@ -97,7 +97,7 @@
                       <th>Comment</th>
                     </tr>
 
-                    <?php 
+                    <?php
                         loadDetailedCOA();
                         if(isset($_SESSIONS['logged_in'])){
                             echo "<h1>" . $_SESSIONS['logged_in'] . "</h1>";
@@ -105,7 +105,7 @@
                      ?>
                 </table>
 
-                
+
             </div>
         </div>
         <!-- /.row -->
