@@ -1,5 +1,8 @@
 <?php
-	session_start();
-	$_SESSION['logged_in_as'];
-
+	if(session_status() == true){
+		//Do nothing
+	}
+	else{
+		session_start();
+	}
 ?>

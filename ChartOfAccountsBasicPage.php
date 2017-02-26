@@ -1,7 +1,11 @@
 <?php
-    session_start();
+    if(session_status() == true){
+      //Do nothing
+    }
+    else{
+      session_start();
+    }
     include 'php/ChartofAccountsfunc.php';
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +21,7 @@
     <title>Bare - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -80,20 +85,27 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <table>
+                <table class = "table-fill">
+                  <thead>
                     <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Normal Side</th>
-                        <th>Initial Balance</th>
-                        <th>Active</th>
-                        <th>Comment</th>
+                      <th>Code</th>
+                      <th>Name</th>
+                      <th>Type</th>
+                      <th>Normal Side</th>
+                      <th>Initial Balance</th>
+                      <th>Active</th>
+                      <th>Comment</th>
                     </tr>
-                <?php
-                    loadBasicCOA();
-                ?>
-                </table>
+                  </thead>
+                  <tbody class = "table-hover">
+                    <?php
+                      loadBasicCOA();
+                    ?>
+                  </tbody>
+               </table>
+
+
+
             </div>
         </div>
         <!-- /.row -->
