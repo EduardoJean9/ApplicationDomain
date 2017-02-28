@@ -82,7 +82,11 @@
 
                 <div class="Insert-form">
                   <form action="php/insertDataForm.php" method="POST">
-
+                    <label>Account Code</label>
+                    <input name = "AccountCode" placeholder="101">
+                    <label>Account Name</label>
+                    <input name ="AccountName" placeholder="Cash">
+                    
                   </form>
                 </div>
 
