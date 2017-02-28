@@ -86,7 +86,9 @@
                     <input name = "AccountCode" placeholder="101">
                     <label>Account Name</label>
                     <input name ="AccountName" placeholder="Cash">
-                    
+                    <label>Initial Amount</label>
+                    <input name = "InitialAmount" placeholder="100.00" />
+                    <input type="submit" name="addBtn" value="insert"/>
                   </form>
                 </div>
 
