@@ -1,0 +1,5 @@
+*** Deactivate Account****
+UPDATE `chart_of_accounts` SET `Active` = "No" WHERE `Account Name` = "Cash"
+
+*** Activate Account***
+UPDATE `chart_of_accounts SET `Active` = "Yes" WHERE `Account Name` = "Cash"
