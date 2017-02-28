@@ -79,7 +79,7 @@
     $debit = "Debit";
     $credit= "Credit";
 
-    echo("<p>Thank you for registering as a tutor, confirmation email message successfully sent! You are now eligible to provide tutor service within your specified availability.</p>");
+
 				
 	
    echo "<table style='width:80%' align='center'><tr><th>Date</th>

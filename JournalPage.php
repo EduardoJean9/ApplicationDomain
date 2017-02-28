@@ -82,33 +82,38 @@
                 <h3> Journalizing </h3>
                 
 <!-- Input Here--> 
+<!-- PHP START-->
+<?php
+$account = $_GET["Account Name"];
 
+$query = mysqli_prepare($con, 
+				"SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
+					or die("Error: ". mysqli_error($con));
+			mysqli_stmt_bind_param ($query, "s", $account);
+			                
 <div class="well">
 <form id="myForm" action="journalFunct.php" method="GET">
 
 <table style="width:100%">
     <tr>
-    <th>Account Name</th>
-    <th>Type</th> 
-    <th>Amount</th>
+    <th></th>
+    <th></th> 
+    <th></th>
   </tr>
   <tr>
   <td> <label for="account"></label>
-  <select class="form-control" id="fromAccount" name="fromAccount">
-    <option>Cash</option>
+
+echo'<select class="form-control" id="fromAccount" name="fromAccount">';
+    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+    echo <option value="'.$row['something'].'">$row['something']</option>
+    }
     <option></option>
     <option></option>
     <option></option>
-  </select></td>
-    <td> <label for="type"></label>
-  <select class="form-control" id="type" name="type">
-    <option>Debit</option>
-    <option>Credit</option>
-    <option></option>
-    <option></option>
-  </select></td>
+ echo '</select>';
+ </td>
      <td> <label for="Amount"></label>
-  <input name="amount" id="amount" type="text" value="0.00" /></td>
+  <input class="form-control" name="amount" id="amount" type="text" placeholder="0.00" /></td>
   </tr>
   <tr>
   <td> <label for="account1"></label>
@@ -118,23 +123,15 @@
     <option></option>
     <option></option>
   </select></td>
-    <td> <label for="type1"></label>
-  <select class="form-control" id="type1" name="type1">
-    <option>Debit</option>
-    <option>Credit</option>
-    <option></option>
-    <option></option>
-  </select></td>
      <td> <label for="Amount1"></label>
-  <input name="amount1" id="amount1" type="text" value="0.00" /></td>
+  <input  class="form-control" name="amount1" id="amount1" type="text" placeholder="0.00" /></td>
+      <td>  <input class="btn btn-success" type="submit" value="SUBMIT" id="btnSubmit"></td> 
+
   </tr>
     <tr>
         <td></td>
         <td></td>
-        <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
-</td>
-        
-    </tr>
+    </tr>    
 </table>  
     </form>
 
@@ -149,9 +146,9 @@
 
 
             </div>
+         
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.container -->
 
@@ -160,7 +157,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+?>
 </body>
 
 </html>
