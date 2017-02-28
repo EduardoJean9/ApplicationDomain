@@ -1,5 +1,10 @@
 <?php
-    session_start();
+    if(session_status() == true){
+      //Do nothing
+    }
+    else{
+      session_start();
+    }
  ?>
 
 <!DOCTYPE html>
@@ -80,11 +85,16 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3> Journalizing </h3>
+<<<<<<< HEAD
                 
 <!-- Input Here--> 
 <!-- PHP START-->
 <?php
 $account = $_GET["Account Name"];
+=======
+
+<!-- Input Here-->
+>>>>>>> origin/master
 
 $query = mysqli_prepare($con, 
 				"SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
@@ -96,9 +106,15 @@ $query = mysqli_prepare($con,
 
 <table style="width:100%">
     <tr>
+<<<<<<< HEAD
     <th></th>
     <th></th> 
     <th></th>
+=======
+    <th>Account Name</th>
+    <th>Type</th>
+    <th>Amount</th>
+>>>>>>> origin/master
   </tr>
   <tr>
   <td> <label for="account"></label>
@@ -131,13 +147,21 @@ echo'<select class="form-control" id="fromAccount" name="fromAccount">';
     <tr>
         <td></td>
         <td></td>
+<<<<<<< HEAD
     </tr>    
 </table>  
+=======
+        <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
+</td>
+
+    </tr>
+</table>
+>>>>>>> origin/master
     </form>
 
 
 
-                
+
 
 
 

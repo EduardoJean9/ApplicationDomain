@@ -1,7 +1,11 @@
 <?php
-    session_start();
+    if(session_status() == true){
+      //Do nothing
+    }
+    else{
+      session_start();
+    }
     include 'php/ChartofAccountsfunc.php';
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +21,7 @@
     <title>Bare - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -81,8 +86,9 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <table>
+                  <thead>
                     <tr>
-                      <th>Code</th>  
+                      <th>Code</th>
                       <th>Name</th>
                       <th>Type</th>
                       <th>Normal Side</th>
@@ -96,16 +102,15 @@
                       <th>Error Code</th>
                       <th>Comment</th>
                     </tr>
-
-                    <?php 
+                  </thead>
+                  <tbody>
+                    <?php
                         loadDetailedCOA();
-                        if(isset($_SESSIONS['logged_in'])){
-                            echo "<h1>" . $_SESSIONS['logged_in'] . "</h1>";
-                        }
                      ?>
+                  </tbody>
                 </table>
 
-                
+
             </div>
         </div>
         <!-- /.row -->

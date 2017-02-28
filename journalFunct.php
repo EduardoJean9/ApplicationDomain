@@ -1,3 +1,7 @@
+<?php
+  session_start();
+ ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -79,58 +83,64 @@
     $debit = "Debit";
     $credit= "Credit";
 
+<<<<<<< HEAD
 
 				
 	
+=======
+    echo("<p>Thank you for registering as a tutor, confirmation email message successfully sent! You are now eligible to provide tutor service within your specified availability.</p>");
+
+
+>>>>>>> origin/master
    echo "<table style='width:80%' align='center'><tr><th>Date</th>
                <th>Account</th><th>Debit</th><th>Credit</th></tr>";
 
-    
+
     if ($type == $debit){
     echo "\r\n <tr><td>$today</td>" .
-                  "<td>$fromAccount</td>" . 
+                  "<td>$fromAccount</td>" .
                     "<td>$amount</td>" . "<td></td>" . "</tr><tr></tr> ";
-  
+
     echo "\r\n <tr><td>$today</td>" .
-                  "<td>$toAccount</td>" . 
+                  "<td>$toAccount</td>" .
                     "<td></td>" . "<td>$amount1</td>" . "</tr><tr></tr> ";
             echo "</table>";
     } else {
     echo "\r\n <tr><td>$today</td>" .
-                  "<td>$fromAccount</td>" . 
+                  "<td>$fromAccount</td>" .
                     "<td></td>" . "<td>$amount</td>" . "</tr><tr></tr> ";
-  
+
     echo "\r\n <tr><td>$today</td>" .
-                  "<td>$toAccount</td>" . 
+                  "<td>$toAccount</td>" .
                     "<td>$amount1</td>" . "<td></td>" . "</tr><tr></tr> ";
             echo "</table>";
     }
-    
+
 	$con = new mysqli("localhost","root","", "application_domain");
-	if ($con->connect_error) 
+	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-	$query = mysqli_prepare($con, 
+	$query = mysqli_prepare($con,
 				"INSERT INTO journal (Date, Account_Name, Type, Amount) VALUES (?, ?, ?, ?)")
 					or die("Error: ". mysqli_error($con));
 			mysqli_stmt_bind_param ($query, "ssss", $today, $fromAccount, $type, $amount);
-			
+
 			mysqli_stmt_execute($query)
-				or die("Error. Could not insert into the table." 
+				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-	$query = mysqli_prepare($con, 
+	$query = mysqli_prepare($con,
 			"INSERT INTO journal (Date, Account_Name, Type, Amount) VALUES (?, ?, ?, ?)")
 					or die("Error: ". mysqli_error($con));
 			mysqli_stmt_bind_param ($query, "ssss", $today, $toAccount, $type1, $amount1);
-    
-    
+
+
 			mysqli_stmt_execute($query)
-				or die("Error. Could not insert into the table." 
+				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-			
+
 			mysqli_stmt_close($query);
-			
+
 
 ?>
 <!-- jQuery Version 1.11.1 -->
