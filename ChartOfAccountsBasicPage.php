@@ -69,7 +69,23 @@
                         <a href="#">Placeholder</a>
                     </li>
                 </ul>
+                <!-- user-info -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <?php
+                        if (isset($_SESSION['logged_in_as'])){
+                            echo $_SESSION['logged_in_as'];
+                        }
+                    ?>
+                    </a></li>
+                    <li><a href="/ApplicationDomain/php/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+                <!-- /.user-info -->
             </div>
+
+
+
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
