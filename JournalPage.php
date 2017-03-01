@@ -62,6 +62,7 @@
                      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Chart Of Accounts <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="AccountsPage.php">Accounts</a></li>
+                          <li><a href="AddAccountsPage.php">Add Accounts</a></li>
                           <li><a href="ChartofAccountsBasicPage.php">Chart Of Accounts Basic</a></li>
                           <li><a href="ChartofAccountsDetailedPage.php">Chart Of Accounts Detailed</a></li>
                         </ul>
@@ -85,8 +86,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3> Journalizing </h3>
-              
-<!-- Input Here--> 
+
+<!-- Input Here-->
 <!-- PHP START-->
 <?php
 $account = $_GET["Account Name"];
@@ -95,7 +96,7 @@ $account = $_GET["Account Name"];
 $query = mysqli_prepare($con, "SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
 					or die("Error: ". mysqli_error($con));
 mysqli_stmt_bind_param ($query, "s", $account);
-			                
+
 <div class="well">
 <form id="myForm" action="journalFunct.php" method="GET">
 
@@ -103,7 +104,7 @@ mysqli_stmt_bind_param ($query, "s", $account);
     <tr>
 
     <th></th>
-    <th></th> 
+    <th></th>
     <th></th>
 
     <th>Account Name</th>
@@ -136,15 +137,15 @@ echo'<select class="form-control" id="fromAccount" name="fromAccount">';
   </select></td>
      <td> <label for="Amount1"></label>
   <input  class="form-control" name="amount1" id="amount1" type="text" placeholder="0.00" /></td>
-      <td>  <input class="btn btn-success" type="submit" value="SUBMIT" id="btnSubmit"></td> 
+      <td>  <input class="btn btn-success" type="submit" value="SUBMIT" id="btnSubmit"></td>
 
   </tr>
     <tr>
         <td></td>
         <td></td>
 
-    </tr>    
-</table>  
+    </tr>
+</table>
 
         <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
 </td>
@@ -153,7 +154,7 @@ echo'<select class="form-control" id="fromAccount" name="fromAccount">';
 </table>
     </form>
             </div>
-         
+
         </div>
         <!-- /.row -->
     </div>
