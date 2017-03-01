@@ -6,5 +6,5 @@
    session_abort();
    
    echo 'You have cleaned session';
-   header('Refresh: 2; url=/ApplicationDomain/HomePage.php');
+   header('Refresh: 1.5; url=/ApplicationDomain/HomePage.php');
 ?>

@@ -24,11 +24,11 @@
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
       $_SESSION['logged_in_as'] = $Username;
-      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php" );
+      header( "Refresh: 1.5; url=/ApplicationDomain/HomePage.php" );
       echo "Successful login. You'll be redirected in about 2 secs.";
    } else {
 
-      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php");
+      header( "Refresh: 1.5; url=/ApplicationDomain/HomePage.php");
       echo "Failed to login. You'll be redirected in about 2 secs.";
    }
 ?>
