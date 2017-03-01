@@ -1,10 +1,7 @@
 <?php
     include 'php/sessions.php';
 
-    if(session_status() == true){
-      //Do nothing
-    }
-    else{
+    if(session_status() == false){
       session_start();
     }
 
@@ -91,36 +88,32 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <div id="loginForm" class="container">
-
-                    <form action="php/login.php" method="POST">
-                    <br>
-                    <label>User</label><br>
-                    <input type="text" id="MyUsername" name="MyUsername">
-                    <label>Password</label>
-                    <input type="password" id="MyPassword" name="MyPassword">
-                    <input type="submit" id="btn" value="Login">
-
-                    <?php
-                    //if (isset($_SESSION['logged_in_as']))
-                    //{
-                      //  echo "<label>Hello " . $_SESSION['logged_in_as'] . "</label>";
-                        //}
-                    ?>
-
-                    </form>
-
-                    <?php
-                    /*if(isset($_SESSIONS['logged_in'])){
-                        $log = $_POST['logged_in'];
-                        echo "<p>" . $log . "</p>";
-                    }*/
-                    ?>
+                <?php
+                    if (!isset($_SESSION['logged_in_as'])){
+                        echo "<div id="."loginForm"." class="."container".">";
+                        echo "<form action="."php/login.php"." method="."POST".">";
+                            echo "<br>";
+                            echo "<label>User</label><br>";
+                            echo "<input type="."text"." id="."MyUsername"." name="."MyUsername".">";
+                            echo "<label>Password</label>";
+                            echo "<input type="."password"." id="."MyPassword"." name="."MyPassword".">";
+                            echo "<input type="."submit"." id="."btn"." value="."Login".">";
+                        echo "</form>";
+                        echo "</div>";
+                    }
+                    if (isset($_SESSION['logged_in_as'])){
+                        echo "<div id="."'logoutBox'"." class="."'container'".">";
+                        echo "<form action="."'php/logout.php'"." method="."'POST'".">";
+                            echo "<label>Hello ".$_SESSION['logged_in_as']."</label>";
+                            echo "<br>";
+                            echo "<input type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
+                        echo "</form>";
+                        echo "</div>";
+                    }
 
 
 
-                </div>
-
+                ?>
             </div>
         </div>
         <!-- /.row -->

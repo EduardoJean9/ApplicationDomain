@@ -1,5 +1,7 @@
 <?php
-   session_start()!= false or die('Could not start session');
+   if(session_status() == false){
+      session_start();
+    }
 
    // Get values passed from form in HomePage.php file
    $Username = $_POST['MyUsername'];
@@ -22,11 +24,11 @@
    $row = mysqli_fetch_array($result);
    if ($row['Username'] == $Username && $row['Password'] == $Password){
       $_SESSION['logged_in_as'] = $Username;
-      header( "Refresh: .15; url=/ApplicationDomain/HomePage.php" );
+      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php" );
       echo "Successful login. You'll be redirected in about 2 secs.";
    } else {
 
-      header( "Refresh: .15; url=/ApplicationDomain/HomePage.php");
+      header( "Refresh: 2; url=/ApplicationDomain/HomePage.php");
       echo "Failed to login. You'll be redirected in about 2 secs.";
    }
 ?>

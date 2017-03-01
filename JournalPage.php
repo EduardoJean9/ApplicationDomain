@@ -85,36 +85,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3> Journalizing </h3>
-<<<<<<< HEAD
-                
+              
 <!-- Input Here--> 
 <!-- PHP START-->
 <?php
 $account = $_GET["Account Name"];
-=======
 
-<!-- Input Here-->
->>>>>>> origin/master
 
-$query = mysqli_prepare($con, 
-				"SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
+$query = mysqli_prepare($con, "SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
 					or die("Error: ". mysqli_error($con));
-			mysqli_stmt_bind_param ($query, "s", $account);
+mysqli_stmt_bind_param ($query, "s", $account);
 			                
 <div class="well">
 <form id="myForm" action="journalFunct.php" method="GET">
 
 <table style="width:100%">
     <tr>
-<<<<<<< HEAD
+
     <th></th>
     <th></th> 
     <th></th>
-=======
+
     <th>Account Name</th>
     <th>Type</th>
     <th>Amount</th>
->>>>>>> origin/master
+
   </tr>
   <tr>
   <td> <label for="account"></label>
@@ -147,28 +142,16 @@ echo'<select class="form-control" id="fromAccount" name="fromAccount">';
     <tr>
         <td></td>
         <td></td>
-<<<<<<< HEAD
+
     </tr>    
 </table>  
-=======
+
         <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
 </td>
 
     </tr>
 </table>
->>>>>>> origin/master
     </form>
-
-
-
-
-
-
-
-
-
-
-
             </div>
          
         </div>
