@@ -113,8 +113,32 @@
                     <label>Account Name</label>
                     <input name ="AccountName" placeholder="Cash">
                     </br>
+                    <label>Account Type</label>
+                    <input name="AccountType" placeholder="Asset" />
+                    </br>
+                    <label>Normale Side</label>
+                    <input name="NormalSide" placeholder="Left"/>
+                    </br>
                     <label>Initial Amount</label>
                     <input name = "InitialAmount" placeholder="100.00" />
+                    </br>
+                    <label>Order</label>
+                    <input name="Order" placeholder="1" />
+                    </br>
+                    <label>Comment</label>
+                    <input name="comment" placeholder="No Comment"/>
+                    </br>
+                    <label>Active</label>
+                    <input name="Active" placeholder="Yes" />
+                    </br>
+                    <label>Group</label>
+                    <input name="Group" placeholder="Current Asset" />
+                    </br>
+                    <label>Event Log</label>
+                    <input name="EventLog" placeholder="111"/>
+                    </br>
+                    <label>Error Code</label>
+                    <input name="ErrorCode" placeholder="911"/>
                     </br>
                     <input type="submit" name="addBtn" value="insert"/>
                   </form>
