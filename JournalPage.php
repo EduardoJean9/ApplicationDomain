@@ -5,25 +5,22 @@
     else{
       session_start();
     }
- ?>
-
+   
+?>
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Application Domain</title>
-
+    <title>Basic Chart of Accounts Page</title>
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <script type="text/javascript" src="AddAccounts.js" ></script>
     <!-- Custom CSS -->
     <style>
     body {
@@ -31,14 +28,12 @@
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
     </style>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -92,6 +87,9 @@
                 <!-- /.user-info -->
             </div>
 
+
+
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -99,81 +97,62 @@
 
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-            <div class="col-lg-12">
-                <h3> Journalizing </h3>
+            <div class="col-lg-12 text-center">
+                <!-- PASTE CONTENT HERE -->
+               <div class="well">
 
-<!-- Input Here-->
-<!-- PHP START-->
-<?php
-$account = $_GET["Account Name"];
-
-
-$query = mysqli_prepare($con, "SELECT FROM Chart_0f_accounts (`Account Name`) VALUES (?)")
-					or die("Error: ". mysqli_error($con));
-mysqli_stmt_bind_param ($query, "s", $account);
-
-<div class="well">
-<form id="myForm" action="journalFunct.php" method="GET">
-
-<table style="width:100%">
+<form name="journalInput" action="" method="POST">
+    <table>
     <tr>
-
-    <th></th>
-    <th></th>
-    <th></th>
-
-    <th>Account Name</th>
-    <th>Type</th>
-    <th>Amount</th>
-
+    <th>Account</th>
+    <th>Debit</th> 
+    <th>Credit</th>
   </tr>
-  <tr>
+  
+        
+        
+        
+    <tr>
   <td> <label for="account"></label>
+<?php
+    $servername = "localhost";
+	$username = "root";
+	$password = "";
+    $con = mysqli_connect($servername,$username,$password);
+	if(!$con){
+ 	   die("Can not connect: " . mysql_error());
+	}
+    mysqli_select_db($con,"application_domain");
+      	
+    	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
+        $result = mysqli_query($con,$sql);
+    echo "<select class='form-control' id='Account Name' name='Account Name'>";
+while ($row = mysqli_fetch_array($result)){
+echo "<option value=\"". $row['Account Name'] ."\">" .$row['Account Name'] ."</option>" ;
+}
 
-echo'<select class="form-control" id="fromAccount" name="fromAccount">';
-    while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-    echo <option value="'.$row['something'].'">$row['something']</option>
-    }
-    <option></option>
-    <option></option>
-    <option></option>
- echo '</select>';
+ echo "</select>"
+?>  
+
+
  </td>
      <td> <label for="Amount"></label>
   <input class="form-control" name="amount" id="amount" type="text" placeholder="0.00" /></td>
-  </tr>
-  <tr>
-  <td> <label for="account1"></label>
-  <select class="form-control" id="toAccount" name="toAccount">
-    <option>Liabilities</option>
-    <option></option>
-    <option></option>
-    <option></option>
-  </select></td>
-     <td> <label for="Amount1"></label>
+        <td> <label for="Amount1"></label>
   <input  class="form-control" name="amount1" id="amount1" type="text" placeholder="0.00" /></td>
-      <td>  <input class="btn btn-success" type="submit" value="SUBMIT" id="btnSubmit"></td>
-
   </tr>
-    <tr>
-        <td></td>
-        <td></td>
-
-    </tr>
-</table>
-
-        <td>   <input type="submit" value="SUBMIT" id="btnSubmit">
-</td>
-
-    </tr>
 </table>
     </form>
-            </div>
+                
+                </div>       
 
+        
+
+            </div>
         </div>
         <!-- /.row -->
+
     </div>
     <!-- /.container -->
 
@@ -182,7 +161,7 @@ echo'<select class="form-control" id="fromAccount" name="fromAccount">';
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-?>
+
 </body>
 
 </html>
