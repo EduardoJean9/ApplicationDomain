@@ -83,7 +83,7 @@
 
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -121,13 +121,14 @@
                         echo "</div>";
                     }
                     if (isset($_SESSION['logged_in_as'])){
-                        echo "<div id="."'logoutBox'"." class="."'container'".">";
+                        echo "<div class=\"jumbotron\">";
+                        echo "<h1>Hello, ".$_SESSION['logged_in_as']."</h1>";
+                        echo "</br>";
                         echo "<form action="."'php/logout.php'"." method="."'POST'".">";
-                            echo "<label>Hello ".$_SESSION['logged_in_as']."</label>";
-                            
-                            echo "<input type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
+                        echo "<input type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
                         echo "</form>";
                         echo "</div>";
+
                     }
 
 
