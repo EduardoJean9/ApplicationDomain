@@ -18,6 +18,7 @@
     <meta name="author" content="">
     <title>Basic Chart of Accounts Page</title>
     <!-- Bootstrap Core CSS -->
+
     <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script type="text/javascript" src="AddAccounts.js" ></script>
@@ -98,6 +99,7 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
+        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                <div class="well">

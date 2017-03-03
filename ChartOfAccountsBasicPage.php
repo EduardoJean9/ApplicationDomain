@@ -98,6 +98,10 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
+        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
+
+        <button type="submit" id="saveButton" class="btn btn-primary" onclick: saveChanges.bind(null,...) >Save</button>
+
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <div>

@@ -102,6 +102,7 @@
     <div class="container">
 
         <div class="row">
+        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <table>

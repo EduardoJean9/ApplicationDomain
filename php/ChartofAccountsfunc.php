@@ -19,7 +19,14 @@ function loadBasicCOA(){
     	 echo "<td class=\"text-left\">" . $record['Account Type'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Normal Side'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Initial Balance'] . "</td>";
-    	 echo "<td class=\"text-left\">" . $record['Active'] . "</td>";
+    	 echo "<td class=\"text-left\">";
+
+    	 if ($record['Active'] == 0)
+    	 	echo "<input type=\"checkbox\" name=\"activeBox\" value=\"0\" />";
+    	 else
+    	 	echo "<input type=\"checkbox\" name=\"activeBox\" value=\"1\" checked=\"checked\" />";
+
+    	 echo "</td>";
     	 echo "<td class=\"text-left\">" . $record['Comment'] . "</td>";
     	 echo "</tr>";
 	}
@@ -56,6 +63,10 @@ function loadDetailedCOA(){
     	 echo "</tr>";
 	}
 	mysqli_close($con);
+}
+
+function saveChanges () {
+	header ("refresh: .15; url=/ApplicationDomain/HomePage.php");
 }
 
 
