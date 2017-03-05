@@ -10,10 +10,10 @@
   $username = "root";
   $password = "";
   // Create connection
-  $conn = new mysqli($servername, $username, $password);
+  $link = mysqli_connect($servername, $username, $password,"application_domain");
   // Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+  if($link ===false){
+    die("Error: Could not connect." . mysqli_connect_error());
   }
   //Receive variables from form
   $AccountCode = $_POST['AccountCode'];
@@ -29,20 +29,13 @@
   $EventLog = $_POST['EventLog'];
   $ErrorCode = $_POST['ErrorCode'];
 
-  $sql = "INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`,`Active`, `Group`, `Event Log`,`Error Code`) VALUES (190, Patent,Asset, Left, 100.00, 19, No comment, Eduardo jean, Yes,urent Asset, 111, 111)";
+  $sql = "INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`, `Active`, `Group`, `Event Log`, `Error Code`)VALUES('$AccountCode', '$AccountName', '$AccountType', '$NormalSide', '$InitialAmount', '$Order', '$Comment', '$AddedBy', '$Active', '$Group', '$EventLog', '$ErrorCode')";
 
-
-/*
-  "INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`,`Active`, `Group`, `Event Log`,`Error Code`) VALUES ($AccountCode, $AccountName, $AccountType, $NormalSide, $InitialAmount, $Order, $Comment, $AddedBy, $Active, $Group, $EventLog, $ErrorCode)";
-*/
-    if (mysqli_query($conn,$sql)){
-        echo "Successfully entered.";
-    }
-    else{
-        die('Error: ' . mysql_error());
-    }
-
-    /*
-    INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`, `Added On`, `Active`, `Group`, `Event Log`, `Error Code`) VALUES (190,"Patetns","asset","left",100.34,19,"Added","Eddy","Yes","current asset",1,2)
-    */
+  if(mysqli_query($link, $sql)){
+      echo "Records inserted successfully.";
+  } else{
+      echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+  }
+  // Close connection
+  mysqli_close($link);
 ?>
