@@ -22,9 +22,9 @@ function loadBasicCOA(){
     	 echo "<td class=\"text-left\">";
 
     	 if ($record['Active'] == 0)
-    	 	echo "<input type=\"checkbox\" name=\"activeBox\" value=\"0\" />";
+    	 	echo "<input type=\"checkbox\" name=\"check_list[]\"/>";
     	 else
-    	 	echo "<input type=\"checkbox\" name=\"activeBox\" value=\"1\" checked=\"checked\" />";
+    	 	echo "<input type=\"checkbox\" name=\"check_list[]\" checked=\"checked\" />";
 
     	 echo "</td>";
     	 echo "<td class=\"text-left\">" . $record['Comment'] . "</td>";
@@ -66,8 +66,32 @@ function loadDetailedCOA(){
 }
 
 function saveChanges () {
-	header ("refresh: .15; url=/ApplicationDomain/HomePage.php");
+	$servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    $con = mysqli_connect($servername,$username,$password);
+    if(!$con){
+       die("Can not connect: " . mysql_error());
+    }
+    mysqli_select_db($con,"application_domain");
+    if (!isset($_POST['check_list']) || isset($_POST['check_list'])){
+        echo "IM IN HERE!!!";
+        foreach($_POST['check_list'] as $item){
+            $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \''.$item.'\' WHERE `chart_of_accounts`.`Account Code` = 101';
+            mysqli_query($con, $sql);
+        }
+    }
+    header("refresh:2;url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
 }
+
+
+
+if (isset($_POST['saveButton'])){
+    saveChanges();
+}
+
+
 
 
 ?>

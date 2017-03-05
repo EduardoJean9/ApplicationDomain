@@ -98,9 +98,14 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
+
+        <!-- Back Button -->
         <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
 
-        <button type="submit" id="saveButton" class="btn btn-primary" onclick: saveChanges.bind(null,...) >Save</button>
+        <!-- Save Changes Button -->
+        <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
+        <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
+        </form>
 
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
@@ -125,6 +130,7 @@
                   <tbody class = "table-hover">
                     <?php
                       loadBasicCOA();
+                      
                     ?>
                   </tbody>
                </table>
