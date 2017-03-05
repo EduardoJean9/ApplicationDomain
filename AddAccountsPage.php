@@ -79,7 +79,7 @@
             ?>
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -127,7 +127,7 @@
                     <input name="Order" placeholder="1" />
                     </br>
                     <label>Comment</label>
-                    <input name="comment" placeholder="No Comment"/>
+                    <input name="Comment" placeholder="No Comment"/>
                     </br>
                     <label>Active</label>
                     <input name="Active" placeholder="Yes" />

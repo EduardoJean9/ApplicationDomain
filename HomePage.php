@@ -125,7 +125,7 @@
                         echo "<h1>Hello, ".$_SESSION['logged_in_as']."</h1>";
                         echo "</br>";
                         echo "<form action="."'php/logout.php'"." method="."'POST'".">";
-                        echo "<input type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
+                        echo "<input class=\"btn btn-danger\" type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
                         echo "</form>";
                         echo "</div>";
 
