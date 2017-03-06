@@ -17,6 +17,7 @@ function loadBasicCOA(){
 	mysqli_select_db($con,"application_domain");
 	$sql = "SELECT * FROM chart_of_accounts";
 	$myData = mysqli_query($con,$sql);
+    $i = 0;
 	while($record = mysqli_fetch_array($myData)){
     	 echo "<tr>";
     	 echo "<td class=\"text-left\">" . $record['Account Code'] . "</td>";
@@ -26,13 +27,16 @@ function loadBasicCOA(){
     	 echo "<td class=\"text-left\">" . $record['Initial Balance'] . "</td>";
     	 echo "<td class=\"text-left\">";
 
-    	 if ($record['Active'] == 0)
-    	 	echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"0\"/>";
-    	 else
-    	 	echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"1\" checked=\"checked\" />";
+    	 if ($record['Active'] == 0){
+            echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"0\"/>";
+         }
+    	 else{
+            echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"1\" checked=\"checked\" />";
+         }
 
     	 echo "</td>";
     	 echo "</tr>";
+         $i = $i + 1;
 	}
 	mysqli_close($con);
 
@@ -77,6 +81,8 @@ if (isset($_POST['saveButton'])){
     $password = "";
     $checkboxArray = $_POST['checkboxList'];
 
+    $checkboxArrayValues;
+
     // Database Connection
     $con = mysqli_connect($servername,$username,$password);
     if(!$con){
@@ -87,10 +93,19 @@ if (isset($_POST['saveButton'])){
     // Changes database values
     // For right now I'm trying to just edit account code 101.
     // Any help would be appreciated.
-    if (!isset($checkboxArray) || isset($checkboxArray)){
+    if ( isset($checkboxArray) ){
         echo "IM IN HERE!!!";
+        echo " ".print_r($checkboxArray);
 
-        $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \''.$checkboxArray[0].'\' WHERE `chart_of_accounts`.`Account Code` = 101';
+        $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \'';
+
+        if (isset($checkboxArray) && ($checkboxArray[0] == "1")) {
+             $sql .= "1";
+            } else {
+             $sql .= "0";
+            }
+
+        $sql .= '\' WHERE `chart_of_accounts`.`Account Code` = 101';
 
         /*
         foreach($checkboxArray as $item){
@@ -100,7 +115,7 @@ if (isset($_POST['saveButton'])){
     }
 
     // Redirect Page
-    header("refresh:2; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
+    //header("refresh:5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
 }
 
 if (isset($_POST['addAccountsButton'])){
