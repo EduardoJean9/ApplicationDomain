@@ -100,9 +100,9 @@
 
     <!-- Page Content -->
     <div class="container">
-
+      <h1>Add an Account</h1>
         <div class="row">
-        
+
         <!-- Back Button -->
         <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
 

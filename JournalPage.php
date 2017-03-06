@@ -28,6 +28,9 @@
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+    h1{
+      text-align: center;
+    }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -76,7 +79,7 @@
             ?>
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -98,6 +101,7 @@
 
     <!-- Page Content -->
     <div class="container">
+      <h1>Add a Journal Entry</h1>
         <div class="row">
         <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
@@ -108,13 +112,13 @@
     <table>
     <tr>
     <th>Account</th>
-    <th>Debit</th> 
+    <th>Debit</th>
     <th>Credit</th>
   </tr>
-  
-        
-        
-        
+
+
+
+
     <tr>
   <td> <label for="account"></label>
 
@@ -128,25 +132,25 @@
  	   die("Can not connect: " . mysql_error());
 	}
     mysqli_select_db($con,"application_domain");
-      	
+
     	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
         $result = mysqli_query($con,$sql);
 while ($row = mysqli_fetch_array($result)){
 echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
 }
-     
-  
 
 
-?>  
+
+
+?>
 </select>
  </td>
-        
-        
-        
-     <td> 
+
+
+
+     <td>
   <input class="form-control" name="amountD" id="" type="text" placeholder="0.00"></td>
-        <td> 
+        <td>
   <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00"></td>
   </tr>
 </table>
@@ -154,16 +158,16 @@ echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</op
     </form>
 
 
-                
-                </div>       
+
+                </div>
 <?php
                 if(isset($_POST["submitBTN"]) )
                 {
     $Account = $_POST["Account"];
     $Debit = $_POST["amountD"];
-    $Credit = $_POST["amountC"];    
+    $Credit = $_POST["amountC"];
     $Date = date("Y-m-d");
-                
+
     mysqli_select_db($con,"application_domain");
       $query = mysqli_prepare($con,
 				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
@@ -191,8 +195,8 @@ echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</op
                   </tbody>
                </table>
     <?php
-   
-    
+
+
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
@@ -206,11 +210,11 @@ echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</op
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-	
+
 
 
 ?>
-        
+
 
             </div>
         </div>

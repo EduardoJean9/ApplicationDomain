@@ -37,7 +37,7 @@
 
   if(mysqli_query($link, $sql) && mysqli_query($link,$sql2)){
       header( "Refresh: 1.5; url=/ApplicationDomain/ChartofAccountsBasicPage.php" );
-      echo "Records inserted successfully.";
+      echo "Account was inserted successfully.";
   } else{
       header( "Refresh: 1.5; url=/ApplicationDomain/AddAccountsPage.php" );
       echo "Account was not successfully added.";
