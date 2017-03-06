@@ -5,7 +5,7 @@
     else{
       session_start();
     }
-   
+   include 'php/journalFunct.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Basic Chart of Accounts Page</title>
+    <title>Journal Page</title>
     <!-- Bootstrap Core CSS -->
 
     <link href="css/tables.css" rel="stylesheet">
@@ -104,7 +104,7 @@
                 <!-- PASTE CONTENT HERE -->
                <div class="well">
 
-<form name="journalInput" action="" method="POST">
+<form name="journalInput" action="Journalpage.php" method="POST">
     <table>
     <tr>
     <th>Account</th>
@@ -117,7 +117,9 @@
         
     <tr>
   <td> <label for="account"></label>
-<?php
+
+    <select class="form-control" name="Account Name">
+      <?php
     $servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -129,26 +131,83 @@
       	
     	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
         $result = mysqli_query($con,$sql);
-    echo "<select class='form-control' id='Account Name' name='Account Name'>";
 while ($row = mysqli_fetch_array($result)){
-echo "<option value=\"". $row['Account Name'] ."\">" .$row['Account Name'] ."</option>" ;
+echo "<option value= 'name'\"". $row['Account Name'] ."\">" .$row['Account Name'] ."</option>" ;
 }
+     
+  
 
- echo "</select>"
+
 ?>  
-
-
+</select>
  </td>
-     <td> <label for="Amount"></label>
-  <input class="form-control" name="amount" id="amount" type="text" placeholder="0.00" /></td>
-        <td> <label for="Amount1"></label>
-  <input  class="form-control" name="amount1" id="amount1" type="text" placeholder="0.00" /></td>
+        
+        
+        
+     <td> 
+  <input class="form-control" name="amountD" id="" type="text" placeholder="0.00"></td>
+        <td> 
+  <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00"></td>
   </tr>
 </table>
+     <input type="submit" value="submit" id= "submit">
     </form>
+
+
                 
                 </div>       
+<?php
+    $Account = $_POST["Account Name"];
+    $Debit = $_POST["amountD"];
+    $Credit = $_POST["amountC"];    
+    $Date = date("Y-m-d");
+                
+    mysqli_select_db($con,"application_domain");
+      $query = mysqli_prepare($con,
+				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
+					or die("Error: ". mysqli_error($con));
+			mysqli_stmt_bind_param ($query, "ssss", $Account, $Debit, $Credit, $Date);
 
+			mysqli_stmt_execute($query)
+				or die("Error. Could not insert into the table."
+                   . mysqli_error($con));
+
+?>
+                   <table class = "table-fill">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Account Name</th>
+                      <th>Debit</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody class = "table-hover">
+                    <?php
+                      loadJournal();
+                    ?>
+                  </tbody>
+               </table>
+    <?php
+   
+    
+	$con = new mysqli("localhost","root","", "application_domain");
+	if ($con->connect_error)
+    {
+ 	   die("Can not connect: " . $con->connect_error);
+	}
+	$query = mysqli_prepare($con,
+				"INSERT INTO `journal` (`Account Name`, `Type`, `Amount`) VALUES (?, ?, ?)")
+					or die("Error: ". mysqli_error($con));
+			mysqli_stmt_bind_param ($query, "sss", $Account, $type, $amount);
+
+			mysqli_stmt_execute($query)
+				or die("Error. Could not insert into the table."
+                   . mysqli_error($con));
+	
+
+
+?>
         
 
             </div>
