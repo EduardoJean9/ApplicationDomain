@@ -5,6 +5,7 @@
     else{
       session_start();
     }
+    include 'php/EventLogfunctions.php';
 ?>
 
 <!DOCTYPE html>
@@ -65,7 +66,7 @@
                         <ul class="dropdown-menu">
                           <li><a href="AccountsPage.php">Accounts</a></li>
                           <li><a href="AddAccountsPage.php">Add Accounts</a></li>
-                          <li><a href="CharofAccountsBasicPage.php">Chart Of Accounts Basic</a></li>
+                          <li><a href="ChartofAccountsBasicPage.php">Chart Of Accounts Basic</a></li>
                           <li><a href="ChartofAccountsDetailedPage.php">Chart Of Accounts Detailed</a></li>
                         </ul>
                     </li>
@@ -88,10 +89,12 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                <?php
+
+                loadEventLog();
 
 
-
-
+                 ?>
             </div>
         </div>
         <!-- /.row -->
