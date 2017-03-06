@@ -75,15 +75,15 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
             ?>
-            
-                
-                     
-                        
+
+
+
+
 
 
 
@@ -91,7 +91,7 @@
 
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];

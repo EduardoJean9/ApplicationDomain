@@ -71,7 +71,7 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
@@ -105,14 +105,14 @@
 
 
 
-        
+
 
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <div>
                     <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
 
-                        
+
 
                         <!-- Table -->
                         <table class = "table-fill">
@@ -137,10 +137,10 @@
 
                         <!-- Back Button -->
                         <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
-                        
+
                         <!-- Save Changes Button -->
                         <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
-                        
+
                         <!-- Add Account Button -->
                         <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>
                     </form>
