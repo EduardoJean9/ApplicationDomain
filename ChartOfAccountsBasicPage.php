@@ -102,11 +102,14 @@
     <div class="container">
         <h1>Chart of Accounts</br><small>Basic View</small></h1>
         <div class="row">
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> origin/master
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <div>
