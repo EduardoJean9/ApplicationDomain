@@ -118,7 +118,7 @@
     <tr>
   <td> <label for="account"></label>
 
-    <select class="form-control" name="Account Name">
+    <select class="form-control" name="Account">
       <?php
     $servername = "localhost";
 	$username = "root";
@@ -132,7 +132,7 @@
     	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
         $result = mysqli_query($con,$sql);
 while ($row = mysqli_fetch_array($result)){
-echo "<option value= 'name'\"". $row['Account Name'] ."\">" .$row['Account Name'] ."</option>" ;
+echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
 }
      
   
@@ -150,14 +150,16 @@ echo "<option value= 'name'\"". $row['Account Name'] ."\">" .$row['Account Name'
   <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00"></td>
   </tr>
 </table>
-     <input type="submit" value="submit" id= "submit">
+     <input name= "submitBTN" type="submit" value="submit" id= "submit">
     </form>
 
 
                 
                 </div>       
 <?php
-    $Account = $_POST["Account Name"];
+                if(isset($_POST["submitBTN"]) )
+                {
+    $Account = $_POST["Account"];
     $Debit = $_POST["amountD"];
     $Credit = $_POST["amountC"];    
     $Date = date("Y-m-d");
@@ -171,7 +173,7 @@ echo "<option value= 'name'\"". $row['Account Name'] ."\">" .$row['Account Name'
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-
+                }
 ?>
                    <table class = "table-fill">
                   <thead>
