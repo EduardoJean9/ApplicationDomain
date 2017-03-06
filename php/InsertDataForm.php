@@ -31,10 +31,18 @@
 
   $sql = "INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`, `Active`, `Group`, `Event Log`, `Error Code`)VALUES('$AccountCode', '$AccountName', '$AccountType', '$NormalSide', '$InitialAmount', '$Order', '$Comment', '$AddedBy', '$Active', '$Group', '$EventLog', '$ErrorCode')";
 
-  if(mysqli_query($link, $sql)){
-      echo "Records inserted successfully.";
+  $stringDescription = "Added Account: " . $AccountName;
+
+  $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$AddedBy','$stringDescription')";
+
+  if(mysqli_query($link, $sql) && mysqli_query($link,$sql2)){
+      header( "Refresh: 1.5; url=/ApplicationDomain/ChartofAccountsBasicPage.php" );
+      echo "Account was inserted successfully.";
   } else{
-      echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+      header( "Refresh: 1.5; url=/ApplicationDomain/AddAccountsPage.php" );
+      echo "Account was not successfully added.";
+      //Un-comment to view error incase;
+      //echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
   }
 
   
