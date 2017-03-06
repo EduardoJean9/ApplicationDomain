@@ -116,18 +116,38 @@
     <div class="container">
 
         <div class="row">
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <form>
+
+                <form name="ChooseAccount" action="#" method="POST">
+                  <select class="form-control" name="Account">
+                <?php
+                  $servername = "localhost";
+                	$username = "root";
+                	$password = "";
+                    $con = mysqli_connect($servername,$username,$password);
+                	if(!$con){
+                 	   die("Can not connect: " . mysql_error());
+                	}
+                    mysqli_select_db($con,"application_domain");
+
+                    	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
+                        $result = mysqli_query($con,$sql);
+                  while ($row = mysqli_fetch_array($result)){
+                  echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
+                  }
+                ?>
+              </select>
+              </br>
+              <input name= "submitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
+             </form>
 
 
 
-
-                </form>
 
             </div>
+            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 

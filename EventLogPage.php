@@ -96,6 +96,7 @@
 
                  ?>
             </div>
+            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 
