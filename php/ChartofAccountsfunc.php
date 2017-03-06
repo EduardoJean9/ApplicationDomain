@@ -1,5 +1,10 @@
 <?php
 
+if(session_status() == false)
+    session_start();
+
+
+
 function loadBasicCOA(){
 	$servername = "localhost";
 	$username = "root";
@@ -22,15 +27,15 @@ function loadBasicCOA(){
     	 echo "<td class=\"text-left\">";
 
     	 if ($record['Active'] == 0)
-    	 	echo "<input type=\"checkbox\" name=\"check_list[]\"/>";
+    	 	echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"0\"/>";
     	 else
-    	 	echo "<input type=\"checkbox\" name=\"check_list[]\" checked=\"checked\" />";
+    	 	echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"1\" checked=\"checked\" />";
 
     	 echo "</td>";
-    	 echo "<td class=\"text-left\">" . $record['Comment'] . "</td>";
     	 echo "</tr>";
 	}
 	mysqli_close($con);
+
 }
 
 function loadDetailedCOA(){
@@ -65,32 +70,42 @@ function loadDetailedCOA(){
 	mysqli_close($con);
 }
 
-function saveChanges () {
+if (isset($_POST['saveButton'])){
+    // Function variables
 	$servername = "localhost";
     $username = "root";
     $password = "";
+    $checkboxArray = $_POST['checkboxList'];
 
+    // Database Connection
     $con = mysqli_connect($servername,$username,$password);
     if(!$con){
        die("Can not connect: " . mysql_error());
     }
     mysqli_select_db($con,"application_domain");
-    if (!isset($_POST['check_list']) || isset($_POST['check_list'])){
+
+    // Changes database values
+    // For right now I'm trying to just edit account code 101.
+    // Any help would be appreciated.
+    if (!isset($checkboxArray) || isset($checkboxArray)){
         echo "IM IN HERE!!!";
-        foreach($_POST['check_list'] as $item){
+
+        $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \''.$checkboxArray[0].'\' WHERE `chart_of_accounts`.`Account Code` = 101';
+
+        /*
+        foreach($checkboxArray as $item){
             $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \''.$item.'\' WHERE `chart_of_accounts`.`Account Code` = 101';
             mysqli_query($con, $sql);
-        }
+        }*/
     }
-    header("refresh:2;url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
+
+    // Redirect Page
+    header("refresh:2; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
 }
 
-
-
-if (isset($_POST['saveButton'])){
-    saveChanges();
+if (isset($_POST['addAccountsButton'])){
+    header("refresh:0; url=/ApplicationDomain/addAccountsPage.php");
 }
-
 
 
 
