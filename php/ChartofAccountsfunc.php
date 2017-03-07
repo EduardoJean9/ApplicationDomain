@@ -4,7 +4,6 @@ if(session_status() == false)
     session_start();
 
 
-
 function loadBasicCOA(){
 	$servername = "localhost";
 	$username = "root";
@@ -35,6 +34,7 @@ function loadBasicCOA(){
          }
 
     	 echo "</td>";
+         echo "<td><button class=\"btn btn-primary\" id=\"editButton\" name=\"editButton\" value=\"".$record['Account Code']."\">Edit</button></td>";
     	 echo "</tr>";
          $i = $i + 1;
 	}
@@ -120,6 +120,12 @@ if (isset($_POST['saveButton'])){
 
 if (isset($_POST['addAccountsButton'])){
     header("refresh:0; url=/ApplicationDomain/addAccountsPage.php");
+}
+
+if ( isset($_POST['editButton']) ){
+    $_SESSION['accountCode'] = $_POST['editButton'];
+    header("refresh:0; url=/ApplicationDomain/EditPage.php");
+    
 }
 
 
