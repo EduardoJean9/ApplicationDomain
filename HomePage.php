@@ -58,23 +58,22 @@
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
                          "<ul class="."'nav navbar-nav'".">".
                          "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts <span class="."'caret'"."></span></a>".
-                         "<ul class="."'dropdown-menu'".">".
-                          "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
-                          "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
-                          "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
-                          "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
-                        "</ul>".
-                    "</li>".
-                    "<li>".
-                        "<a href="."'JournalPage.php'".">Journal</a>".
-                    "</li>".
-                    "<li>".
-                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
-                    "</li>".
-                "</ul>";
+                           "<ul class="."'dropdown-menu'".">".
+                            "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
+                            "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
+                            "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
+                            "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
+                          "</ul>".
+                            "</li>".
+                            "<li>".
+                                "<a href="."'JournalPage.php'".">Journal</a>".
+                            "</li>".
+                            "<li>".
+                                "<a href=". "'EventLogPage.php'".">Event Log</a>".
+                            "</li>".
+                        "</ul>";
                 }
             ?>
-
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello

@@ -109,7 +109,8 @@
                 <!-- PASTE CONTENT HERE -->
 
                 <div class="Insert-form">
-                  <form action="php/insertDataForm.php" method="POST">
+                  <form action="php/insertDataForm.php" method="POST" class = "navbar-center">
+                    <div class="form-group">
                     <label>Account Code</label>
                     <input name = "AccountCode" placeholder="101">
                     </br>
@@ -145,6 +146,7 @@
                     </br>
                     </br>
                     <input type="submit" name="addBtn" value="insert" class="btn btn-primary"/>
+                    </div>
                   </form>
                 </div>
 
