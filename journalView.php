@@ -1,44 +1,43 @@
 <?php
-  if(session_status() == true){
-    //Do nothing
-  }
-  else{
-    session_start();
-  }
+    if(session_status() == true){
+      //Do nothing
+    }
+    else{
+      session_start();
+    }
    include 'php/journalFunct.php';
- ?>
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Application Domain</title>
-
+    <title>Journal Page</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="css/tables.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="AddAccounts.js" ></script>
     <!-- Custom CSS -->
     <style>
     body {
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+    h1{
+      text-align: center;
+    }
     </style>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -56,10 +55,7 @@
                 </button>
                 <a class="navbar-brand" href="HomePage.php">Application Domain</a>
             </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
-
             <?php
                 if (isset($_SESSION['logged_in_as'])){
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
@@ -76,23 +72,14 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
             ?>
-            
-                
-                     
-                        
-
-
-
-
-
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -107,18 +94,22 @@
 
 
 
-
-        
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
     <!-- Page Content -->
     <div class="container">
-
+      <h1>Add a Journal Entry</h1>
         <div class="row">
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+               <div class="well">
+                   
 
-              <form name="journalInput" action="JournalView.php" method="POST">
+    
+   <form name="journalInput" action="JournalPage.php" method="POST">
 
                    <table class = "table-fill">
                   <thead>
@@ -131,14 +122,19 @@
                   </thead>
                   <tbody class = "table-hover">
                     <?php
-                      loadJournal();
+                      loadJournaltemp();
                     ?>
                   </tbody>
                </table>
                 <input name= "validateBTN" type="submit" value="submit" id= "submit">
                 </form>
                 
+                
+
+       
+                
             </div>
+            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 

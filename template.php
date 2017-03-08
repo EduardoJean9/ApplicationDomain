@@ -117,12 +117,29 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <form>
+                
 
+<form name="journalInput" action="JournalView.php" method="POST">
 
-
-
+                   <table class = "table-fill">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Account Name</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class = "table-hover">
+                    <?php
+                      loadJournal();
+                    ?>
+                  </tbody>
+               </table>
                 </form>
+
+
+                
 
             </div>
         </div>

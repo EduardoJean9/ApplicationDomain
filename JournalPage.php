@@ -152,14 +152,9 @@ echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</op
     
 
 }
-<<<<<<< HEAD
+
      
 mysqli_close($con);
-  
-=======
->>>>>>> origin/master
-
-
 
 
 ?>
@@ -236,18 +231,13 @@ mysqli_close($con);
                     ?>
                   </tbody>
                </table>
-<<<<<<< HEAD
                 <input name= "validateBTN" type="submit" value="submit" id= "submit">
                 </form>
                 
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
-=======
-    <?php
-
-
->>>>>>> origin/master
+ 
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
@@ -262,19 +252,19 @@ mysqli_close($con);
           $query = mysqli_prepare($con,
 				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
 					or die("Error: ". mysqli_error($con));
-			mysqli_stmt_bind_param ($query, "ssss", $Account,$Debit, $Credit,$Date);
+			
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-<<<<<<< HEAD
+
           
           $query = mysqli_prepare($con,
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
-=======
 
->>>>>>> origin/master
+
+
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
@@ -288,12 +278,6 @@ mysqli_close($con);
        }
                                }
 ?> 
-
-<<<<<<< HEAD
-=======
-?>
-
->>>>>>> origin/master
 
        
                 
