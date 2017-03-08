@@ -29,6 +29,9 @@
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+    h1{
+      text-align: center;
+    }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -72,7 +75,7 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href="."'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
@@ -100,17 +103,14 @@
 
     <!-- Page Content -->
     <div class="container">
-
+      <h1>Add an Account</h1>
         <div class="row">
-        
-        <!-- Back Button -->
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
-
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
                 <div class="Insert-form">
-                  <form action="php/insertDataForm.php" method="POST">
+                  <form action="php/insertDataForm.php" method="POST" class = "navbar-center">
+                    <div class="form-group">
                     <label>Account Code</label>
                     <input name = "AccountCode" placeholder="101">
                     </br>
@@ -144,11 +144,14 @@
                     <label>Error Code</label>
                     <input name="ErrorCode" placeholder="911"/>
                     </br>
-                    <input type="submit" name="addBtn" value="insert"/>
+                    </br>
+                    <input type="submit" name="addBtn" value="insert" class="btn btn-primary"/>
+                    </div>
                   </form>
                 </div>
 
             </div>
+                    <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 

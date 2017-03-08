@@ -7,11 +7,16 @@
 
 
 #backButton{
-    float: right;
+    float: left;
     margin-right: 15px;
 }
 
 #saveButton
 {
 	float: right;
+}
+
+#editButton
+{
+	float: center;
 }

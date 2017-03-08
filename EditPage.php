@@ -1,11 +1,14 @@
 <?php
-  if(session_status() == true){
-    //Do nothing
-  }
-  else{
-    session_start();
-  }
- ?>
+
+    if(session_status() == false){
+      session_start();
+    }
+
+   $connection = mysqli_connect("localhost", "root", null, "application_domain")
+   or die('Error connecting to MySQL server.');
+
+   include 'php/EditPageFunc.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +21,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Application Domain</title>
+    <title>Main Page</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/homepage.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -55,10 +59,7 @@
                 </button>
                 <a class="navbar-brand" href="HomePage.php">Application Domain</a>
             </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
-
             <?php
                 if (isset($_SESSION['logged_in_as'])){
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
@@ -80,15 +81,6 @@
                 "</ul>";
                 }
             ?>
-
-
-
-
-
-
-
-
-
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
@@ -106,7 +98,6 @@
 
 
 
-
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -114,44 +105,53 @@
 
     <!-- Page Content -->
     <div class="container">
-
+        <h1>Edit Account</br><small>Detailed View</small></h1>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                <form action="/ApplicationDomain/php/EditPageFunc.php" method="POST">
+                    <!-- Table -->
+                    <table class = "table-fill">
+                        <thead>
+                            <tr>
+                              <th>Code</th>
+                              <th>Name</th>
+                              <th>Type</th>
+                              <th>Normal Side</th>
+                              <th>Initial Balance</th>
+                              <th>Order</th>
+                              <th>Added By</th>
+                              <th>Added On</th>
+                              <th>Active</th>
+                              <th>Group</th>
+                              <th>Event Log</th>
+                              <th>Error Code</th>
+                              <th>Comment</th>
+                            </tr>
+                        </thead>
 
+                          <tbody class="table-hover">
+                            <?php
+                                
+                             ?>
+                          </tbody>
 
-                <form name="ChooseAccount" action="#" method="POST">
-                  <select class="form-control" name="Account">
-                <?php
-                  $servername = "localhost";
-                	$username = "root";
-                	$password = "";
-                    $con = mysqli_connect($servername,$username,$password);
-                	if(!$con){
-                 	   die("Can not connect: " . mysql_error());
-                	}
-                    mysqli_select_db($con,"application_domain");
-
-                    	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
-                        $result = mysqli_query($con,$sql);
-                  while ($row = mysqli_fetch_array($result)){
-                  echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
-                  }
-                ?>
-              </select>
-              </br>
-              <input name= "submitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
-             </form>
-
-
-
+                    </table>
+                </form>
+                 <?php
+                if (isset($_SESSION['logged_in_as'])){
+                    echo "<button id=\"backButton\" class=\"btn btn-primary\" onclick=\"history.go(-1);\">Back </button>";
+                }
+            ?>
 
             </div>
-            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
-        <!-- /.row -->
+         
 
     </div>
+        <!-- /.row -->
+
+</div>
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->

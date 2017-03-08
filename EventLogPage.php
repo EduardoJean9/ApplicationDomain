@@ -1,3 +1,13 @@
+<?php
+    if(session_status() == true){
+      //Do nothing
+    }
+    else{
+      session_start();
+    }
+    include 'php/EventLogfunctions.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,12 +85,18 @@
 
     <!-- Page Content -->
     <div class="container">
-
+      <h1>View Event Log</h1>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                <?php
 
+                loadEventLog();
+
+
+                 ?>
             </div>
+            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 

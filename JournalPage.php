@@ -28,6 +28,9 @@
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+    h1{
+      text-align: center;
+    }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,14 +72,14 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
             ?>
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -98,8 +101,8 @@
 
     <!-- Page Content -->
     <div class="container">
+      <h1>Add a Journal Entry</h1>
         <div class="row">
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                <div class="well">
@@ -121,13 +124,13 @@
     <table>
     <tr>
     <th>Account</th>
-    <th>Debit</th> 
+    <th>Debit</th>
     <th>Credit</th>
   </tr>
-  
-        
-        
-        
+
+
+
+
     <tr>
   <td> <label for="account"></label>
 
@@ -141,7 +144,7 @@
  	   die("Can not connect: " . mysql_error());
 	}
     mysqli_select_db($con,"application_domain");
-      	
+
     	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
         $result = mysqli_query($con,$sql);
 while ($row = mysqli_fetch_array($result)){
@@ -149,20 +152,25 @@ echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</op
     
 
 }
+<<<<<<< HEAD
      
 mysqli_close($con);
   
+=======
+>>>>>>> origin/master
 
 
-?>  
+
+
+?>
 </select>
  </td>
-        
-        
-        
-     <td> 
+
+
+
+     <td>
   <input class="form-control" name="amountD" id="" type="text" placeholder="0.00"></td>
-        <td> 
+        <td>
   <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00"></td>
   </tr>
        
@@ -177,8 +185,8 @@ mysqli_close($con);
   </div>
 </div>
 
-                
-                </div>       
+
+                </div>
 <?php
     
     $servername = "localhost";
@@ -194,9 +202,9 @@ mysqli_close($con);
                 {
     $Account = $_POST["Account"];
     $Debit = $_POST["amountD"];
-    $Credit = $_POST["amountC"];    
+    $Credit = $_POST["amountC"];
     $Date = date("Y-m-d");
-                
+
     mysqli_select_db($con,"application_domain");
       $query = mysqli_prepare($con,
 				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
@@ -228,12 +236,18 @@ mysqli_close($con);
                     ?>
                   </tbody>
                </table>
+<<<<<<< HEAD
                 <input name= "validateBTN" type="submit" value="submit" id= "submit">
                 </form>
                 
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
+=======
+    <?php
+
+
+>>>>>>> origin/master
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
@@ -253,10 +267,14 @@ mysqli_close($con);
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
+<<<<<<< HEAD
           
           $query = mysqli_prepare($con,
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
+=======
+
+>>>>>>> origin/master
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
@@ -271,10 +289,16 @@ mysqli_close($con);
                                }
 ?> 
 
+<<<<<<< HEAD
+=======
+?>
+
+>>>>>>> origin/master
 
        
                 
             </div>
+            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
 

@@ -27,6 +27,9 @@
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     }
+    h1{
+      text-align: center;
+    }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -68,14 +71,14 @@
                         "<a href="."'JournalPage.php'".">Journal</a>".
                     "</li>".
                     "<li>".
-                        "<a href="."'#'".">Placeholder</a>".
+                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
                     "</li>".
                 "</ul>";
                 }
             ?>
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -97,46 +100,47 @@
 
     <!-- Page Content -->
     <div class="container">
+        <h1>Chart of Accounts</br><small>Basic View</small></h1>
         <div class="row">
-
-        <!-- Back Button -->
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
-
-        <!-- Save Changes Button -->
-        <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
-        <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
-        </form>
-
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <div>
-                  <form action="AddAccountsPage.php">
-                    <input type = "submit" value = "GoToAddAccounts"/>
-                  </form>
+                    <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
+
+
+
+                        <!-- Table -->
+                        <table class = "table-fill">
+                          <thead>
+                            <tr>
+                              <th>Code</th>
+                              <th>Name</th>
+                              <th>Type</th>
+                              <th>Normal Side</th>
+                              <th>Initial Balance</th>
+                              <th>Active</th>
+                              <th> </th>
+                            </tr>
+                          </thead>
+
+                          <tbody class = "table-hover">
+                            <?php
+                              loadBasicCOA();
+                            ?>
+                          </tbody>
+
+                        </table>
+
+                        <!-- Back Button -->
+                        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
+
+                        <!-- Save Changes Button -->
+                        <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
+
+                        <!-- Add Account Button -->
+                        <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>
+                    </form>
                 </div>
-                
-                <table class = "table-fill">
-                  <thead>
-                    <tr>
-                      <th>Code</th>
-                      <th>Name</th>
-                      <th>Type</th>
-                      <th>Normal Side</th>
-                      <th>Initial Balance</th>
-                      <th>Active</th>
-                      <th>Comment</th>
-                    </tr>
-                  </thead>
-                  <tbody class = "table-hover">
-                    <?php
-                      loadBasicCOA();
-                      
-                    ?>
-                  </tbody>
-               </table>
-
-
-
             </div>
         </div>
         <!-- /.row -->
