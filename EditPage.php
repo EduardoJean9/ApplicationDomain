@@ -1,13 +1,11 @@
 <?php
-
-    if(session_status() == false){
-      session_start();
-    }
-
-   $connection = mysqli_connect("localhost", "root", null, "application_domain")
-   or die('Error connecting to MySQL server.');
-
-   include 'php/EditPageFunc.php';
+  if(session_status() == false){
+    session_start();}
+    // Connection to database
+    $connection = mysqli_connect("localhost", "root", null, "application_domain")
+      or die('Error connecting to MySQL server.');
+    // Included php functions
+    include 'php/EditPageFunc.php';
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +19,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Main Page</title>
+    <title>Edit Account Page</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/homepage.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -108,11 +107,11 @@
         <h1>Edit Account</br><small>Detailed View</small></h1>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <!-- PASTE CONTENT HERE -->
-                <form action="/ApplicationDomain/php/EditPageFunc.php" method="POST">
-                    <!-- Table -->
-                    <table class = "table-fill">
-                        <thead>
+                <!-- Form -->
+                    <form action="/ApplicationDomain/php/EditPageFunc.php" method="POST">
+                        <!-- Table -->
+                        <table>
+                          <thead>
                             <tr>
                               <th>Code</th>
                               <th>Name</th>
@@ -128,21 +127,20 @@
                               <th>Error Code</th>
                               <th>Comment</th>
                             </tr>
-                        </thead>
-
-                          <tbody class="table-hover">
-                            <?php
-                                
-                             ?>
+                          </thead>
+                          <tbody class = "table-hover">
+                          <?php
+                            loadAccount();
+                          ?>
                           </tbody>
+                        </table>
 
-                    </table>
-                </form>
-                 <?php
-                if (isset($_SESSION['logged_in_as'])){
-                    echo "<button id=\"backButton\" class=\"btn btn-primary\" onclick=\"history.go(-1);\">Back </button>";
-                }
-            ?>
+                        <!-- Back Button -->
+                        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
+
+                        <!-- Save Changes Button -->
+                        <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
+                    </form>
 
             </div>
         </div>

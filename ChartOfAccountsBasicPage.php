@@ -89,10 +89,6 @@
                 </ul>
                 <!-- /.user-info -->
             </div>
-
-
-
-
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -105,10 +101,8 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <div>
+                    <!-- Form -->
                     <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
-
-
-
                         <!-- Table -->
                         <table class = "table-fill">
                           <thead>
@@ -122,13 +116,11 @@
                               <th> </th>
                             </tr>
                           </thead>
-
                           <tbody class = "table-hover">
                             <?php
                               loadBasicCOA();
                             ?>
                           </tbody>
-
                         </table>
 
                         <!-- Back Button -->

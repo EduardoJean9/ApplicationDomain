@@ -11,12 +11,14 @@
     margin-right: 15px;
 }
 
-#saveButton
-{
+#saveButton{
 	float: right;
 }
 
-#editButton
-{
+#editButton{
 	float: center;
+}
+
+#groupText{
+	width: 100px;
 }
