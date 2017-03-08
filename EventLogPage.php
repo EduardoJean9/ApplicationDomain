@@ -33,6 +33,19 @@
     h1{
       text-align: center;
     }
+    table td 
+    {
+        text-align: left;
+        table-layout:fixed;
+        width:200px;
+        overflow:hidden;
+        word-wrap:break-word;
+    }
+    table
+    {
+        text-align: center;
+        margin:3em auto;
+    }
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -89,12 +102,25 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <?php
-
-                loadEventLog();
 
 
-                 ?>
+                <table class = "table-fill">
+                          <thead>
+                            <tr>
+                              <th>ID</th>
+                              <th>Date</th>
+                              <th>User</th>
+                              <th>Description</th>
+                            </tr>
+                          </thead>
+
+                          <tbody class = "table-hover">
+                            <?php
+                              loadEventLog();
+                            ?>
+                          </tbody>
+
+                </table>
             </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>

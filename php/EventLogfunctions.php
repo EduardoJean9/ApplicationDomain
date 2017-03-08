@@ -13,8 +13,13 @@ function loadEventLog(){
 	$sql = "SELECT * FROM event_log";
 	$myData = mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData)){
-    	 echo "</br>";
-			 echo "Log ID: " . $record['Event Log ID']. "&nbsp &nbsp &nbsp On: " . $record['Date'] . "&nbsp &nbsp &nbsp By: " . $record['Username'] . "&nbsp &nbsp &nbsp Description: " . $record['Description'];
+    	 echo "<tr>";
+
+			 echo "<td>" . $record['Event Log ID']. "</td>";
+			 echo "<td>" . $record['Date'] . "</td>";
+			 echo "<td>" . $record['Username'] . "</td>"; 
+			 echo "<td>" . $record['Description'] . "<td>";
+			 echo "</tr>";
 	}
 	mysqli_close($con);
 }
