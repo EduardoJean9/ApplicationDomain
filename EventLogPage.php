@@ -44,7 +44,7 @@
     table
     {
         text-align: center;
-        margin:3em auto;
+        margin:2.5em auto;
     }
     </style>
 
