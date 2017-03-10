@@ -106,7 +106,7 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                <div class="well">
-                   
+
                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Journal</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,11 +149,11 @@
         $result = mysqli_query($con,$sql);
 while ($row = mysqli_fetch_array($result)){
 echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
-    
+
 
 }
 
-     
+
 mysqli_close($con);
 
 
@@ -168,13 +168,13 @@ mysqli_close($con);
         <td>
   <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00"></td>
   </tr>
-       
+
 </table>
      <input type="submit" value="submit" class="submit" name= "submitBTN">
     </form>
  </div>
       <div class="modal-footer">
-        
+
       </div>
     </div>
   </div>
@@ -183,7 +183,7 @@ mysqli_close($con);
 
                 </div>
 <?php
-    
+
     $servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -192,7 +192,7 @@ mysqli_close($con);
  	   die("Can not connect: " . mysql_error());
 	}
     mysqli_select_db($con,"application_domain");
-                
+
                 if(isset($_POST["submitBTN"]) )
                 {
     $Account = $_POST["Account"];
@@ -213,7 +213,7 @@ mysqli_close($con);
    mysqli_close($con);
 
 ?>
-    
+
    <form name="journalInput" action="JournalPage.php" method="POST">
 
                    <table class = "table-fill">
@@ -231,34 +231,34 @@ mysqli_close($con);
                     ?>
                   </tbody>
                </table>
-                <input name= "validateBTN" type="submit" value="submit" id= "submit">
+                <input class="btn btn-primary" name= "validateBTN" type="submit" value="submit" id= "submit">
                 </form>
-                
+
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
- 
+
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-    
+
     $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
     $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
-                
+
       if($Debit = $Credit)
       {
           $query = mysqli_prepare($con,
 				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
 					or die("Error: ". mysqli_error($con));
-			
+
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
 
-          
+
           $query = mysqli_prepare($con,
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
@@ -277,10 +277,10 @@ mysqli_close($con);
                 </div>";
        }
                                }
-?> 
+?>
 
-       
-                
+
+
             </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
