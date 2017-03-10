@@ -99,6 +99,21 @@
         <!-- /.container -->
     </nav>
 
+<?php 
+          $handle = fopen("counter.txt", "r"); 
+          if(!$handle){ 
+              echo "could not open the file" ; 
+          } 
+          else { 
+              $counter = (int ) fread($handle,20); 
+              fclose ($handle); 
+              $counter++; 
+            $handle = fopen("counter.txt", "w" ); 
+            fwrite($handle,$counter); 
+            fclose ($handle) ; 
+          } 
+    ?>
+
     <!-- Page Content -->
     <div class="container">
       <h1>Add a Journal Entry</h1>
@@ -120,6 +135,7 @@
       </div>
       <div class="modal-body">
 
+          
 <form name="journalInput" action="JournalPage.php" method="POST">
     <table>
     <tr>
@@ -202,9 +218,9 @@ mysqli_close($con);
 
     mysqli_select_db($con,"application_domain");
       $query = mysqli_prepare($con,
-				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
+				"INSERT INTO journaltemp (Account, Debit, Credit, Date, `Journal ID`) VALUES (?, ?, ?, ?, ?)")
 					or die("Error: ". mysqli_error($con));
-			mysqli_stmt_bind_param ($query, "ssss", $Account, $Debit, $Credit, $Date);
+			mysqli_stmt_bind_param ($query, "sssss", $Account, $Debit, $Credit, $Date, $counter);
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
@@ -237,20 +253,46 @@ mysqli_close($con);
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
- 
+    $new="new";
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-    
-    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
-    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
+    $query = mysqli_prepare($con,
+				"INSERT INTO JournalCounter (Name) VALUES (?)")
+					or die("Error: ". mysqli_error($con));
+			mysqli_stmt_bind_param ($query, "s", $new);
+
+			mysqli_stmt_execute($query)
+				or die("Error. Could not insert into the table."
+                   . mysqli_error($con));
+	
+    mysqli_select_db($con,"application_domain");
+	$sql = "SELECT ID FROM journalcounter ORDER BY id DESC LIMIT 1";
+	$myData = mysqli_query($con,$sql);
+	while($record = mysqli_fetch_array($myData)){
+    	 $ID= $record['ID'];
+    }
+       
+	mysqli_select_db($con,"application_domain");
+	$sql = "SELECT SUM(`Debit`) As Debit FROM `journaltemp`";
+	$myData = mysqli_query($con,$sql);
+	while($record = mysqli_fetch_array($myData)){
+    	 $Debit= $record['Debit'];
+	}
+       
+    $sql= "SELECT SUM(`Credit`) As Credit FROM `journaltemp`";	
+    $myData= mysqli_query($con,$sql);
+	while($record = mysqli_fetch_array($myData)){
+    	 $Credit= $record['Credit'];
+	}
+        
                 
-      if($Debit = $Credit)
+      if($Debit == $Credit)
       {
           $query = mysqli_prepare($con,
-				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
+				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`, `Journal ID`) SELECT `Account`, `Debit`, `Credit`,`Date`, $ID FROM `journaltemp`")
 					or die("Error: ". mysqli_error($con));
 			
 
@@ -273,10 +315,11 @@ mysqli_close($con);
        else
        {
            echo "<div class='alert alert-dange'>
-                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                    <strong>Your Journal is not balanced. Edit then try again.</strong>
                 </div>";
        }
-                               }
+                    }
+
 ?> 
 
        
