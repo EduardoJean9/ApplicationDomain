@@ -64,7 +64,7 @@
                             "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
                             "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
                           "</ul>".
-                            "</li>".
+                          "</li>".
                             "<li>".
                                 "<a href="."'JournalPage.php'".">Journal</a>".
                             "</li>".

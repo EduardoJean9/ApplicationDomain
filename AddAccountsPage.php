@@ -108,47 +108,29 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                <div class="Insert-form">
                   <form action="php/insertDataForm.php" method="POST" class = "navbar-center">
-                    <div class="form-group">
-                    <label>Account Code</label>
-                    <input name = "AccountCode" placeholder="101">
-                    </br>
-                    <label>Account Name</label>
-                    <input name ="AccountName" placeholder="Cash">
-                    </br>
-                    <label>Account Type</label>
-                    <input name="AccountType" placeholder="Asset" />
-                    </br>
-                    <label>Normale Side</label>
-                    <input name="NormalSide" placeholder="Left"/>
-                    </br>
-                    <label>Initial Amount</label>
-                    <input name = "InitialAmount" placeholder="100.00" />
-                    </br>
-                    <label>Order</label>
-                    <input name="Order" placeholder="1" />
-                    </br>
-                    <label>Comment</label>
-                    <input name="Comment" placeholder="No Comment"/>
-                    </br>
-                    <label>Active</label>
-                    <input name="Active" placeholder="Yes" />
-                    </br>
-                    <label>Group</label>
-                    <input name="Group" placeholder="Current Asset" />
-                    </br>
-                    <label>Event Log</label>
-                    <input name="EventLog" placeholder="111"/>
-                    </br>
-                    <label>Error Code</label>
-                    <input name="ErrorCode" placeholder="911"/>
-                    </br>
+
+                    <div class = "form-group">
+                      <label>Account Name</label>
+                        <select class="form-control">
+                          <option value="#">PlaceHolder</option>
+                        </select>
+                    </div>
+                    <div class = "form-group">
+                      <label>Initial Account Balance</label>
+                      <input type = "text" class="form-control"/>
+                    </div>
+                    <div class = "form-group">
+                      <label>Is the acccount active?</label></br>
+                      <input class = "radio-inline" type = "radio" name="Active" value="Yes" />Yes
+                      <input class = "radio-inline" type = "radio" name="Active" value="No" />No
+                    </div>
                     </br>
                     <input type="submit" name="addBtn" value="insert" class="btn btn-primary"/>
-                    </div>
+
                   </form>
-                </div>
+
+            </div>
 
             </div>
                     <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
