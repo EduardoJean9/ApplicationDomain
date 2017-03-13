@@ -286,8 +286,12 @@
    if(isset($_POST["validateBTN"]) )
    {
 <<<<<<< HEAD
+<<<<<<< HEAD
     $new="new";
 
+=======
+ 
+>>>>>>> parent of 119ee15... Journal Update
 =======
  
 >>>>>>> parent of 119ee15... Journal Update
@@ -296,6 +300,7 @@
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     $query = mysqli_prepare($con,
@@ -330,6 +335,13 @@
                 
    
       if($Debit == $Credit)
+=======
+    
+    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
+    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
+                
+      if($Debit = $Credit)
+>>>>>>> parent of 119ee15... Journal Update
 =======
     
     $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
@@ -382,6 +394,7 @@ echo "<div class='alert alert-dange'>
        {
            echo "<div class='alert alert-dange'>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
@@ -396,6 +409,11 @@ echo "<div class='alert alert-dange'>
                     <strong>Oh snap!</strong> Change a few things up and try submitting again.
                 </div>";
        }
+=======
+                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                </div>";
+       }
+>>>>>>> parent of 119ee15... Journal Update
                                }
 ?> 
 >>>>>>> parent of 119ee15... Journal Update
