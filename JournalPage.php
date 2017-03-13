@@ -253,17 +253,14 @@ mysqli_close($con);
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
-<<<<<<< HEAD
     $new="new";
-=======
 
->>>>>>> origin/master
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-<<<<<<< HEAD
+
     $query = mysqli_prepare($con,
 				"INSERT INTO JournalCounter (Name) VALUES (?)")
 					or die("Error: ". mysqli_error($con));
@@ -294,14 +291,8 @@ mysqli_close($con);
 	}
         
                 
+   
       if($Debit == $Credit)
-=======
-
-    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
-    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
-
-      if($Debit = $Credit)
->>>>>>> origin/master
       {
           $query = mysqli_prepare($con,
 				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`, `Journal ID`) SELECT `Account`, `Debit`, `Credit`,`Date`, $ID FROM `journaltemp`")
@@ -317,7 +308,9 @@ mysqli_close($con);
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
 
-
+echo "<div class='alert alert-dange'>
+                    <strong> Successful Journal Entry.</strong>
+                </div>";
 
 
 			mysqli_stmt_execute($query)
@@ -327,19 +320,16 @@ mysqli_close($con);
        else
        {
            echo "<div class='alert alert-dange'>
-                    <strong>Your Journal is not balanced. Edit then try again.</strong>
+                    <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
-<<<<<<< HEAD
-                    }
-
-?> 
-=======
-                               }
+                    
+      }
+   
+                            
 ?>
 
 
->>>>>>> origin/master
 
             </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
