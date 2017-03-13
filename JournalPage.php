@@ -79,6 +79,61 @@
                   "</ul>";
                 }
             ?>
+<<<<<<< HEAD
+=======
+                <!-- user-info -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
+                    <?php
+                        if (isset($_SESSION['logged_in_as'])){
+                            echo $_SESSION['logged_in_as'];
+                        }
+                    ?>
+                    </a></li>
+                    <li><a href="/ApplicationDomain/php/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+                <!-- /.user-info -->
+            </div>
+
+
+
+
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1>Add a Journal Entry</h1>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!-- PASTE CONTENT HERE -->
+               <div class="well">
+                   
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Journal</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Add Journal</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+<form name="journalInput" action="JournalPage.php" method="POST">
+    <table>
+    <tr>
+    <th>Account</th>
+    <th>Debit</th>
+    <th>Credit</th>
+  </tr>
+
+
+>>>>>>> parent of 119ee15... Journal Update
 
       <!-- user-info -->
         <ul class="nav navbar-nav navbar-right">
@@ -195,9 +250,9 @@
 
     mysqli_select_db($con,"application_domain");
       $query = mysqli_prepare($con,
-				"INSERT INTO journaltemp (Account, Debit, Credit, Date, `Journal ID`) VALUES (?, ?, ?, ?, ?)")
+				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
 					or die("Error: ". mysqli_error($con));
-			mysqli_stmt_bind_param ($query, "sssss", $Account, $Debit, $Credit, $Date, $counter);
+			mysqli_stmt_bind_param ($query, "ssss", $Account, $Debit, $Credit, $Date);
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
@@ -230,13 +285,18 @@
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
+<<<<<<< HEAD
     $new="new";
 
+=======
+ 
+>>>>>>> parent of 119ee15... Journal Update
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
+<<<<<<< HEAD
 
     $query = mysqli_prepare($con,
 				"INSERT INTO JournalCounter (Name) VALUES (?)")
@@ -270,9 +330,16 @@
                 
    
       if($Debit == $Credit)
+=======
+    
+    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
+    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
+                
+      if($Debit = $Credit)
+>>>>>>> parent of 119ee15... Journal Update
       {
           $query = mysqli_prepare($con,
-				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`, `Journal ID`) SELECT `Account`, `Debit`, `Credit`,`Date`, $ID FROM `journaltemp`")
+				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
 					or die("Error: ". mysqli_error($con));
 =======
       <?php
@@ -314,6 +381,7 @@ echo "<div class='alert alert-dange'>
        else
        {
            echo "<div class='alert alert-dange'>
+<<<<<<< HEAD
                     <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
@@ -324,6 +392,13 @@ echo "<div class='alert alert-dange'>
 ?>
 
 
+=======
+                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                </div>";
+       }
+                               }
+?> 
+>>>>>>> parent of 119ee15... Journal Update
 
             </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
