@@ -6,6 +6,7 @@
       session_start();
     }
     include 'php/ChartofAccountsfunc.php';
+    include 'php/AddAccountsFunc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +101,65 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+
+                <div class="well">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add an Account</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add an Account</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <form name="journalInput" action="JournalPage.php" method="POST" class = "navbar-center">
+
+                  <div class = "form-group">
+                      <label>Account Name</label>
+                      <select class="form-control">
+                        <?php
+                          getSelectOptions();
+                         ?>
+                      </select>
+                      <small>*If account is not listed, the account is already created.</small>
+                  </div>
+                  <div class = "form-group">
+                    <label>Initial Account Balance</label>
+                    <input type = "text" class="form-control"/>
+                  </div>
+                  <div class = "form-group">
+                    <label>Is the acccount active?</label></br>
+                    <input class = "radio-inline" type = "radio" name="Active" value="Yes" />Yes
+                    <input class = "radio-inline" type = "radio" name="Active" value="No" />No
+                  </div>
+                  <div class = "form-group">
+                    <label>Comment</label>
+                    <input type = "text" class="form-control"/>
+                  </div>
+                  </br>
+
+
+
+                <input type="submit" value="Submit" class="btn btn-primary" name= "submitBTN">
+                </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <?php
+                if(isset($_POST["submitBTN"])){
+                    insertAccount();
+                }
+                 ?>
+
                 <div>
                     <!-- Form -->
                     <form action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
