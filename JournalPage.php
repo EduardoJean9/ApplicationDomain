@@ -79,61 +79,6 @@
                   "</ul>";
                 }
             ?>
-<<<<<<< HEAD
-=======
-                <!-- user-info -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
-                    <?php
-                        if (isset($_SESSION['logged_in_as'])){
-                            echo $_SESSION['logged_in_as'];
-                        }
-                    ?>
-                    </a></li>
-                    <li><a href="/ApplicationDomain/php/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                </ul>
-                <!-- /.user-info -->
-            </div>
-
-
-
-
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-
-    <!-- Page Content -->
-    <div class="container">
-      <h1>Add a Journal Entry</h1>
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <!-- PASTE CONTENT HERE -->
-               <div class="well">
-                   
-                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Journal</button>
-
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Add Journal</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-<form name="journalInput" action="JournalPage.php" method="POST">
-    <table>
-    <tr>
-    <th>Account</th>
-    <th>Debit</th>
-    <th>Credit</th>
-  </tr>
-
-
->>>>>>> parent of 119ee15... Journal Update
 
       <!-- user-info -->
         <ul class="nav navbar-nav navbar-right">
@@ -230,8 +175,7 @@
                 </div>
               </div>
           </div>
-
-<<<<<<< HEAD
+<?php
     $servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -247,7 +191,6 @@
     $Debit = $_POST["amountD"];
     $Credit = $_POST["amountC"];
     $Date = date("Y-m-d");
-
     mysqli_select_db($con,"application_domain");
       $query = mysqli_prepare($con,
 				"INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
@@ -285,23 +228,13 @@
                  <?php
    if(isset($_POST["validateBTN"]) )
    {
-<<<<<<< HEAD
-<<<<<<< HEAD
     $new="new";
 
-=======
- 
->>>>>>> parent of 119ee15... Journal Update
-=======
- 
->>>>>>> parent of 119ee15... Journal Update
 	$con = new mysqli("localhost","root","", "application_domain");
 	if ($con->connect_error)
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     $query = mysqli_prepare($con,
 				"INSERT INTO JournalCounter (Name) VALUES (?)")
@@ -315,69 +248,36 @@
     mysqli_select_db($con,"application_domain");
 	$sql = "SELECT ID FROM journalcounter ORDER BY id DESC LIMIT 1";
 	$myData = mysqli_query($con,$sql);
-	while($record = mysqli_fetch_array($myData)){
+	while($record = mysqli_fetch_array($myData))
     	 $ID= $record['ID'];
-    }
+    
        
 	mysqli_select_db($con,"application_domain");
 	$sql = "SELECT SUM(`Debit`) As Debit FROM `journaltemp`";
 	$myData = mysqli_query($con,$sql);
-	while($record = mysqli_fetch_array($myData)){
+	while($record = mysqli_fetch_array($myData))
     	 $Debit= $record['Debit'];
-	}
+	
        
     $sql= "SELECT SUM(`Credit`) As Credit FROM `journaltemp`";	
     $myData= mysqli_query($con,$sql);
-	while($record = mysqli_fetch_array($myData)){
+	while($record = mysqli_fetch_array($myData))
     	 $Credit= $record['Credit'];
-	}
+	
         
                 
    
       if($Debit == $Credit)
-=======
-    
-    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
-    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
-                
-      if($Debit = $Credit)
->>>>>>> parent of 119ee15... Journal Update
-=======
-    
-    $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
-    $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
-                
-      if($Debit = $Credit)
->>>>>>> parent of 119ee15... Journal Update
       {
+         $query = mysqli_prepare($con,
+                "INSERT INTO `journal_transaction` (`Journal ID`,`Account Name`,`Debit`,`Credit`,`Date`) SELECT $ID, `Account`,`Debit`,`Credit`,`Date` FROM `journaltemp`")
+				or die("Error. Could not insert into the table.". mysqli_error($con));			
+          
+          mysqli_stmt_execute($query)
+				or die("Error. Could not insert into the table."
+                   . mysqli_error($con));
+          
           $query = mysqli_prepare($con,
-				"INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
-					or die("Error: ". mysqli_error($con));
-=======
-      <?php
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-
-        $con = mysqli_connect($servername,$username,$password);
-
-        if(!$con){
-          die("Can not connect: " . mysql_error());
-        }
->>>>>>> origin/master
-
-        mysqli_select_db($con,"application_domain");
-
-        if(isset($_POST["submitBTN"]) ){
-          $Account = $_POST["Account"];
-          $Debit = $_POST["amountD"];
-          $Credit = $_POST["amountC"];
-          $Date = date("Y-m-d");
-
-          mysqli_select_db($con,"application_domain");
-
-          $query = mysqli_prepare($con,
-<<<<<<< HEAD
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
 
@@ -390,101 +290,24 @@ echo "<div class='alert alert-dange'>
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
       }
+    
        else
        {
            echo "<div class='alert alert-dange'>
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
                     
       }
    
-                            
+   
 ?>
 
 
-=======
-                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                </div>";
-       }
-=======
-                    <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                </div>";
-       }
->>>>>>> parent of 119ee15... Journal Update
-                               }
-?> 
->>>>>>> parent of 119ee15... Journal Update
 
-            </div>
+          </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
-=======
-          "INSERT INTO journaltemp (Account, Debit, Credit, Date) VALUES (?, ?, ?, ?)")
-          or die("Error: ". mysqli_error($con));
-
-          mysqli_stmt_bind_param ($query, "ssss", $Account, $Debit, $Credit, $Date);
-          mysqli_stmt_execute($query)
-            or die("Error. Could not insert into the table.".mysqli_error($con));
-        }
-
-        mysqli_close($con);
-      ?>
-
-        <form name="journalInput" action="JournalPage.php" method="POST">
-          <table class = "table-fill">
-            <thead>
-            <tr>
-              <th>Date</th>
-              <th>Account Name</th>
-              <th></th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody class = "table-hover">
-            <?php
-              loadJournaltemp();
-            ?>
-            </tbody>
-          </table>
-          <input name= "validateBTN" type="submit" value="submit" id= "submit">
-        </form>
-
-        <?php
-          if(isset($_POST["validateBTN"]) ){
-            $con = new mysqli("localhost","root","", "application_domain");
-
-            if ($con->connect_error){
-              die("Can not connect: " . $con->connect_error);
-            }
-
-            $Debit = "SELECT SUM(`Debit`) FROM `journaltemp`";
-            $Credit = "SELECT SUM(`Credit`) FROM `journaltemp`";
-
-            if($Debit = $Credit){
-              $query = mysqli_prepare($con,
-                "INSERT INTO `journal_transaction`(`Account Name`, `Debit`, `Credit`, `Date`) SELECT `Account`, `Debit`, `Credit`,`Date` FROM `journaltemp`")
-                or die("Error: ". mysqli_error($con));
             
-              mysqli_stmt_execute($query)
-                or die("Error. Could not insert into the table.".mysqli_error($con));
-            
-              $query = mysqli_prepare($con, "TRUNCATE TABLE `journaltemp`")
-                or die("Error: ". mysqli_error($con));
-            
-              mysqli_stmt_execute($query)
-                or die("Error. Could not insert into the table.".mysqli_error($con));
-            } else {
-              echo "<div class='alert alert-dange'>
-              <strong>Oh snap!</strong> Change a few things up and try submitting again.
-              </div>";
-              }
-          }
-        ?> 
->>>>>>> origin/master
-        </div>
-        <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         
       </div>
       <!-- /.row -->
