@@ -1,5 +1,5 @@
 <?php
-
+//Loads a
 if(session_status() == false)
     session_start();
 
@@ -66,8 +66,6 @@ function loadDetailedCOA(){
     	 echo "<td>" . $record['Added On'] . "</td>";
     	 echo "<td>" . $record['Active'] . "</td>";
     	 echo "<td>" . $record['Group'] . "</td>";
-    	 echo "<td>" . $record['Event Log'] . "</td>";
-    	 echo "<td>" . $record['Error Code'] . "</td>";
     	 echo "<td>" . $record['Comment'] . "</td>";
     	 echo "</tr>";
 	}

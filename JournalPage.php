@@ -19,7 +19,7 @@
   <!-- Bootstrap Core CSS -->
   <link href="css/tables.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script type="text/javascript" src="AddAccounts.js" ></script>  
+  <script type="text/javascript" src="AddAccounts.js" ></script>
 
   <!-- Custom CSS -->
   <style>
@@ -65,7 +65,6 @@
                     "<li class='dropdown'><a class='dropdown-toggle' data-toggle='dropdown' href='#'>Chart Of Accounts <span class='caret'></span></a>".
                       "<ul class="."'dropdown-menu'".">".
                         "<li><a href='AccountsPage.php'>Accounts</a></li>".
-                        "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
                         "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
                         "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
                       "</ul>".
@@ -164,7 +163,7 @@
                           <td>
                             <input  class="form-control" name="amountC" id="" type="text" placeholder="0.00">
                           </td>
-                        </tr>     
+                        </tr>
                       </table>
                       <input type="submit" value="submit" class="submit" name= "submitBTN">
                     </form>
@@ -244,39 +243,39 @@
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-	
+
     mysqli_select_db($con,"application_domain");
 	$sql = "SELECT ID FROM journalcounter ORDER BY id DESC LIMIT 1";
 	$myData = mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData))
     	 $ID= $record['ID'];
-    
-       
+
+
 	mysqli_select_db($con,"application_domain");
 	$sql = "SELECT SUM(`Debit`) As Debit FROM `journaltemp`";
 	$myData = mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData))
     	 $Debit= $record['Debit'];
-	
-       
-    $sql= "SELECT SUM(`Credit`) As Credit FROM `journaltemp`";	
+
+
+    $sql= "SELECT SUM(`Credit`) As Credit FROM `journaltemp`";
     $myData= mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData))
     	 $Credit= $record['Credit'];
-	
-        
-                
-   
+
+
+
+
       if($Debit == $Credit)
       {
          $query = mysqli_prepare($con,
                 "INSERT INTO `journal_transaction` (`Journal ID`,`Account Name`,`Debit`,`Credit`,`Date`) SELECT $ID, `Account`,`Debit`,`Credit`,`Date` FROM `journaltemp`")
-				or die("Error. Could not insert into the table.". mysqli_error($con));			
-          
+				or die("Error. Could not insert into the table.". mysqli_error($con));
+
           mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
-          
+
           $query = mysqli_prepare($con,
 				"TRUNCATE TABLE `journaltemp`")
 					or die("Error: ". mysqli_error($con));
@@ -290,27 +289,39 @@ echo "<div class='alert alert-dange'>
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
       }
-    
+
        else
        {
            echo "<div class='alert alert-dange'>
                     <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
-                    
+
       }
-   
-   
+
+
 ?>
 
 
 
           </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
-            
-        
+
+
       </div>
       <!-- /.row -->
+      <hr>
+      <footer>
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Copyright &copy; Black Bird Accounting</p>
+              </div>
+          </div>
+          <!-- /.row -->
+      </footer>
+
+
+
     </div>
     <!-- /.container -->
 

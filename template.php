@@ -66,7 +66,6 @@
                          "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts <span class="."'caret'"."></span></a>".
                          "<ul class="."'dropdown-menu'".">".
                           "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
-                          "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
                           "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
                           "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
                         "</ul>".
@@ -80,10 +79,10 @@
                 "</ul>";
                 }
             ?>
-            
-                
-                     
-                        
+
+
+
+
 
 
 
@@ -91,7 +90,7 @@
 
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello 
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
                     <?php
                         if (isset($_SESSION['logged_in_as'])){
                             echo $_SESSION['logged_in_as'];
@@ -107,7 +106,7 @@
 
 
 
-        
+
 
     <!-- Page Content -->
     <div class="container">
@@ -117,7 +116,7 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-                
+
 
 <form name="journalInput" action="JournalView.php" method="POST">
 
@@ -139,7 +138,7 @@
                 </form>
 
 
-                
+
 
             </div>
         </div>
