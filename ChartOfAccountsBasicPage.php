@@ -116,11 +116,11 @@
                 </button>
                 </div>
                 <div class="modal-body">
-                <form name="journalInput" action="JournalPage.php" method="POST" class = "navbar-center">
+                <form name="journalInput" action="ChartOfAccountsBasicPage.php" method="POST" class = "navbar-center">
 
                   <div class = "form-group">
                       <label>Account Name</label>
-                      <select class="form-control">
+                      <select class="form-control" name="AccountCode">
                         <?php
                           getSelectOptions();
                          ?>
@@ -129,7 +129,7 @@
                   </div>
                   <div class = "form-group">
                     <label>Initial Account Balance</label>
-                    <input type = "text" class="form-control"/>
+                    <input name = "InitialAmount" type = "text" class="form-control"/>
                   </div>
                   <div class = "form-group">
                     <label>Is the acccount active?</label></br>
@@ -138,13 +138,13 @@
                   </div>
                   <div class = "form-group">
                     <label>Comment</label>
-                    <input type = "text" class="form-control"/>
+                    <input name="comment" type = "text" class="form-control"/>
                   </div>
                   </br>
 
 
 
-                <input type="submit" value="Submit" class="btn btn-primary" name= "submitBTN">
+                <input type="submit" value="Submit" class="btn btn-primary" name= "AddAccountsubmitBTN">
                 </form>
                 </div>
                 <div class="modal-footer">
@@ -155,7 +155,7 @@
                 </div>
 
                 <?php
-                if(isset($_POST["submitBTN"])){
+                if(isset($_POST["AddAccountsubmitBTN"])){
                     insertAccount();
                 }
                  ?>

@@ -125,7 +125,7 @@ if (isset($_POST['addAccountsButton'])){
 if ( isset($_POST['editButton']) ){
     $_SESSION['accountCode'] = $_POST['editButton'];
     header("refresh:0; url=/ApplicationDomain/EditPage.php");
-    
+
 }
 
 
