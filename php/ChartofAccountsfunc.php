@@ -46,7 +46,6 @@ function loadDetailedCOA(){
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
-
 	$con = mysqli_connect($servername,$username,$password);
 	if(!$con){
  	   die("Can not connect: " . mysql_error());
@@ -80,7 +79,6 @@ if (isset($_POST['saveButton'])){
     $checkboxArray = $_POST['checkboxList'];
 
     $checkboxArrayValues;
-
     // Database Connection
     $con = mysqli_connect($servername,$username,$password);
     if(!$con){
@@ -105,13 +103,7 @@ if (isset($_POST['saveButton'])){
 
         $sql .= '\' WHERE `chart_of_accounts`.`Account Code` = 101';
 
-        /*
-        foreach($checkboxArray as $item){
-            $sql  = 'UPDATE `chart_of_accounts` SET `Active` = \''.$item.'\' WHERE `chart_of_accounts`.`Account Code` = 101';
-            mysqli_query($con, $sql);
-        }*/
     }
-
     // Redirect Page
     //header("refresh:5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
 }

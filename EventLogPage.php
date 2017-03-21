@@ -19,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Application Domain</title>
+    <title>Black Bird Accounting</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
     h1{
       text-align: center;
     }
-    table td 
+    table td
     {
         text-align: left;
         table-layout:fixed;
@@ -70,7 +70,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="HomePage.php">Application Domain</a>
+                <a class="navbar-brand" href="HomePage.php">Black Bird Accounting</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -125,6 +125,18 @@
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
+
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Black Bird Accounting</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+
 
     </div>
     <!-- /.container -->

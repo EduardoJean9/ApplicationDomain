@@ -121,7 +121,7 @@
                       <label>Account Name</label>
                       <select class="form-control" name="AccountCode">
                         <?php
-                          getSelectOptions();
+                          getSelectOptions4Insert();
                          ?>
                       </select>
                       <small>*If account is not listed, the account is already created.</small>

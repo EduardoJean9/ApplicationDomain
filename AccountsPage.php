@@ -5,6 +5,7 @@
   else{
     session_start();
   }
+  include 'php/AddAccountsFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -118,32 +119,23 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-
-                <form name="ChooseAccount" action="#" method="POST">
+                <h2>Choose an Account to Display</h2>
+                <form name="ChooseAccount" action="AccountsPage.php" method="POST">
                   <select class="form-control" name="Account">
-                <?php
-                  $servername = "localhost";
-                	$username = "root";
-                	$password = "";
-                    $con = mysqli_connect($servername,$username,$password);
-                	if(!$con){
-                 	   die("Can not connect: " . mysql_error());
-                	}
-                    mysqli_select_db($con,"application_domain");
+                    <?php
+                      getSelectOptions4Display();
+                    ?>
+                  </select>
+                </br>
+                <input name= "showAccountsubmitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
+               </form>
 
-                    	$sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
-                        $result = mysqli_query($con,$sql);
-                  while ($row = mysqli_fetch_array($result)){
-                  echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
-                  }
+               <?php
+                 if(isset($_POST["showAccountsubmitBTN"])){
+                   $account = $_POST['Account'];
+                   getAcccountInfo($account);
+                 }
                 ?>
-              </select>
-              </br>
-              <input name= "submitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
-             </form>
-
-
-
 
             </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
