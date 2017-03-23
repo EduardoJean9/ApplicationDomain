@@ -73,12 +73,15 @@
                                   "<li><a href="."'#'".">View Journals</a></li>".
                                 "</ul>".
                             "</li>".
+                            "<li>".
+                                "<a href=". "'LedgerPage.php'".">Ledger</a>".
+                            "</li>".
                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Financial Statements<span class="."'caret'"."></span></a>".
                                "<ul class="."'dropdown-menu'".">".
-                                  "<li><a href="."'#'".">Trial Balance</a></li>".
-                                  "<li><a href="."'#'".">Income Statement</a></li>".
-                                  "<li><a href="."'#'".">Balance Sheet</a></li>".
-                                  "<li><a href="."'#'".">Retained Earnings</a></li>".
+                                 "<li><a href="."'TrialBalancePage.php'".">Trial Balance</a></li>".
+                                 "<li><a href="."'IncomeStatementPage.php'".">Income Statement</a></li>".
+                                 "<li><a href="."'BalanceSheetPage.php'".">Balance Sheet</a></li>".
+                                 "<li><a href="."'RetainedEarningsPage.php'".">Retained Earnings</a></li>".
                                "</ul>".
                              "<li>".
                                  "<a href=". "'EventLogPage.php'".">Event Log</a>".

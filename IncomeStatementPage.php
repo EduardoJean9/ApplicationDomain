@@ -5,7 +5,7 @@
   else{
     session_start();
   }
-  include 'php/AddAccountsFunc.php';
+
  ?>
 
 <!DOCTYPE html>
@@ -56,8 +56,6 @@
                 </button>
                 <a class="navbar-brand" href="HomePage.php">Black Bird Accounting</a>
             </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <?php
@@ -94,14 +92,6 @@
                 }
             ?>
 
-
-
-
-
-
-
-
-
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
@@ -115,11 +105,6 @@
                 </ul>
                 <!-- /.user-info -->
             </div>
-
-
-
-
-
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -131,27 +116,21 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                <h2>Income Statement</h2>
 
-                <h2>Choose an Account to Display</h2>
-                <form name="ChooseAccount" action="AccountsPage.php" method="POST">
-                  <select class="form-control" name="Account">
-                    <?php
-                      getSelectOptions4Display();
-                    ?>
-                  </select>
-                </br>
-                <input name= "showAccountsubmitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
-               </form>
 
-               <?php
-                 if(isset($_POST["showAccountsubmitBTN"])){
-                   $account = $_POST['Account'];
-                   getAcccountInfo($account);
-                 }
-                ?>
+
+
+
+
+
+
+
+
+
+
 
             </div>
-            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
         <hr>

@@ -5,6 +5,7 @@
   else{
     session_start();
   }
+
  ?>
 
 <!DOCTYPE html>
@@ -53,50 +54,43 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="HomePage.php">Application Domain</a>
+                <a class="navbar-brand" href="HomePage.php">Black Bird Accounting</a>
             </div>
-
-
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <?php
                 if (isset($_SESSION['logged_in_as'])){
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
-                         "<ul class="."'nav navbar-nav'".">".
-                             "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts<span class="."'caret'"."></span></a>".
+                          "<ul class="."'nav navbar-nav'".">".
+                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts<span class="."'caret'"."></span></a>".
+                                 "<ul class="."'dropdown-menu'".">".
+                                   "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
+                                   "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
+                                   "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
+                                 "</ul>".
+                             "</li>".
+                             "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                                 "<ul class="."'dropdown-menu'".">".
-                                  "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
-                                  "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
-                                  "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
+                                  "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
+                                  "<li><a href="."'#'".">View Journals</a></li>".
                                 "</ul>".
                             "</li>".
-                            "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
-                               "<ul class="."'dropdown-menu'".">".
-                                 "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                                 "<li><a href="."'#'".">View Journals</a></li>".
-                               "</ul>".
-                           "</li>".
-                            "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Financial Statements<span class="."'caret'"."></span></a>".
-                              "<ul class="."'dropdown-menu'".">".
-                                 "<li><a href="."'#'".">Trial Balance</a></li>".
-                                 "<li><a href="."'#'".">Income Statement</a></li>".
-                                 "<li><a href="."'#'".">Balance Sheet</a></li>".
-                                 "<li><a href="."'#'".">Retained Earnings</a></li>".
-                              "</ul>".
                             "<li>".
-                                "<a href=". "'EventLogPage.php'".">Event Log</a>".
+                                "<a href=". "'LedgerPage.php'".">Ledger</a>".
                             "</li>".
-                        "</ul>";
+                             "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Financial Statements<span class="."'caret'"."></span></a>".
+                               "<ul class="."'dropdown-menu'".">".
+                                 "<li><a href="."'TrialBalancePage.php'".">Trial Balance</a></li>".
+                                 "<li><a href="."'IncomeStatementPage.php'".">Income Statement</a></li>".
+                                 "<li><a href="."'BalanceSheetPage.php'".">Balance Sheet</a></li>".
+                                 "<li><a href="."'RetainedEarningsPage.php'".">Retained Earnings</a></li>".
+                               "</ul>".
+                             "<li>".
+                                 "<a href=". "'EventLogPage.php'".">Event Log</a>".
+                             "</li>".
+                         "</ul>";
                 }
             ?>
-
-
-
-
-
-
-
-
 
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
@@ -111,12 +105,10 @@
                 </ul>
                 <!-- /.user-info -->
             </div>
-
-
-
-
-
-
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -125,8 +117,31 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-        <!-- /.row -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+        <!-- /.row -->
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Black Bird Accounting</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
     </div>
     <!-- /.container -->
 

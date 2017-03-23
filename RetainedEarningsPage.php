@@ -1,12 +1,13 @@
 <?php
-    if(session_status() == true){
-      //Do nothing
-    }
-    else{
-      session_start();
-    }
-    include 'php/ChartofAccountsfunc.php';
-?>
+  if(session_status() == true){
+    //Do nothing
+  }
+  else{
+    session_start();
+  }
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,9 +29,6 @@
     body {
         padding-top: 70px;
         /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
-    h1{
-      text-align: center;
     }
     </style>
 
@@ -59,6 +57,7 @@
                 <a class="navbar-brand" href="HomePage.php">Black Bird Accounting</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
+
             <?php
                 if (isset($_SESSION['logged_in_as'])){
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
@@ -76,12 +75,15 @@
                                   "<li><a href="."'#'".">View Journals</a></li>".
                                 "</ul>".
                             "</li>".
+                            "<li>".
+                                "<a href=". "'LedgerPage.php'".">Ledger</a>".
+                            "</li>".
                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Financial Statements<span class="."'caret'"."></span></a>".
                                "<ul class="."'dropdown-menu'".">".
-                                  "<li><a href="."'#'".">Trial Balance</a></li>".
-                                  "<li><a href="."'#'".">Income Statement</a></li>".
-                                  "<li><a href="."'#'".">Balance Sheet</a></li>".
-                                  "<li><a href="."'#'".">Retained Earnings</a></li>".
+                                 "<li><a href="."'TrialBalancePage.php'".">Trial Balance</a></li>".
+                                 "<li><a href="."'IncomeStatementPage.php'".">Income Statement</a></li>".
+                                 "<li><a href="."'BalanceSheetPage.php'".">Balance Sheet</a></li>".
+                                 "<li><a href="."'RetainedEarningsPage.php'".">Retained Earnings</a></li>".
                                "</ul>".
                              "<li>".
                                  "<a href=". "'EventLogPage.php'".">Event Log</a>".
@@ -89,6 +91,7 @@
                          "</ul>";
                 }
             ?>
+
                 <!-- user-info -->
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span class="glyphicon glyphicon-user"></span> Hello
@@ -102,9 +105,6 @@
                 </ul>
                 <!-- /.user-info -->
             </div>
-
-
-
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -112,40 +112,36 @@
 
     <!-- Page Content -->
     <div class="container">
-      <h1>Add an Account</h1>
+
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
+                <h2>Retained Earnings</h2>
 
-                  <form action="php/insertDataForm.php" method="POST" class = "navbar-center">
 
-                    <div class = "form-group">
-                      <label>Account Name</label>
-                        <select class="form-control">
-                          <option value="#">PlaceHolder</option>
-                        </select>
-                    </div>
-                    <div class = "form-group">
-                      <label>Initial Account Balance</label>
-                      <input type = "text" class="form-control"/>
-                    </div>
-                    <div class = "form-group">
-                      <label>Is the acccount active?</label></br>
-                      <input class = "radio-inline" type = "radio" name="Active" value="Yes" />Yes
-                      <input class = "radio-inline" type = "radio" name="Active" value="No" />No
-                    </div>
-                    </br>
-                    <input type="submit" name="addBtn" value="insert" class="btn btn-primary"/>
 
-                  </form>
+
+
+
+
+
+
+
+
+
 
             </div>
-
-            </div>
-                    <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->
-
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Black Bird Accounting</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
     </div>
     <!-- /.container -->
 
