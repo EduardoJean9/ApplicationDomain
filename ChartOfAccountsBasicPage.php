@@ -7,6 +7,7 @@
     }
     include 'php/ChartofAccountsfunc.php';
     include 'php/AddAccountsFunc.php';
+    include 'php/EditPageFunc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
