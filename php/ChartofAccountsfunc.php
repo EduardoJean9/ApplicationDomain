@@ -31,7 +31,7 @@ function loadBasicCOA(){
             echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"1\" checked=\"checked\" />";
         }
     	echo "</td>";
-        echo "<td><button type=\"button\" value=" . $record['accountCode'] . "name=\"activateSaveModal\"class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
+        echo "<td><button type=\"button\" value=" . $record['Account Code'] . "name=\"activateSaveModal\"class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
              "<div class=\"modal fade\" id=\"editModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
                  "<div class=\"modal-dialog\" role=\"document\">" .
                      "<div class=\"modal-content\">" .
@@ -44,7 +44,7 @@ function loadBasicCOA(){
                          "<div class=\"modal-body\">" .
                              "<form name=\"editAccountModalForm\" action=\"ChartofAccountsfunc.php\" method=\"POST\" class = \"navbar-center\">" .
                                  "<div class = \"form-group\">" .
-                                     "<label>Account Name</label>" . 
+                                     "<label>Account Name</label>" .
                                      "</br>" .
                                      "<label>" . $record['Account Name'] . "</label>" .
                                  "</div>" .
