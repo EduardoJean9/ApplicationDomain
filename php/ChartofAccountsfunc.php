@@ -15,8 +15,8 @@ function loadBasicCOA(){
 	mysqli_select_db($con,"application_domain");
 	$sql = "SELECT * FROM chart_of_accounts";
 	$myData = mysqli_query($con,$sql);
-    $i = 0;
 	while($record = mysqli_fetch_array($myData)){
+
     	echo "<tr>";
     	echo "<td class=\"text-left\">" . $record['Account Code'] . "</td>";
     	echo "<td class=\"text-left\">" . $record['Account Name'] . "</td>";
@@ -31,8 +31,8 @@ function loadBasicCOA(){
             echo "<input type=\"checkbox\" name=\"checkboxList[]\" value=\"1\" checked=\"checked\" />";
         }
     	echo "</td>";
-        echo "<td><button type=\"button\" value=" . $record['Account Code'] . "name=\"activateSaveModal\"class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
-             "<div class=\"modal fade\" id=\"editModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
+        echo "<td><button type=\"button\" name=\"activateSaveModal\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal" . $record['Account Code'] . "\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
+             "<div class=\"modal fade\" id=\"editModal" . $record['Account Code'] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
                  "<div class=\"modal-dialog\" role=\"document\">" .
                      "<div class=\"modal-content\">" .
                          "<div class=\"modal-header\">" .
@@ -46,7 +46,7 @@ function loadBasicCOA(){
                                  "<div class = \"form-group\">" .
                                      "<label>Account Name</label>" .
                                      "</br>" .
-                                     "<label>" . $record['Account Name'] . "</label>" .
+                                     "<label for=\"AccountName\">" . $record['Account Name'] . "</label>" .
                                  "</div>" .
                                  "<div class = \"form-group\">" .
                                      "<label>Account Order</label>" .
@@ -146,10 +146,6 @@ if (isset($_POST['saveButton'])){
     //header("refresh:5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
 }
 
-if ( isset($_POST['activateSaveModal'])){
-    $_SESSION['currentlyActiveEdit'] = activateSaveModal;
-}
-
 // Saves updated information to database
 if ( isset($_POST['saveAccountInfo']) ){
     // Funciton variables
@@ -166,13 +162,14 @@ if ( isset($_POST['saveAccountInfo']) ){
     mysqli_select_db($con,"application_domain");
 
     //Receive variables from form
+    $AccountName = $_POST['AccountName'];
     $Order = $_POST['orderInput'];
     $Comment = $_POST['CommentText'];
     $Group = $_POST['GroupText'];
 
-    $sql = "UPDATE `chart_of_accounts` SET `Order` = '$Order', `Comment` = '$Comment', `Group` = '$Group' WHERE `chart_of_accounts`.`Account Code` = 101";
+    $sql = "UPDATE `chart_of_accounts` SET `Order` = '$Order', `Comment` = '$Comment', `Group` = '$Group' WHERE `chart_of_accounts`.`Account Code` = '$AccountName'";
 
-    $stringDescription = "Eddited Account: Cash";
+    $stringDescription = "Eddited Account: $AccountName";
 
     $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
 
