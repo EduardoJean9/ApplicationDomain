@@ -42,11 +42,13 @@ function loadBasicCOA(){
                              "</button>" .
                          "</div>" .
                          "<div class=\"modal-body\">" .
-                             "<form name=\"editAccountModalForm\" action=\"ChartofAccountsfunc.php\" method=\"POST\" class = \"navbar-center\">" .
+                             "<form name=\"editAccountModalForm\" action=\"php/ChartofAccountsfunc.php\" method=\"POST\" class=\"navbar-center\">" .
                                  "<div class = \"form-group\">" .
                                      "<label>Account Name</label>" .
                                      "</br>" .
-                                     "<label for=\"AccountName\">" . $record['Account Name'] . "</label>" .
+                                     "<label>" . $record['Account Name'] . "</label>" .
+                                     "<input type=\"hidden\" name=\"AccountCode\" value=\"" . $record['Account Code'] . "\"/>" .
+                                     "<input type=\"hidden\" name=\"AccountName\" value=\"" . $record['Account Name'] . "\"/>" .
                                  "</div>" .
                                  "<div class = \"form-group\">" .
                                      "<label>Account Order</label>" .
@@ -67,7 +69,7 @@ function loadBasicCOA(){
                                      "<textarea id='commentText' name='CommentText' type='text'>" . $record['Comment'] . "</textarea>" .
                                  "</div>" .
                                  "</br>" .
-                                 "<input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" name= \"saveAccountInfo\">" .
+                                 "<input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" id=\"updateAccountInfo\" name=\"updateAccountInfo\">" .
                              "</form>" .
                          "</div>" .
                          "<div class=\"modal-footer\">" .
@@ -147,7 +149,7 @@ if (isset($_POST['saveButton'])){
 }
 
 // Saves updated information to database
-if ( isset($_POST['saveAccountInfo']) ){
+if ( isset($_POST['updateAccountInfo']) ){
     // Funciton variables
     $servername = "localhost";
     $username = "root";
@@ -163,11 +165,12 @@ if ( isset($_POST['saveAccountInfo']) ){
 
     //Receive variables from form
     $AccountName = $_POST['AccountName'];
+    $AccountCode = $_POST['AccountCode'];
     $Order = $_POST['orderInput'];
     $Comment = $_POST['CommentText'];
     $Group = $_POST['GroupText'];
 
-    $sql = "UPDATE `chart_of_accounts` SET `Order` = '$Order', `Comment` = '$Comment', `Group` = '$Group' WHERE `chart_of_accounts`.`Account Code` = '$AccountName'";
+    $sql = "UPDATE `chart_of_accounts` SET `Order` = '$Order', `Comment` = '$Comment', `Group` = '$Group' WHERE `chart_of_accounts`.`Account Code` = '$AccountCode'";
 
     $stringDescription = "Eddited Account: $AccountName";
 
@@ -191,7 +194,4 @@ if ( isset($_POST['editButton']) ){
     header("refresh:0; url=/ApplicationDomain/EditPage.php");
 
 }
-
-
-
 ?>
