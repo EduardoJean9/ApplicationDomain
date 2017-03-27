@@ -198,6 +198,7 @@
                       <th>Active</th>
                       <th>Group</th>
                       <th>Comment</th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
