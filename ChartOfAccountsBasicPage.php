@@ -203,6 +203,7 @@
                         <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
 
                         <!-- Add Account Button -->
+                        <input type="hidden" name="pageName" value="ChartofAccountsBasicPage.php"/>
                         <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>
                     </form>
                 </div>

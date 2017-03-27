@@ -182,9 +182,9 @@
                     insertAccount();
                 }
                  ?>
-
-
-                <table>
+                 <div>
+                <form  action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
+                <table class = "table-fill">
                   <thead>
                     <tr>
                       <th>Code</th>
@@ -201,16 +201,23 @@
                       <th></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class = "table-hover">
                     <?php
                         loadDetailedCOA();
                      ?>
                   </tbody>
                 </table>
+                    <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
 
+                    <!-- Save Changes Button -->
+                    <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
 
+                    <!-- Add Account Button -->
+                    <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>
+                    <input type="hidden" name="pageName" value="ChartofAccountsDetailedPage.php"/>
+                    </form>
             </div>
-            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
+            </div>
         </div>
         <!-- /.row -->
 

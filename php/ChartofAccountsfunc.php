@@ -106,7 +106,14 @@ function loadDetailedCOA(){
     	echo "<td>" . $record['Order'] . "</td>";
     	echo "<td>" . $record['Added By'] . "</td>";
     	echo "<td>" . $record['Added On'] . "</td>";
-    	echo "<td>" . $record['Active'] . "</td>";
+        echo "<td class=\"text-left\">";
+    	if ($record['Active'] == 0){
+            echo "<input type=\"checkbox\" name=\"checkboxActiveList[]\" value=\"" . $record['Account Name'] . "\"/>";
+        }
+        else{
+            echo "<input type=\"checkbox\" name=\"checkboxActiveList[]\" value=\"" . $record['Account Name'] . "\" checked=\"checked\"/>";
+        }
+        echo "</td>";
     	echo "<td>" . $record['Group'] . "</td>";
     	echo "<td>" . $record['Comment'] . "</td>";
         echo "<td><button type=\"button\" name=\"activateSaveModal\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal" . $record['Account Code'] . "\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
@@ -169,6 +176,7 @@ if (isset($_POST['saveButton'])){
     $username = "root";
     $password = "";
     $edditedBy = $_SESSION['logged_in_as'];
+    $pageName = $_POST['pageName'];
 
     // Database Connection
     $con = mysqli_connect($servername,$username,$password);
@@ -197,7 +205,7 @@ if (isset($_POST['saveButton'])){
         $sql1  = "UPDATE `chart_of_accounts` SET `Active` = '0' WHERE `chart_of_accounts`.`Active` = '1'";
         mysqli_query($con, $sql1);
 
-        header("refresh:0; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
+        header("refresh:0; url=/ApplicationDomain/" . $pageName);
 
     } else if ( (isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { //Case 2: Where some are active and some are not
         
@@ -224,7 +232,7 @@ if (isset($_POST['saveButton'])){
             } 
         } 
 
-        header("refresh:0; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
+        header("refresh:0; url=/ApplicationDomain/" . $pageName);
 
     } else if ( (isset($_POST['checkboxActiveList']) && (empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { //Case 3: Where acounts are active when none were acive before
         for ($i = 0; $i < sizeof($_POST['checkboxActiveList']); $i++){
@@ -237,7 +245,7 @@ if (isset($_POST['saveButton'])){
             mysqli_query($con, $sqlChange);
         }
         
-        header("refresh:0; url=/ApplicationDomain/ChartOfAccountsBasicPage.php");
+        header("refresh:0; url=/ApplicationDomain/" . $pageName);
     }
 }
 
