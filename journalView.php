@@ -101,7 +101,7 @@
 
     <!-- Page Content -->
     <div class="container">
-      <h1>Add a Journal Entry</h1>
+      <h1>All Journal Entries</h1>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
@@ -114,6 +114,7 @@
                    <table class = "table-fill">
                   <thead>
                     <tr>
+                     <th>Account ID</th>
                       <th>Date</th>
                       <th>Account Name</th>
                       <th></th>

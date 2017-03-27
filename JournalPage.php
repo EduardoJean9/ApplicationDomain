@@ -2,7 +2,12 @@
     if(!session_status() == true){
       session_start();
     }
-   include 'php/journalFunct.php';
+  
+if(isset($_POST['validateBTN']))
+{
+    header("Location:JournalView.php");
+}
+ include 'php/journalFunct.php';
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +122,7 @@
   <!-- /.container -->
   </nav>
 
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container">
     <h1>Add a Journal Entry</h1>
       <div class="row">
@@ -312,11 +317,6 @@ echo "<div class='alert alert-dange'>
 
       }
 
-<<<<<<< HEAD
-   
-=======
-
->>>>>>> origin/master
 ?>
 
 
