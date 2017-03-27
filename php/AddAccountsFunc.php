@@ -7,7 +7,7 @@ else{
 }
 
 
-function getSelectOptions()
+function getSelectOptions4Insert()
 {
   $servername = "localhost";
   $username = "root";
@@ -29,10 +29,26 @@ function getSelectOptions()
 	mysqli_close($link);
   }
 
-
-
-
 }
+
+function getSelectOptions4Display(){
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+    $con = mysqli_connect($servername,$username,$password);
+  if(!$con){
+     die("Can not connect: " . mysql_error());
+  }
+    mysqli_select_db($con,"application_domain");
+
+  $sql = "SELECT `Account Name` FROM chart_of_accounts WHERE `Account Name`  = `Account Name`";
+  $result = mysqli_query($con,$sql);
+  while ($row = mysqli_fetch_array($result)){
+  echo "<option value= '". $row['Account Name'] ."'>" .$row['Account Name'] ."</option>" ;
+  }
+  mysqli_close($con);
+}
+
 
 function insertAccount(){
   $servername = "localhost";
@@ -77,6 +93,37 @@ function insertAccount(){
   // Close connection
   mysqli_close($link);
 }
+}
+
+function getAcccountInfo($account){
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+    $link = mysqli_connect($servername,$username,$password);
+  if(!$link){
+     die("Can not connect: " . mysql_error());
+  }
+    mysqli_select_db($link,"application_domain");
+
+    $sql = "SELECT * FROM chart_of_accounts WHERE `Account Code` = '" . $account . "'";
+    $myData =  mysqli_query($link,$sql);
+    $record = mysqli_fetch_array($myData);
+
+    $AccountName = $record['Account Name'];
+    //include account code from from
+    $AccountType = $record['Account Type'];
+    $NormalSide = $record['Normal Side'];
+    $InitialAmount = $record['InitialAmount'];
+    $Order = $record['Order'];
+    $Comment = $record['comment'];
+    $AddedBy= $record['logged_in_as'];
+    $Active = $record['Active'];
+    $Group = $record['Group'];
+
+    echo $AccountType;
+    echo $AccountName;
+
+
 }
 
 ?>

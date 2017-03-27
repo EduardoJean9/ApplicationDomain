@@ -66,7 +66,6 @@
                          "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts <span class="."'caret'"."></span></a>".
                          "<ul class="."'dropdown-menu'".">".
                           "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
-                          "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
                           "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
                           "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
                         "</ul>".
@@ -144,11 +143,19 @@
 
             </div>
         </div>
-         
+
 
     </div>
         <!-- /.row -->
-
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Black Bird Accounting</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
 </div>
     <!-- /.container -->
 

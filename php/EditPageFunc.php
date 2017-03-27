@@ -59,7 +59,7 @@ function loadAccount(){
 }
 
 // Saves updated information to database
-if ( isset($_POST['saveButton']) ){
+if ( isset($_POST['saveAccountInfo']) ){
 	// Funciton variables
 	$servername = "localhost";
 	$username = "root";

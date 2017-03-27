@@ -6,6 +6,7 @@
       session_start();
     }
     include 'php/ChartofAccountsfunc.php';
+    include 'php/AddAccountsFunc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,28 +58,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="HomePage.php">Application Domain</a>
+                <a class="navbar-brand" href="HomePage.php">Black Bird Accounting</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <?php
                 if (isset($_SESSION['logged_in_as'])){
                     echo "<div class="."'collapse navbar-collapse'"." id="."'bs-example-navbar-collapse-1'".">".
-                         "<ul class="."'nav navbar-nav'".">".
-                         "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts <span class="."'caret'"."></span></a>".
-                         "<ul class="."'dropdown-menu'".">".
-                          "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
-                          "<li><a href="."'AddAccountsPage.php'".">Add Accounts</a></li>".
-                          "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
-                          "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
-                        "</ul>".
-                    "</li>".
-                    "<li>".
-                        "<a href="."'JournalPage.php'".">Journal</a>".
-                    "</li>".
-                    "<li>".
-                        "<a href=". "'EventLogPage.php'".">Event Log</a>".
-                    "</li>".
-                "</ul>";
+                            "<ul class="."'nav navbar-nav'".">".
+                                "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Chart Of Accounts<span class="."'caret'"."></span></a>".
+                                   "<ul class="."'dropdown-menu'".">".
+                                     "<li><a href="."'AccountsPage.php'".">Accounts</a></li>".
+                                     "<li><a href="."'ChartofAccountsBasicPage.php'".">Chart Of Accounts Basic</a></li>".
+                                     "<li><a href="."'ChartofAccountsDetailedPage.php'".">Chart Of Accounts Detailed</a></li>".
+                                   "</ul>".
+                               "</li>".
+                               "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
+                                  "<ul class="."'dropdown-menu'".">".
+                                    "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
+                                    "<li><a href="."'#'".">View Journals</a></li>".
+                                  "</ul>".
+                              "</li>".
+                              "<li>".
+                                  "<a href=". "'LedgerPage.php'".">Ledger</a>".
+                              "</li>".
+                               "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Financial Statements<span class="."'caret'"."></span></a>".
+                                 "<ul class="."'dropdown-menu'".">".
+                                   "<li><a href="."'TrialBalancePage.php'".">Trial Balance</a></li>".
+                                   "<li><a href="."'IncomeStatementPage.php'".">Income Statement</a></li>".
+                                   "<li><a href="."'BalanceSheetPage.php'".">Balance Sheet</a></li>".
+                                   "<li><a href="."'RetainedEarningsPage.php'".">Retained Earnings</a></li>".
+                                 "</ul>".
+                               "<li>".
+                                   "<a href=". "'EventLogPage.php'".">Event Log</a>".
+                               "</li>".
+                           "</ul>";
                 }
             ?>
 
@@ -111,7 +124,67 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <table>
+
+                <div class="well">
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add an Account</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Add an Account</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <form name="journalInput" action="ChartOfAccountsBasicPage.php" method="POST" class = "navbar-center">
+
+                  <div class = "form-group">
+                      <label>Account Name</label>
+                      <select class="form-control" name="AccountCode">
+                        <?php
+                          getSelectOptions4Insert();
+                         ?>
+                      </select>
+                      <small>*If account is not listed, the account is already created.</small>
+                  </div>
+                  <div class = "form-group">
+                    <label>Initial Account Balance</label>
+                    <input name = "InitialAmount" type = "text" class="form-control"/>
+                  </div>
+                  <div class = "form-group">
+                    <label>Is the acccount active?</label></br>
+                    <input class = "radio-inline" type = "radio" name="Active" value="Yes" />Yes
+                    <input class = "radio-inline" type = "radio" name="Active" value="No" />No
+                  </div>
+                  <div class = "form-group">
+                    <label>Comment</label>
+                    <input name="comment" type = "text" class="form-control"/>
+                  </div>
+                  </br>
+
+
+
+                <input type="submit" value="Submit" class="btn btn-primary" name= "AddAccountsubmitBTN">
+                </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <?php
+                if(isset($_POST["AddAccountsubmitBTN"])){
+                    insertAccount();
+                }
+                 ?>
+                 <div>
+                <form  action="/ApplicationDomain/php/ChartofAccountsfunc.php" method="POST">
+                <table class = "table-fill">
                   <thead>
                     <tr>
                       <th>Code</th>
@@ -124,23 +197,40 @@
                       <th>Added On</th>
                       <th>Active</th>
                       <th>Group</th>
-                      <th>Event Log</th>
-                      <th>Error Code</th>
                       <th>Comment</th>
+                      <th></th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class = "table-hover">
                     <?php
                         loadDetailedCOA();
                      ?>
                   </tbody>
                 </table>
+                    <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
 
+                    <!-- Save Changes Button -->
+                    <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
 
+                    <!-- Add Account Button -->
+                    <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>
+                    <input type="hidden" name="pageName" value="ChartofAccountsDetailedPage.php"/>
+                    </form>
             </div>
-            <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
+            </div>
         </div>
         <!-- /.row -->
+
+        <hr>
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Black Bird Accounting</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
 
     </div>
     <!-- /.container -->
