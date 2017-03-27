@@ -312,11 +312,7 @@ echo "<div class='alert alert-dange'>
 
       }
 
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> origin/master
 ?>
 
 
