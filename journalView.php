@@ -122,7 +122,7 @@
                   </thead>
                   <tbody class = "table-hover">
                     <?php
-                      loadJournaltemp();
+                      loadJournal();
                     ?>
                   </tbody>
                </table>

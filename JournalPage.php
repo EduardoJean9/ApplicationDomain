@@ -285,10 +285,10 @@ echo "<div class='alert alert-dange'>
                     <strong> Successful Journal Entry.</strong>
                 </div>";
 
-
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
-                   . mysqli_error($con));
+                   . mysqli_error($con));  
+          
       }
     
        else
@@ -297,9 +297,9 @@ echo "<div class='alert alert-dange'>
                     <strong>Your Journal Entry is not balanced. Edit then try again.</strong>
                 </div>";
        }
-                    
+
       }
-   
+
    
 ?>
 
