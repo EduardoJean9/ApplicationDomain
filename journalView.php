@@ -109,8 +109,6 @@
                    
 
     
-   <form name="journalInput" action="JournalPage.php" method="POST">
-
                    <table class = "table-fill">
                   <thead>
                     <tr>
@@ -127,8 +125,6 @@
                     ?>
                   </tbody>
                </table>
-                <input name= "validateBTN" type="submit" value="submit" id= "submit">
-                </form>
                 
                 
 

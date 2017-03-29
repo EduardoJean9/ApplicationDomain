@@ -64,16 +64,19 @@ function loadJournal(){
             echo "<table>";
             while($record = mysqli_fetch_array($myData))
             {
+      
     	 echo "<tr>";
          echo "<td class=\"text-left\">" . $record['Journal ID'] . "</td>";
-    	 echo "<td class=\"text-left\">" . $record['Date'] . "</td>";
+         echo "<td class=\"text-left\">" . $record['Date'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record["Account Name"] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Debit'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Credit'] . "</td>";
     	 echo "</tr>";
             }
             echo "<td>edit</td>";
+            echo "<td>active</td>";
             echo "<td>delete</td>";
+
             echo "</table>";
         } 
            
