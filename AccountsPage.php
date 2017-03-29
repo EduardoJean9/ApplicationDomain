@@ -134,7 +134,7 @@
 
                 <h2>Choose an Account to Display</h2>
                 <form name="ChooseAccount" action="AccountsPage.php" method="POST">
-                  <select class="form-control" name="Account">
+                  <select class="form-control" name="selectedAccount">
                     <?php
                       getSelectOptions4Display();
                     ?>
@@ -145,7 +145,7 @@
 
                <?php
                  if(isset($_POST["showAccountsubmitBTN"])){
-                   $account = $_POST['Account'];
+                   $account = $_POST['selectedAccount'];
                    getAcccountInfo($account);
                  }
                 ?>

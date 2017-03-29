@@ -188,9 +188,9 @@ if (isset($_POST['saveButton'])){
     // Gather data before changes
     $sqlTest = "SELECT `Account Name` FROM `chart_of_accounts` WHERE `Active` = '1'";
     $dataTest = mysqli_query($con, $sqlTest);
-    
 
-    //Case 1: Where all accounts are deactivated 
+
+    //Case 1: Where all accounts are deactivated
     if ( (!isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ){
 
         $sqlBefore  = "SELECT `Account Name` FROM `chart_of_accounts` WHERE `Active` = '1'";
@@ -201,14 +201,14 @@ if (isset($_POST['saveButton'])){
             $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
             mysqli_query($con, $sqlDesc);
         }
-        
+
         $sql1  = "UPDATE `chart_of_accounts` SET `Active` = '0' WHERE `chart_of_accounts`.`Active` = '1'";
         mysqli_query($con, $sql1);
 
         header("refresh:0; url=/ApplicationDomain/" . $pageName);
 
     } else if ( (isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { //Case 2: Where some are active and some are not
-        
+
 
         $sqlBefore  = "SELECT * FROM `chart_of_accounts`";
         $dataBefore = mysqli_query($con, $sqlBefore);
@@ -229,8 +229,8 @@ if (isset($_POST['saveButton'])){
 
                 $sqlChange = "UPDATE `chart_of_accounts` SET `Active` = '0' WHERE `chart_of_accounts`.`Account Name` = '" . $record['Account Name'] . "'";
                 mysqli_query($con, $sqlChange);
-            } 
-        } 
+            }
+        }
 
         header("refresh:0; url=/ApplicationDomain/" . $pageName);
 
@@ -244,7 +244,7 @@ if (isset($_POST['saveButton'])){
             $sqlChange = "UPDATE `chart_of_accounts` SET `Active` = '1' WHERE `chart_of_accounts`.`Account Name` = '" . $_POST['checkboxActiveList'][$i] . "'";
             mysqli_query($con, $sqlChange);
         }
-        
+
         header("refresh:0; url=/ApplicationDomain/" . $pageName);
     }
 }
@@ -281,10 +281,10 @@ if ( isset($_POST['updateAccountInfo']) ){
     $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
 
     if(mysqli_query($con, $sql) && mysqli_query($con, $sql2)){
-        header( "Refresh: 3; url=/ApplicationDomain/HomePage.php" );
+        header( "Refresh: .5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php" );
         echo "Account was eddited successfully.";
     } else {
-        header( "Refresh: 3; url=/ApplicationDomain/EditPage.php" );
+        header( "Refresh: .5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php" );
         echo "Account was not successfully eddited.";
     }
 }

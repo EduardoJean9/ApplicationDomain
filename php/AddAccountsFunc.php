@@ -120,8 +120,11 @@ function getAcccountInfo($account){
     $Active = $record['Active'];
     $Group = $record['Group'];
 
-    echo $AccountType;
-    echo $AccountName;
+    if(isset($Order)){
+      echo "<p>
+      asdfasdfasdfas
+      </p>";
+    }
 
 
 }
