@@ -22,6 +22,7 @@
     <title>Application Domain</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -118,17 +119,32 @@
                 <!-- PASTE CONTENT HERE -->
                 <h2>Ledger</h2>
 
-
-
-
-
-
-
-
-
-
-
-
+                <table class = "table-fill">
+                  <thead>
+                    <tr>
+                      <th>Account Number</th>
+                      <th>Account Name</th>
+                      <th>Debit</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody class = "table-hover">
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                      Total:
+                    </td>
+                      <td>
+                        <span style="text-decoration-line: underline, text-decoration-style: double;" class = "doubleUnderline">
+                          00.00</span>
+                      </td>
+                      <td class = "doubleUnderline">
+                        00.00
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
 
             </div>
         </div>

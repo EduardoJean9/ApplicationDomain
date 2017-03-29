@@ -22,6 +22,7 @@
     <title>Application Domain</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -118,15 +119,81 @@
                 <!-- PASTE CONTENT HERE -->
                 <h2>Income Statement</h2>
 
+                <table class = "table-fill">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class = "table-hover">
+                    <tr>
+                      <td>
+                        Revenue
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
 
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                        Total Revenues:
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                        00.00
+                      </td>
+                    </tr>
 
+                    <tr>
+                      <td>
+                        Expenses
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
 
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                        Total Expenses:
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                        00.00
+                      </td>
+                    </tr>
 
+                    <tr>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                        Net Income:
+                      </td>
+                      <td>
+                        00.00
+                      </td>
+                    </tr>
 
-
-
-
-
+                  </tbody>
+                </table>
 
 
 

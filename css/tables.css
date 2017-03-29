@@ -1,4 +1,8 @@
-
+.doubleUnderline{
+  border-bottom:1px solid #000;
+  text-decoration:underline;
+  display:inline-block;
+}
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
