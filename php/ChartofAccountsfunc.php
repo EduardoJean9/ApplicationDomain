@@ -3,20 +3,26 @@
 if(session_status() == false)
     session_start();
 
+// Fills out table for ChartOfAccountsBasicPage.php
 function loadBasicCOA(){
+    // Local variables
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
 
+    // Database connection
 	$con = mysqli_connect($servername,$username,$password);
 	if(!$con){
  	   die("Can not connect: " . mysql_error());
 	}
 	mysqli_select_db($con,"application_domain");
+
+    // SQL statement and query to retreive all accounts from 'chart_of_accounts'
 	$sql = "SELECT * FROM chart_of_accounts";
 	$myData = mysqli_query($con,$sql);
-	while($record = mysqli_fetch_array($myData)){
 
+    // Fills out the table and inserts the modal for each account
+	while($record = mysqli_fetch_array($myData)){
     	echo "<tr>";
     	echo "<td class=\"text-left\">" . $record['Account Code'] . "</td>";
     	echo "<td class=\"text-left\">" . $record['Account Name'] . "</td>";
@@ -32,6 +38,7 @@ function loadBasicCOA(){
         }
     	echo "</td>";
         echo "<td><button type=\"button\" name=\"activateSaveModal\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal" . $record['Account Code'] . "\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
+            // Modal starts here
              "<div class=\"modal fade\" id=\"editModal" . $record['Account Code'] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
                  "<div class=\"modal-dialog\" role=\"document\">" .
                      "<div class=\"modal-content\">" .
@@ -85,17 +92,25 @@ function loadBasicCOA(){
 	mysqli_close($con);
 }
 
+// Fills out table for ChartofAccounts DetailedPage.php
 function loadDetailedCOA(){
+    // Local variables
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
+
+    // Database connection
 	$con = mysqli_connect($servername,$username,$password);
 	if(!$con){
  	   die("Can not connect: " . mysql_error());
 	}
 	mysqli_select_db($con,"application_domain");
+
+    // SQL statement and query to retreive all accounts from 'chart_of_accounts'
 	$sql = "SELECT * FROM chart_of_accounts";
 	$myData = mysqli_query($con,$sql);
+
+    // Fills out the table and inserts the modal for each account
 	while($record = mysqli_fetch_array($myData)){
     	echo "<tr>";
     	echo "<td>" . $record['Account Code'] . "</td>";
@@ -117,6 +132,7 @@ function loadDetailedCOA(){
     	echo "<td>" . $record['Group'] . "</td>";
     	echo "<td>" . $record['Comment'] . "</td>";
         echo "<td><button type=\"button\" name=\"activateSaveModal\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal" . $record['Account Code'] . "\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
+             // Modal starts here
              "<div class=\"modal fade\" id=\"editModal" . $record['Account Code'] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
                  "<div class=\"modal-dialog\" role=\"document\">" .
                      "<div class=\"modal-content\">" .
@@ -170,7 +186,9 @@ function loadDetailedCOA(){
 	mysqli_close($con);
 }
 
-if (isset($_POST['saveButton'])){
+// Handles the checkbox function for basic and detailed pages
+if ( isset($_POST['saveButton'] )){
+
     // Function variables
 	$servername = "localhost";
     $username = "root";
@@ -193,59 +211,77 @@ if (isset($_POST['saveButton'])){
     //Case 1: Where all accounts are deactivated
     if ( (!isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ){
 
+        // SQL statement to retrieve all acounts that were active before change
         $sqlBefore  = "SELECT `Account Name` FROM `chart_of_accounts` WHERE `Active` = '1'";
         $dataBefore = mysqli_query($con, $sqlBefore);
 
+        // Adds an entry to the event log detailing which accounts are switched from active to deactive
         while ($record = mysqli_fetch_array($dataBefore, MYSQLI_ASSOC)){
             $stringDescription = "Eddited Account: " . $record['Account Name'] . " is now deactive.";
             $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
             mysqli_query($con, $sqlDesc);
         }
 
+        // SQL statement and query to deactivate all accounts
         $sql1  = "UPDATE `chart_of_accounts` SET `Active` = '0' WHERE `chart_of_accounts`.`Active` = '1'";
         mysqli_query($con, $sql1);
 
-        header("refresh:0; url=/ApplicationDomain/" . $pageName);
+        header("refresh:0; url=/ApplicationDomain/" . $pageName); // Returns to previous page
 
-    } else if ( (isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { //Case 2: Where some are active and some are not
+    } 
+    //Case 2: Where some are active and some are not
+    else if ( (isset($_POST['checkboxActiveList']) && (!empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { 
 
-
+        // SQL statement and query to retreive all accounts before the change occurs
         $sqlBefore  = "SELECT * FROM `chart_of_accounts`";
         $dataBefore = mysqli_query($con, $sqlBefore);
 
+        // Traverses through each row
         while ($record = mysqli_fetch_array($dataBefore, MYSQLI_ASSOC)){
             // Subcase 1: Account was deactive before now is active
             if ( ($record['Active'] == 0) && (in_array($record['Account Name'], $_POST['checkboxActiveList'])) ){
+                // SQL statement and query detailing which account was deactive before and now its active
                 $stringDescription = "Eddited Account: " . $record['Account Name'] . " is now active.";
                 $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
                 mysqli_query($con, $sqlDesc);
 
+                // Makes the change
                 $sqlChange = "UPDATE `chart_of_accounts` SET `Active` = '1' WHERE `chart_of_accounts`.`Account Name` = '" . $record['Account Name'] . "'";
                 mysqli_query($con, $sqlChange);
-            } else if ( ($record['Active'] == 1) && (!in_array($record['Account Name'], $_POST['checkboxActiveList'])) ){ //Subcase 2: Account was active before now is deactive
+            }
+            //Subcase 2: Account was active before now is deactive 
+            else if ( ($record['Active'] == 1) && (!in_array($record['Account Name'], $_POST['checkboxActiveList'])) ){ 
+                // SQL statement and query detailing which account was active before and now its deactive
                 $stringDescription = "Eddited Account: " . $record['Account Name'] . " is now deactive.";
                 $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
                 mysqli_query($con, $sqlDesc);
 
+                // Makes the change
                 $sqlChange = "UPDATE `chart_of_accounts` SET `Active` = '0' WHERE `chart_of_accounts`.`Account Name` = '" . $record['Account Name'] . "'";
                 mysqli_query($con, $sqlChange);
             }
         }
 
-        header("refresh:0; url=/ApplicationDomain/" . $pageName);
+        header("refresh:0; url=/ApplicationDomain/" . $pageName); // Returns to previous page
 
-    } else if ( (isset($_POST['checkboxActiveList']) && (empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { //Case 3: Where acounts are active when none were acive before
+    } 
+    //Case 3: Where at least some acounts are active when none were active before
+    else if ( (isset($_POST['checkboxActiveList']) && (empty($recordBefore = mysqli_fetch_array($dataTest)))) ) { 
+
+        // Traverses through each checkbox
         for ($i = 0; $i < sizeof($_POST['checkboxActiveList']); $i++){
 
+            // SQL statement and query detailing which account was deactive before and now its active
             $stringDescription = "Eddited Account: " . $_POST['checkboxActiveList'][$i] . " is now active.";
             $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
             mysqli_query($con, $sqlDesc);
 
+            // Makes the change
             $sqlChange = "UPDATE `chart_of_accounts` SET `Active` = '1' WHERE `chart_of_accounts`.`Account Name` = '" . $_POST['checkboxActiveList'][$i] . "'";
             mysqli_query($con, $sqlChange);
         }
 
-        header("refresh:0; url=/ApplicationDomain/" . $pageName);
+        header("refresh:0; url=/ApplicationDomain/" . $pageName); // Returns to previous page
     }
 }
 
@@ -274,12 +310,14 @@ if ( isset($_POST['updateAccountInfo']) ){
     if ( isset($_POST['modalCheckbox']) )
         $Active = 1;
 
+    // SQL statement to make the changes to the account
     $sql = "UPDATE `chart_of_accounts` SET `Order` = '$Order', `Comment` = '$Comment', `Group` = '$Group', `Active` = '$Active' WHERE `chart_of_accounts`.`Account Code` = '$AccountCode'";
 
+    // SQL statement and query detailing which account was eddited
     $stringDescription = "Eddited Account: $AccountName";
-
     $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$edditedBy','$stringDescription')";
 
+    // Determines if account was successfully eddited or not
     if(mysqli_query($con, $sql) && mysqli_query($con, $sql2)){
         header( "Refresh: .5; url=/ApplicationDomain/ChartOfAccountsBasicPage.php" );
         echo "Account was eddited successfully.";
@@ -289,6 +327,12 @@ if ( isset($_POST['updateAccountInfo']) ){
     }
 }
 
+
+/*
+
+    THE FOLLOWING TWO SHOULD NOT BE HERE
+
+*/
 if (isset($_POST['addAccountsButton'])){
     header("refresh:0; url=/ApplicationDomain/addAccountsPage.php");
 }
@@ -296,6 +340,5 @@ if (isset($_POST['addAccountsButton'])){
 if ( isset($_POST['editButton']) ){
     $_SESSION['accountCode'] = $_POST['editButton'];
     header("refresh:0; url=/ApplicationDomain/EditPage.php");
-
 }
 ?>

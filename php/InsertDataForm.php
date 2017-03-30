@@ -6,15 +6,19 @@
     session_start();
   }
 
+  // Local variables
   $servername = "localhost";
   $username = "root";
   $password = "";
+
   // Create connection
   $link = mysqli_connect($servername, $username, $password,"application_domain");
+
   // Check connection
   if($link ===false){
     die("Error: Could not connect." . mysqli_connect_error());
   }
+  
   //Receive variables from form
   $AccountCode = $_POST['AccountCode'];
   $AccountName = $_POST['AccountName'];
@@ -29,12 +33,12 @@
   $EventLog = $_POST['EventLog'];
   $ErrorCode = $_POST['ErrorCode'];
 
+  // SQL statement to insert new account to 'chart_of_accounts' and to add to edit log
   $sql = "INSERT INTO `chart_of_accounts`(`Account Code`, `Account Name`, `Account Type`, `Normal Side`, `Initial Balance`, `Order`, `Comment`, `Added By`, `Active`, `Group`, `Event Log`, `Error Code`)VALUES('$AccountCode', '$AccountName', '$AccountType', '$NormalSide', '$InitialAmount', '$Order', '$Comment', '$AddedBy', '$Active', '$Group', '$EventLog', '$ErrorCode')";
-
   $stringDescription = "Added Account: " . $AccountName;
-
   $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$AddedBy','$stringDescription')";
 
+  // Determins if query was successful or not
   if(mysqli_query($link, $sql) && mysqli_query($link,$sql2)){
       header( "Refresh: 1.5; url=/ApplicationDomain/ChartofAccountsBasicPage.php" );
       echo "Account was inserted successfully.";
@@ -44,8 +48,6 @@
       //Un-comment to view error incase;
       //echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
   }
-
-  
   // Close connection
   mysqli_close($link);
 ?>

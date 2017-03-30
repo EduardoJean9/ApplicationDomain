@@ -1,4 +1,24 @@
 <?php
+/*
+
+
+
+
+
+
+
+
+
+NOT USED
+
+
+
+
+
+
+
+
+*/
 if(session_status() == false)
     session_start();
 
