@@ -2,11 +2,7 @@
     if(!session_status() == true){
       session_start();
     }
-  
-if(isset($_POST['validateBTN']))
-{
-    header("Location:JournalView.php");
-}
+
  include 'php/journalFunct.php';
 ?>
 
@@ -77,7 +73,7 @@ if(isset($_POST['validateBTN']))
                      "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                         "<ul class="."'dropdown-menu'".">".
                           "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                          "<li><a href="."'#'".">View Journals</a></li>".
+                          "<li><a href="."'JournalView.php'".">View Journals</a></li>".
                         "</ul>".
                     "</li>".
                     "<li>".
@@ -130,16 +126,7 @@ if(isset($_POST['validateBTN']))
 
         <!-- PASTE CONTENT HERE -->
           <div class="well">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Journal</button>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Add Journal</h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
+          
                   <div class="modal-body">
                     <form name="journalInput" action="JournalPage.php" method="POST">
                       <table>
@@ -185,12 +172,7 @@ if(isset($_POST['validateBTN']))
                       </table>
                       <input type="submit" value="submit" class="submit" name= "submitBTN">
                     </form>
-                    </div>
-                    <div class="modal-footer">
-                    </div>
-                  </div>
-                </div>
-              </div>
+                   
           </div>
 <?php
     $servername = "localhost";
@@ -219,8 +201,11 @@ if(isset($_POST['validateBTN']))
                    . mysqli_error($con));
                 }
    mysqli_close($con);
+                
 
 ?>
+                      </div>
+
 
    <form name="journalInput" action="JournalPage.php" method="POST">
 
@@ -240,11 +225,13 @@ if(isset($_POST['validateBTN']))
                   </tbody>
                </table>
                 <input class="btn btn-primary" name= "validateBTN" type="submit" value="submit" id= "submit">
+<form action="/JournalView.php">
+    <input type="submit" value="View Journal" />
+</form>
                 </form>
 
                  <?php
-   if(isset($_POST["validateBTN"]) )
-   {
+   
     $new="new";
 
 	$con = new mysqli("localhost","root","", "application_domain");
@@ -252,6 +239,11 @@ if(isset($_POST['validateBTN']))
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
+               
+
+        if(isset($_POST['validateBTN']))
+            {
+            $editedBy = $_SESSION['logged_in_as'];
 
     $query = mysqli_prepare($con,
 				"INSERT INTO JournalCounter (Name) VALUES (?)")
@@ -267,6 +259,7 @@ if(isset($_POST['validateBTN']))
 	$myData = mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData))
     	 $ID= $record['ID'];
+         $Active = 1;
 
 
 	mysqli_select_db($con,"application_domain");
@@ -281,13 +274,17 @@ if(isset($_POST['validateBTN']))
 	while($record = mysqli_fetch_array($myData))
     	 $Credit= $record['Credit'];
 
-
-
+    if (empty($Account) && empty($Debit) && empty($Credit)) 
+    {
+    echo 'There is no Journal Entry to sumbit, please add a Journal Entry!';
+    }
+    else
+    {
 
       if($Debit == $Credit)
       {
          $query = mysqli_prepare($con,
-                "INSERT INTO `journal_transaction` (`Journal ID`,`Account Name`,`Debit`,`Credit`,`Date`) SELECT $ID, `Account`,`Debit`,`Credit`,`Date` FROM `journaltemp`")
+                "INSERT INTO `journal_transaction` (`Journal ID`,`Account Name`,`Debit`,`Credit`,`Date`,`Active`) SELECT $ID, `Account`,`Debit`,`Credit`,`Date`,$Active FROM `journaltemp`")
 				or die("Error. Could not insert into the table.". mysqli_error($con));
 
           mysqli_stmt_execute($query)
@@ -301,6 +298,7 @@ if(isset($_POST['validateBTN']))
 echo "<div class='alert alert-dange'>
                     <strong> Successful Journal Entry.</strong>
                 </div>";
+    
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
@@ -315,14 +313,18 @@ echo "<div class='alert alert-dange'>
                 </div>";
        }
 
-      }
+            $stringDescription = "Journal Entry " . $ID ." added";
 
+    $sql2 = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('$editedBy','$stringDescription')";
 
+    mysqli_query($con, $sql2);
+    }
+
+            }
 ?>
 
 
 
-          </div>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
 
 
