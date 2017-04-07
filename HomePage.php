@@ -110,8 +110,6 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-
-
                 <?php
                     if (!isset($_SESSION['logged_in_as'])){
                         echo "<div id="."loginForm"." class="."container".">".
@@ -135,9 +133,6 @@
                         echo "</div>";
 
                     }
-
-
-
                 ?>
             </div>
             <br>
