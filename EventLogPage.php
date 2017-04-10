@@ -118,7 +118,6 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
 
-
                 <table class = "table-fill">
                           <thead>
                             <tr>
@@ -137,6 +136,7 @@
 
                 </table>
             </div>
+            <button type="button" class="btn btn-primary" id="refreshButton" name="refreshButton" onclick="window.location.reload();">Refresh</button>
             <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
         </div>
         <!-- /.row -->

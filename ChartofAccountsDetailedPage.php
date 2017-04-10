@@ -198,7 +198,7 @@
 
           <!-- Save Changes Button -->
           <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
-
+          <button type="button" class="btn btn-primary" id="refreshButton" name="refreshButton" onclick="window.location.reload();">Refresh</button>
           <!-- THIS DOES NOT WORK -->
           <!-- Add Account Button -->
           <button type="submit" class="btn btn-primary" name="addAccountsButton">Add Account</button>

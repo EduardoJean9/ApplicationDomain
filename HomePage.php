@@ -141,6 +141,7 @@
                     echo "<button id=\"backButton\" class=\"btn btn-primary\" onclick=\"history.go(-1);\">Back </button>";
                 }
             ?>
+            <button type="button" class="btn btn-primary" id="refreshButton" name="refreshButton" onclick="window.location.reload();">Refresh</button>
 
         </div>
         <!-- /.row -->

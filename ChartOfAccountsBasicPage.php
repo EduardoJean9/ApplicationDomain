@@ -195,6 +195,8 @@
         <!-- Save Changes Button -->
         <button type="submit" class="btn btn-primary" id="saveButton" name="saveButton">Save</button>
 
+        <button type="button" class="btn btn-primary" id="refreshButton" name="refreshButton" onclick="window.location.reload();">Refresh</button>
+
         <!-- Add Account Button -->
         <input type="hidden" name="pageName" value="ChartofAccountsBasicPage.php"/>
         <!-- THIS DOES NOT WORK -->
