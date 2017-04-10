@@ -67,7 +67,7 @@ function insertAccount(){
 
   // Create connection to database
   $link = mysqli_connect($servername, $username, $password,"application_domain");
-  
+
   // Check connection
   if($link === false){
     die("Error: Could not connect." . mysqli_connect_error());
@@ -104,7 +104,7 @@ function insertAccount(){
     } else {
         echo "Account was not successfully added.";
         //Un-comment to view error incase;
-        //echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        //echo "ERROR: Could not able to execute $sql. " . mysqli_error($link)";
     }
 
     // Close connection
@@ -134,8 +134,8 @@ function getAcccountInfo($accountName){
 
   // Retreives data from database and puts them in a table
   echo "<table align=\"center\" class=\"table-fill\">" .
-          "<thead>" . 
-            "<tr>" . 
+          "<thead>" .
+            "<tr>" .
               "<th> </th>" .
               "<th> </th>" .
             "</tr>" .
@@ -193,7 +193,7 @@ function getAcccountInfo($accountName){
 
   // Creates SQL statement for event log
   $stringDescription = $_SESSION['logged_in_as'] . " accessed acount: " . $record['Account Name'];
-            
+
   // Inserts event into event log
   $sqlDesc = "INSERT INTO `event_log`(`Username`, `Description`) VALUES ('" . $_SESSION['logged_in_as'] . "','$stringDescription')";
   mysqli_query($link, $sqlDesc);

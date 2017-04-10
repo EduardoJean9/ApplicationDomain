@@ -5,7 +5,7 @@
   else{
     session_start();
   }
-
+  include 'php/GeneralFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -22,6 +22,7 @@
     <title>Application Domain</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -117,8 +118,38 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <h2>Trial Balance</h2>
+                <h4>Black Bird Acccounting</h4>
+                <h4><?php getCurrentDate(); ?></h4>
+                <table class = "table-fill">
+                  <thead>
+                    <tr>
+                      <th>Account Title</th>
+                      <th></th>
+                      <th>Debit</th>
+                      <th>Credit</th>
+                    </tr>
+                  </thead>
+                  <tbody class = "table-hover">
+                      <tr>
+                        <td>
 
-
+                        </td>
+                        <td>
+                          Total:
+                        </td>
+                        <td>
+                          <span class = "doubleUnderline">
+                            $ 00.00
+                          </span>
+                        </td>
+                        <td>
+                          <span class = "doubleUnderline">
+                            $ 00.00
+                          </span>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
 
 
 

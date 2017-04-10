@@ -5,7 +5,7 @@
   else{
     session_start();
   }
-
+  include 'php/GeneralFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -22,6 +22,7 @@
     <title>Application Domain</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -117,13 +118,100 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <h2>Balance Sheet</h2>
+                <h4>Black Bird Acccounting</h4>
+                <h4><?php getCurrentDate(); ?></h4>
+                <table class = "table-fill">
+                  <thead>
+                    <th>
+                      (000s)
+                    </th>
+                    <th>
 
+                    </th>
+                    <th>
+                      as of <?php getCurrentDate(); ?>
+                    </th>
 
+                  </thead>
+                  <tbody class = "table-hover">
 
+                    <tr>
+                      <td>
+                        Assets
+                      </td>
+                      <td>
 
+                      </td>
+                      <td>
 
+                      </td>
+                    </tr>
 
+                    <tr>
+                      <td>
 
+                      </td>
+                      <td>
+                        Total Current Assets:
+                      </td>
+                      <td>
+                        <span class = "doubleUnderline"
+                        >$ 00.00</span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        Liabilities:
+                      </td>
+                      <td>
+
+                      </td>
+                      <td>
+
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+
+                      </td>
+                      <td>
+                        Total Current Liabilities:
+                      </td>
+                      <td>
+                        <span class = "doubleUnderline"
+                        >$ 00.00</span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        Owners Equity
+                      </td>
+                      <td>
+
+                      </td>
+                      <td>
+
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>
+
+                      </td>
+                      <td>
+                        Total Current Owner's Equity
+                      </td>
+                      <td>
+                        <span class = "doubleUnderline"
+                        >$ 00.00</span>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
 
 
 

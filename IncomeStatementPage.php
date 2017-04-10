@@ -5,7 +5,7 @@
   else{
     session_start();
   }
-
+  include 'php/GeneralFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -118,7 +118,8 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <h2>Income Statement</h2>
-
+                <h4>Black Bird Acccounting</h4>
+                <h4><?php getCurrentDate(); ?></h4>
                 <table class = "table-fill">
                   <thead>
                     <tr>
@@ -150,7 +151,7 @@
                       <td>
                       </td>
                       <td>
-                        00.00
+                        $ 00.00
                       </td>
                     </tr>
 
@@ -175,7 +176,7 @@
                       <td>
                       </td>
                       <td>
-                        00.00
+                        $ 00.00
                       </td>
                     </tr>
 
@@ -188,7 +189,7 @@
                         Net Income:
                       </td>
                       <td>
-                        00.00
+                        $ 00.00
                       </td>
                     </tr>
 

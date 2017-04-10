@@ -5,7 +5,8 @@
   else{
     session_start();
   }
-
+  include 'php/LedgerFunc.php';
+  include 'php/GeneralFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -118,7 +119,8 @@
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
                 <h2>Ledger</h2>
-
+                <h4>Black Bird Acccounting</h4>
+                <h4><?php getCurrentDate(); ?></h4>
                 <table class = "table-fill">
                   <thead>
                     <tr>
@@ -136,11 +138,13 @@
                       Total:
                     </td>
                       <td>
-                        <span style="text-decoration-line: underline, text-decoration-style: double;" class = "doubleUnderline">
-                          00.00</span>
+                        <span class = "doubleUnderline">
+                          $ 00.00
+                        </span>
                       </td>
-                      <td class = "doubleUnderline">
-                        00.00
+                      <td>
+                        <span class = "doubleUnderline"
+                        >$ 00.00</span>
                       </td>
                     </tr>
                   </tbody>
