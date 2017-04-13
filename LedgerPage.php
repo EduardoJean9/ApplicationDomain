@@ -131,6 +131,7 @@
                     </tr>
                   </thead>
                   <tbody class = "table-hover">
+                    <?php getEntries(); ?>
                     <tr>
                       <td>
                       </td>
@@ -139,12 +140,15 @@
                     </td>
                       <td>
                         <span class = "doubleUnderline">
-                          $ 00.00
+                          $
+                          <?php sumDebit(); ?>
                         </span>
                       </td>
                       <td>
-                        <span class = "doubleUnderline"
-                        >$ 00.00</span>
+                        <span class = "doubleUnderline">
+                          $
+                      <?php sumCredit(); ?>
+                      </span>
                       </td>
                     </tr>
                   </tbody>
