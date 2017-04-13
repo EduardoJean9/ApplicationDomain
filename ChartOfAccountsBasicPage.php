@@ -143,9 +143,8 @@
                       <input name = "InitialAmount" type = "text" class="form-control"/>
                     </div>
                     <div class = "form-group">
-                      <label>Is the acccount active?</label></br>
-                      <input class = "radio-inline" type = "radio" name="Active" value="Yes" />Yes
-                      <input class = "radio-inline" type = "radio" name="Active" value="No" />No
+                      <label>Is the acccount active? Check box for yes.</label></br>
+                      <input type="checkbox" name="insertCheckbox" value="1"/>
                     </div>
                     <div class = "form-group">
                       <label>Comment</label>

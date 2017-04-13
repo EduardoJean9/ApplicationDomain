@@ -87,7 +87,10 @@ function insertAccount(){
     $Order = $record['Order'];
     $Comment = $_POST['comment']; // From form
     $AddedBy= $_SESSION['logged_in_as'];
-    $Active = $_POST['Active']; // From form
+    if (isset ($_POST['insertCheckbox']))
+      $Active = 1;
+    else
+      $Active = 0;
     $Group = $record['Group'];
 
     // SQL statement to insert new account to 'chart_of_accounts'
