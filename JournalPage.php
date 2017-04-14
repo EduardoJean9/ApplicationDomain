@@ -126,7 +126,7 @@
 
         <!-- PASTE CONTENT HERE -->
           <div class="well">
-          
+
                   <div class="modal-body">
                     <form name="journalInput" action="JournalPage.php" method="POST">
                       <table>
@@ -136,7 +136,7 @@
                           <th>Credit</th>
                         </tr>
                         <tr>
-                          <td> 
+                          <td>
                             <select class="form-control" name="Account">
                               <?php
                                 $servername = "localhost";
@@ -170,9 +170,9 @@
                           </td>
                         </tr>
                       </table>
-                      <input type="submit" value="submit" class="submit" name= "submitBTN">
+                      <input type="submit" value="Submit" class="submit btn btn-primary" name= "submitBTN">
                     </form>
-                   
+
           </div>
 <?php
     $servername = "localhost";
@@ -208,8 +208,8 @@
                 }
                 }
    mysqli_close($con);
-                
-                
+
+
 ?>
                       </div>
 
@@ -231,14 +231,14 @@
                     ?>
                   </tbody>
                </table>
-                <input class="btn btn-primary" name= "validateBTN" type="submit" value="submit" id= "submit">
+                <input class="btn btn-primary" name= "validateBTN" type="submit" value="Submit" id= "submit">
 <form action="/JournalView.php">
-    <input type="submit" value="View Journal" />
+    <input type="submit" value="View Journal" class ="btn btn-primary"/>
 </form>
                 </form>
 
                  <?php
-   
+
     $new="new";
 
 	$con = new mysqli("localhost","root","", "application_domain");
@@ -246,7 +246,7 @@
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-               
+
 
         if(isset($_POST['validateBTN']))
             {
@@ -281,7 +281,7 @@
 	while($record = mysqli_fetch_array($myData))
     	 $Credit= $record['Credit'];
 
-    if (empty($Account) &&  empty($Debit) && empty($Credit)) 
+    if (empty($Account) &&  empty($Debit) && empty($Credit))
     {
     echo 'There is no Journal Entry to sumbit, please add a Journal Entry!';
     }
@@ -305,12 +305,12 @@
 echo "<div class='alert alert-dange'>
                     <strong> Successful Journal Entry.</strong>
                 </div>";
-    
+
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
-                   . mysqli_error($con));  
-          
+                   . mysqli_error($con));
+
       }
 
        else
