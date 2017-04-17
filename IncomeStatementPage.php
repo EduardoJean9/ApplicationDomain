@@ -6,6 +6,7 @@
     session_start();
   }
   include 'php/GeneralFunc.php';
+  include 'IncomeStatFunc.php';
  ?>
 
 <!DOCTYPE html>

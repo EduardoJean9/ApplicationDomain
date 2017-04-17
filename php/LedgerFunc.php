@@ -1,6 +1,5 @@
 <?php
 function getEntries(){
-
   $servername = "localhost";
   $username = "root";
   $password = "";
