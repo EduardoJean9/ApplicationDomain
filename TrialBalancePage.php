@@ -6,6 +6,7 @@
     session_start();
   }
   include 'php/GeneralFunc.php';
+  include 'php/TrialBalanFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -130,6 +131,7 @@
                     </tr>
                   </thead>
                   <tbody class = "table-hover">
+                      <?php getEntries(); ?>
                       <tr>
                         <td>
 
@@ -139,12 +141,12 @@
                         </td>
                         <td>
                           <span class = "doubleUnderline">
-                            $ 00.00
+                            $ <?php getDebitSum(); ?>
                           </span>
                         </td>
                         <td>
                           <span class = "doubleUnderline">
-                            $ 00.00
+                            $ <?php getCreditSum(); ?>
                           </span>
                         </td>
                       </tr>
