@@ -24,7 +24,7 @@ function loadJournaltemp(){
     	 echo "<td class=\"text-left\">" . $record['Date'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record["Account"] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Debit'] . "</td>";
-    	 echo "<td class=\"text-left\">" . $record['Credit'] . "</td>";
+    	 echo "<td class=\"text-left\">"   ."</td>";
         }
         else
         {
@@ -33,7 +33,7 @@ function loadJournaltemp(){
          echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
     	 echo "<td class=\"text-right\">" . $record['Date'] . "</td>";
     	 echo "<td class=\"text-right\">" . $record["Account"] . "</td>";
-    	 echo "<td class=\"text-right\">" . $record['Debit'] . "</td>";
+    	 echo "<td class=\"text-right\">" . "</td>";
     	 echo "<td class=\"text-right\">" . $record['Credit'] . "</td>";
             
             
@@ -199,12 +199,11 @@ function loadJournal(){
                die("Can not connect: " . mysql_error());
 	                   }
         mysqli_select_db($con,"application_domain");               
-        $sql1 = "SELECT `Journal ID`,`Date`, `Account Name`, `Debit`, `Credit`,`Active` FROM `journal_transaction` WHERE `Journal ID` =$x";   
+        $sql1 = "SELECT `ID`,`Journal ID`,`Date`, `Account Name`, `Debit`, `Credit`,`Active` FROM `journal_transaction` WHERE `Journal ID` =$x";   
         $myData = mysqli_query($con,$sql1);
            
-         echo "<table>";
+         echo "<table width=\"75%\">";
          echo "<tr>";
-         echo  "<th>Acct ID</th>";
          echo  "<th>Date</th>";
          echo  "<th>Account Name</th>";
          echo  "<th></th>";
@@ -214,13 +213,31 @@ function loadJournal(){
          echo  "</tr>";
             while($record = mysqli_fetch_array($myData))
             {
+         $Debit = $record['Debit'];
+         $Credit = $record['Credit'];  
+         
+
+    	   if($Credit == 0.00)
+        { 
     	 echo "<tr>";
-         echo "<td class=\"text-left\">" . $record['Journal ID'] . "</td>";
+         echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
          echo "<td class=\"text-left\">" . $record['Date'] . "</td>";
-                
     	 echo "<td class=\"text-left\">" . $record["Account Name"] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Debit'] . "</td>";
-    	 echo "<td class=\"text-left\">" . $record['Credit'] . "</td>";
+    	 echo "<td class=\"text-left\">"   ."</td>";
+        }
+        else
+        {
+            
+             echo "<tr>";
+         echo "<td style=\"display:none;\" text-indent=\"50px\">" . $record['ID'] . "</td>";
+    	 echo "<td text-indent=\"50px\">" . $record['Date'] . "</td>";
+    	 echo "<td text-indent=\"50px\">". $record["Account Name"] . "</td>";
+    	 echo "<td text-indent=\"50px\">" . "</td>";
+    	 echo "<td text-indent=\"50px\">" . $record['Credit'] . "</td>";
+            
+            
+        }
          $Active= $record['Active'];
          $StatusActive = "Active";
          $StatusDisabled = "Disabled";
@@ -244,7 +261,7 @@ function loadJournal(){
                                  "<div class = \"form-group\">" .
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
-                                 "<input type=\"submit\" value=\"Disabled Journal Entry\" class=\"btn btn-primary\" id=\"disableEntry\" name=\"disableEntry\">" .
+                                 "<input type=\"submit\" value=\"Reject Journal Entry\" class=\"btn btn-danger\" id=\"disableEntry\" name=\"disableEntry\">" .
              
                              "</form></td>"; 
          }
@@ -255,7 +272,7 @@ function loadJournal(){
                                  "<div class = \"form-group\">" .
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
-                                 "<input type=\"submit\" value=\"Activate Journal Entry\" class=\"btn btn-primary\" id=\"enableEntry\" name=\"enableEntry\">" .
+                                 "<input type=\"submit\" value=\"Approve Journal Entry\" class=\"btn btn-success\" id=\"enableEntry\" name=\"enableEntry\">" .
              
                              "</form></td>";
          }
