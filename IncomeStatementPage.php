@@ -6,7 +6,7 @@
     session_start();
   }
   include 'php/GeneralFunc.php';
-  include 'IncomeStatFunc.php';
+  include 'php/IncomeStatFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -142,7 +142,7 @@
                       <td>
                       </td>
                     </tr>
-
+                    <?php getRevenueEntries(); ?>
                     <tr>
                       <td>
                       </td>
@@ -152,7 +152,7 @@
                       <td>
                       </td>
                       <td>
-                        $ 00.00
+                        $ <?php printSumRevenue(); ?>
                       </td>
                     </tr>
 
@@ -167,7 +167,7 @@
                       <td>
                       </td>
                     </tr>
-
+                    <?php getExpenseEntries(); ?>
                     <tr>
                       <td>
                       </td>
@@ -177,7 +177,7 @@
                       <td>
                       </td>
                       <td>
-                        $ 00.00
+                        $ <?php printSumExpenses(); ?>
                       </td>
                     </tr>
 
@@ -190,7 +190,9 @@
                         Net Income:
                       </td>
                       <td>
-                        $ 00.00
+                        <span class = "doubleUnderline">
+                        <?php printTotalIncome(); ?>
+                        </span>
                       </td>
                     </tr>
 
