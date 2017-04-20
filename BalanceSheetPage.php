@@ -6,6 +6,7 @@
     session_start();
   }
   include 'php/GeneralFunc.php';
+  include 'php/BalanSheetFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -146,7 +147,7 @@
 
                       </td>
                     </tr>
-
+                    <?php getBalanEntries("Asset");  ?>
                     <tr>
                       <td>
 
@@ -156,7 +157,7 @@
                       </td>
                       <td>
                         <span class = "doubleUnderline"
-                        >$ 00.00</span>
+                        >$ <?php sum4Balance("Asset"); ?></span>
                       </td>
                     </tr>
 
@@ -171,7 +172,7 @@
 
                       </td>
                     </tr>
-
+                    <?php getBalanEntries("Liability");  ?>
                     <tr>
                       <td>
 
@@ -181,7 +182,7 @@
                       </td>
                       <td>
                         <span class = "doubleUnderline"
-                        >$ 00.00</span>
+                        >$ <?php sum4Balance("Liability"); ?></span>
                       </td>
                     </tr>
 
@@ -196,7 +197,7 @@
 
                       </td>
                     </tr>
-
+                    <?php  getBalanEntries("Owner's Equity");  ?>
                     <tr>
                       <td>
 
@@ -206,7 +207,7 @@
                       </td>
                       <td>
                         <span class = "doubleUnderline"
-                        >$ 00.00</span>
+                        >$ <?php sum4Balance("Owner's Equity"); ?></span>
                       </td>
                     </tr>
 

@@ -140,12 +140,17 @@ function printSumExpenses(){
   }
 }
 
-function printTotalIncome(){
+function calcTotalIncome(){
   $revs = sumRevenue();
   $exps = sumExpenses();
   $total = $revs - $exps;
+  return $total;
+}
+
+function printTotalIncome(){
+  $total= calcTotalIncome();
   if($total<0){
-    echo "( $";
+    echo "( $ ";
   }
   echo number_format((float)abs($total), 2, '.', '');
   if($total<0){

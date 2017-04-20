@@ -6,6 +6,7 @@
     session_start();
   }
   include 'php/GeneralFunc.php';
+  include 'php/IncomeStatFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -155,7 +156,7 @@
 
                       <td>
                         <span class = "doubleUnderline">
-                          $ 00.00
+                          <?php printTotalIncome(); ?>
                         </span>
                       </td>
                     </tr>
