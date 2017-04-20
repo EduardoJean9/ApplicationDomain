@@ -186,11 +186,22 @@
 
                 if(isset($_POST["submitBTN"]) )
                 {
+                    
     $Account = $_POST["Account"];
     $Debit = $_POST["amountD"];
     $Credit = $_POST["amountC"];
     $Date = date("Y-m-d");
-         if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit)) )
+                        
+    mysqli_select_db($con,"application_domain");
+    $sql1 = "SELECT DISTINCT(`Account`) FROM `journaltemp` WHERE `Account` = '$Account'";   
+	$myData = mysqli_query($con,$sql1);
+        if(!$myData){printf("Error: %s\n", mysqli_error($con)); exit();}
+	while($record = mysqli_fetch_array($myData))
+    	 $CheckAccount = $record['Account'];
+           
+    if ((empty($CheckAccount)))
+    {
+        if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit)) )
     {
     echo 'Enter a valid entry!';
     }
@@ -206,7 +217,43 @@
 				or die("Error. Could not insert into the table."
                    . mysqli_error($con));
                 }
+    }
+    else
+    {
+                    if($CheckAccount == $Account)
+                    {
+                        
+                                    
+         if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit)) )
+    {
+    echo 'Enter a valid entry!';
+    }
+    else
+    {
+        if (empty($Debit))
+        {
+            $query ="UPDATE `journaltemp` SET `Debit`= `Credit` + '$Credit' Where `Account` = '$Account'";
+       mysqli_query($con, $query)
+				or die("Error. Could not insert into the table."
+                   . mysqli_error($con));
                 }
+        elseif(empty($Credit))
+        {
+            $query ="UPDATE `journaltemp` SET `Debit`= `Debit` + '$Debit' Where `Account` = '$Account'";
+       mysqli_query($con, $query)
+				or die("Error. Could not insert into the table. "
+                   . mysqli_error($con)); 
+            
+        }
+                else
+                {
+                    
+                }        
+                    }}
+    } 
+        
+                }
+                
    mysqli_close($con);
                 
                 
