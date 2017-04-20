@@ -201,7 +201,7 @@
            
     if ((empty($CheckAccount)))
     {
-        if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit)) )
+        if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit))|| empty($Account) )
     {
     echo 'Enter a valid entry!';
     }
