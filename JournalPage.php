@@ -279,7 +279,7 @@
                   </tbody>
                </table>
                 <input class="btn btn-primary" name= "validateBTN" type="submit" value="Submit" id= "submit">
-<form action="/JournalView.php">
+<form action='JournalView.php'>
     <input type="submit" value="View Journal" class="btn btn-primary"/>
 </form>
                 </form>
