@@ -71,7 +71,7 @@ function getDebitSum(){
   $sql = "SELECT SUM(`Debit`-`Credit`) AS \"Total\", `Account Name`,`Normal Side` FROM `ledger` WHERE `Normal Side` = \"Left\" GROUP BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo $record['Total'];
+  echo number_format((float)abs($record['Total']), 2, '.', '');
 
 
 }
@@ -91,7 +91,7 @@ function getCreditSum(){
   $sql = "SELECT SUM(`Debit`-`Credit`) AS \"Total\", `Account Name`,`Normal Side` FROM `ledger` WHERE `Normal Side` = \"Right\" GROUP BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo $record['Total'];
+  echo number_format((float)abs($record['Total']), 2, '.', '');
 }
 
  ?>

@@ -14,11 +14,11 @@ function loadJournaltemp(){
 	$myData = mysqli_query($con,$sql);
 	while($record = mysqli_fetch_array($myData)){
         $Debit = number_format($record['Debit'],2);
-        $Credit = $record['Credit'];  
-        
+        $Credit = $record['Credit'];
+
 
         if($Credit == 0.00)
-        { 
+        {
     	 echo "<tr>";
          echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record['Date'] . "</td>";
@@ -28,17 +28,17 @@ function loadJournaltemp(){
         }
         else
         {
-            
+
              echo "<tr>";
          echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
     	 echo "<td class=\"text-right\">" . $record['Date'] . "</td>";
     	 echo "<td class=\"text-right\">" . $record["Account"] . "</td>";
     	 echo "<td class=\"text-right\">" . "</td>";
     	 echo "<td class=\"text-right\">" . number_format($record['Credit'],2) . "</td>";
-            
-            
+
+
         }
-    
+
          echo "<td><button type=\"button\" name=\"activateSaveModal\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#editModal" . $record['ID'] . "\" data-whatever=\"@getbootstrap\">Edit</button></td>" .
              "<div class=\"modal fade\" id=\"editModal" . $record['ID'] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editModalLabel\" aria-hidden=\"true\">" .
                  "<div class=\"modal-dialog\" role=\"document\">" .
@@ -63,7 +63,7 @@ function loadJournaltemp(){
                                  "</div>" .
                                  "</br>" .
                                  "<input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" id=\"updateJournal\" name=\"updateJournal\">" .
-             
+
                              "</form>" .
                          "</div>" .
                          "<div class=\"modal-footer\">" .
@@ -76,14 +76,14 @@ function loadJournaltemp(){
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $record['ID'] . "\"/>" .
                                  "</div>" .
                                  "<input type=\"submit\" value=\"Delete\" class=\"btn btn-primary\" id=\"deleteFunct\" name=\"deleteFunct\">" .
-             
+
                              "</form></td>";
     	 echo "</tr>";
-        
-       
-        
+
+
+
 	}
-    
+
 	mysqli_close($con);
 }
 
@@ -103,13 +103,13 @@ if ( isset($_POST['deleteFunct']) ){
 
     //Receive variables from form
     $ID = $_POST['ID'];
-    
+
     if(isset($_POST["deleteFunct"]) )
                 {
 
     $sql = "DELETE FROM `journaltemp` WHERE `ID` = '$ID'";
 
-   
+
     if(mysqli_query($con, $sql)){
         header( "Refresh: .5; url=/ApplicationDomain/JournalPage.php" );
         echo "Journal Entry has been deleted successfully.";
@@ -119,7 +119,7 @@ if ( isset($_POST['deleteFunct']) ){
     }
 }
 }
-    
+
     if ( isset($_POST['updateJournal']) ){
     // Funciton variables
     $servername = "localhost";
@@ -137,13 +137,13 @@ if ( isset($_POST['deleteFunct']) ){
     $Debit = $_POST['Debit'];
     $Credit = $_POST['Credit'];
     $ID = $_POST['ID'];
-    
+
     if(isset($_POST["updateJournal"]) )
                 {
 
     $sql = "UPDATE `journaltemp` SET `Debit` = '$Debit', `Credit` = '$Credit' WHERE `ID` = '$ID'";
 
-   
+
     if(mysqli_query($con, $sql)){
         header( "Refresh: .5; url=/ApplicationDomain/JournalPage.php" );
         echo "Journal Entry has been updated successfully.";
@@ -152,7 +152,7 @@ if ( isset($_POST['deleteFunct']) ){
         echo "Journal Entry was not updated successfully.";
     }
 }
-        
+
     }
 
 
@@ -169,44 +169,44 @@ function loadJournal(){
 	if(!$con){
  	   die("Can not connect: " . mysql_error());
 	}
-    
+
 	mysqli_select_db($con,"application_domain");
 	$max = "SELECT MAX(`Journal ID`) AS `Journal ID` FROM `journal_transaction`";
 	$myData = mysqli_query($con,$max);
 	while($record = mysqli_fetch_array($myData))
     	 $Max1= $record['Journal ID'];
-    
-    
+
+
     	mysqli_select_db($con,"application_domain");
     $min = "SELECT MIN(`Journal ID`) AS `Journal ID` FROM `journal_transaction`";
 	$myData = mysqli_query($con,$min);
 	while($record = mysqli_fetch_array($myData))
     	 $Min1= $record['Journal ID'];
-    
+
     if (empty($Max1) && empty($Min1))
     {
         echo "There no Journal Entries to view!";
     }
-    else{            
+    else{
         for($x=$Min1;$x<=$Max1;$x++)
         {
             $servername = "localhost";
-            $username = "root"; 
+            $username = "root";
 	        $password = "";
 
 	       $con = mysqli_connect($servername,$username,$password);
 	       if(!$con){
                die("Can not connect: " . mysql_error());
 	                   }
-            
-        mysqli_select_db($con,"application_domain");               
-        $sql1 = "SELECT `ID`,`Journal ID`,`Date`, `Account Name`, `Debit`, `Credit`,`Active` FROM `journal_transaction` WHERE `Journal ID` =$x";   
+
+        mysqli_select_db($con,"application_domain");
+        $sql1 = "SELECT `ID`,`Journal ID`,`Date`, `Account Name`, `Debit`, `Credit`,`Active` FROM `journal_transaction` WHERE `Journal ID` =$x";
         $myData = mysqli_query($con,$sql1);
-            
-        $sql2 = "SELECT `Date`, `Journal ID` FROM `journal_transaction` WHERE `Journal ID` =$x";   
+
+        $sql2 = "SELECT `Date`, `Journal ID` FROM `journal_transaction` WHERE `Journal ID` =$x";
         $myData2 = mysqli_query($con,$sql2);
-           
-         
+
+
          echo "<table width=\"75%\">";
          echo "<tr>";
             if($record = mysqli_fetch_array($myData2))
@@ -217,24 +217,24 @@ function loadJournal(){
                  echo "<th>" . $JID . "</th>";
                     };
          echo  "</tr>";
-            
+
          echo "<table width=\"75%\">";
          echo "<tr>";
          echo  "<th>Account Name</th>";
          echo  "<th></th>";
          echo  "<th></th>";
          echo  "<th></th>";
- 
+
          echo  "</tr>";
-                
+
             while($record = mysqli_fetch_array($myData))
             {
          $Debit = $record['Debit'];
-         $Credit = $record['Credit'];  
-         
+         $Credit = $record['Credit'];
+
 
                  if($Credit == 0.00)
-        { 
+        {
     	 echo "<tr>";
          echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
     	 echo "<td class=\"text-left\">" . $record["Account Name"] . "</td>";
@@ -243,29 +243,29 @@ function loadJournal(){
         }
         else
         {
-            
+
              echo "<tr>";
          echo "<td style=\"display:none;\" class=\"text-left\">" . $record['ID'] . "</td>";
     	 echo "<td class=\"text-right\">" . $record["Account Name"] . "</td>";
     	 echo "<td class=\"text-right\">" . "</td>";
     	 echo "<td class=\"text-left\">" . number_format($record['Credit'],2) . "</td>";
-            
-            
+
+
         }
-            
+
          $Active= $record['Active'];
          $StatusActive = "Approved";
          $StatusDisabled = "Rejected";
          $StatusPending = "Pending";
 
-     
-                
-                
+
+
+
          $Active= $record['Active'];
-         $ID = $record['Journal ID'];    
+         $ID = $record['Journal ID'];
             }
-        
-            
+
+
           if($Active == 0)
           {
             echo "</tr>";
@@ -274,11 +274,11 @@ function loadJournal(){
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
                                  "<input type=\"submit\" value=\"Rejected\" class=\"btn btn-danger disabled\" name=\"disableEntry\">" .
-             
-                             "</form></td>"; 
-         
+
+                             "</form></td>";
+
           }
-            elseif($Active == 2) 
+            elseif($Active == 2)
             {
                 echo "</tr>";
                  echo "<td><form name=\"deleteFunct\" action=\"php/journalFunct.php\" method=\"POST\" class=\"navbar-center\">" .
@@ -286,9 +286,11 @@ function loadJournal(){
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
                                  "<input type=\"submit\" value=\"Approved\" class=\"btn btn-success disabled\" name=\"enableEntry\">" .
-             
+
                              "</form></td>";
-                
+
+														 
+
             }
             else
             {
@@ -298,36 +300,36 @@ function loadJournal(){
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
                                  "<input type=\"submit\" value=\"Reject Journal Entry\" class=\"btn btn-danger\" id=\"disableEntry\" name=\"disableEntry\">" .
-             
-                             "</form>";  
-         
+
+                             "</form>";
+
          echo "<form name=\"deleteFunct\" action=\"php/journalFunct.php\" method=\"POST\" class=\"navbar-center\">" .
                                  "<div class = \"form-group\">" .
                                      "<input type=\"hidden\" name=\"ID\" value=\"" . $ID . "\"/>" .
                                  "</div>" .
                                  "<input type=\"submit\" value=\"Approve Journal Entry\" class=\"btn btn-success\" id=\"enableEntry\" name=\"enableEntry\">" .
-             
+
                              "</form></td>";
             }
-         
-            
-            
+
+
+
             echo "<td><form name=\"uploadDoc\" action=\"upload.php\" method=\"POST\" enctype=\"multipart/form-data\">" .
                                  "<input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\" />" .
                                  "<input type=\"submit\" value=\"Save\" class=\"btn btn-primary\" id=\"uploadFile\" name=\"uploadFile\">" .
-             
+
                         "</form></td>";
            echo "<td><form action=\"comment.php\" id=\"usrform\" enctype=\"multipart/form-data\">" .
                                  "<textarea rows=\"5\" cols=\"35\" name=\"comment\" form=\"usform\" />" .
                                  "Enter Commnet here... </textarea>";
-             
+
                         "</form></td>";
-        
+
             echo "</table>";
             echo "<hr>";
-        } 
-           
-            
+        }
+
+
 	mysqli_close($con);
 
 
@@ -348,7 +350,7 @@ if ( isset($_POST['disableEntry']) ){
 
     //Receive variables from form
     $ID = $_POST['ID'];
-    
+
     if(isset($_POST["disableEntry"]) )
                 {
 
@@ -380,7 +382,7 @@ if ( isset($_POST['enableEntry']) ){
 
     //Receive variables from form
     $ID = $_POST['ID'];
-    
+
     if(isset($_POST["enableEntry"]) )
                 {
 
@@ -412,7 +414,7 @@ if ( isset($_POST['uploadFile']) ){
 
     //Receive variables from form
     $ID = $_POST['ID'];
-    
+
     if(isset($_POST["uploadFile"]) )
                 {
 

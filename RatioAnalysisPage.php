@@ -5,9 +5,7 @@
   else{
     session_start();
   }
-  include 'php/GeneralFunc.php';
-  include 'php/IncomeStatFunc.php';
-  include 'php/RetainedEarnFunc.php';
+  include 'php/RAfunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -24,7 +22,6 @@
     <title>Application Domain</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/tables.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
@@ -119,83 +116,26 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <h2>Retained Earnings</h2>
-                <h4>Black Bird Acccounting</h4>
-                <h4><?php getCurrentDate(); ?></h4>
 
-                <table class = "table-fill">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody class = "table-hover">
+                <h2>Ratio Analysis</h2>
+                <h3>Choose a Ratio:</h3>
+                  <form name="ChooseRA" action="RatioAnalysisPage.php" method="POST">
+                    <select class="form-control" name="selectedRAsel">
+                      <option value="CR">Current Ratio</option>
+                      <option value="QR">Quick Ratio</option>
+                      <option value="PR">Profit Margin</option>
+                      <option value="RoE">Return on Equity</option>
+                    </select>
+                    </br>
+                    <input name= "selectRABTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
+                  </form>
 
-                    <tr>
-                      <td>
-                        Beg. Retained Earnings, <?php getREdate(); ?>
-                      </td>
-                      <td>
-
-                      </td>
-
-                      <td>
-                      $ <?php getEarningBefore(); ?>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        Add: N.I.
-                      </td>
-                      <td>
-
-                      </td>
-
-                      <td>
-                       $ <?php printTotalIncome(); ?>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        Less: Dividends
-                      </td>
-                      <td>
-
-                      </td>
-
-                      <td>
-
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>
-                        End Retained Earnings, <?php getCurrentDate(); ?>
-                      </td>
-                      <td>
-                        
-                      </td>
-                      <td>
-                        <span class = "doubleUnderline">
-                          $ 00.00
-                        </span>
-                      </td>
-                    </tr>
-
-
-                  </tbody>
-                </table>
-
-
-
-
-
-
-
+                    <?php
+                      if(isset($_POST["selectRABTN"])){
+                        $chosenRatio = $_POST['selectedRAsel'];
+                        decideRA($chosenRatio);
+                    }
+                    ?>
 
 
 

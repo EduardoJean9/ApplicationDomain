@@ -1,4 +1,23 @@
 <?php
+function loadLedgerfromJournal(){
+  $servername = "localhost";
+  $username = "root";
+$password = "";
+
+$con = mysqli_connect($servername,$username,$password);
+if(!$con){
+     die("Can not connect: " . mysql_error());
+           }
+
+mysqli_select_db($con,"application_domain");
+  while($record = mysqli_fetch_array($myData))
+       $ID= $record['ID'];
+  $query = mysqli_prepare($con,
+         "INSERT INTO `ledger` (`Journal ID`,`Account Name`,`Account Type`,`Order`,`Normal Side`,`Debit`,`Credit`,`Date`,`Active`) SELECT $ID, `Account`,`Debit`,`Credit`,`Date`,$Active FROM `journaltemp`")
+ or die("Error. Could not insert into the table.". mysqli_error($con));
+  
+}
+
 function getEntries(){
   $servername = "localhost";
   $username = "root";
@@ -11,6 +30,7 @@ function getEntries(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
+
   $sql = "SELECT * FROM ledger ORDER BY `ID`";
   $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
@@ -56,7 +76,7 @@ function sumCredit(){
   $sql = "SELECT SUM(`Credit`) AS `CREDIT` FROM ledger";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo $record['CREDIT'];
+  echo number_format((float)abs($record['CREDIT']), 2, '.', '');
 
   mysqli_close($link);
 
@@ -78,7 +98,7 @@ function sumDebit(){
   $sql = "SELECT SUM(`Debit`) AS `DEBIT` FROM ledger";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo $record['DEBIT'];
+  echo number_format((float)abs($record['DEBIT']), 2, '.', '');
 
   mysqli_close($link);
 
