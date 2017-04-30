@@ -231,7 +231,7 @@ function loadJournal(){
             {
          $Debit = $record['Debit'];
          $Credit = $record['Credit'];
-
+				 $AN = $record['Account Name'];
 
                  if($Credit == 0.00)
         {
@@ -262,7 +262,7 @@ function loadJournal(){
 
 
          $Active= $record['Active'];
-         $ID = $record['Journal ID'];
+
             }
 
 
@@ -289,7 +289,7 @@ function loadJournal(){
 
                              "</form></td>";
 
-														 
+
 
             }
             else
