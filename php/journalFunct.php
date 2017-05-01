@@ -262,7 +262,7 @@ function loadJournal(){
 
 
          $Active= $record['Active'];
-
+				 $ID = $record['Journal ID'];
             }
 
 
@@ -386,8 +386,8 @@ if ( isset($_POST['enableEntry']) ){
                 {
 
     $sql = "UPDATE `journal_transaction` SET `Active`=2 WHERE `Journal ID` = '$ID'";
-
-   if(mysqli_query($con, $sql)){
+		$sqlinsert = "INSERT INTO `ledger`(`Journal ID`,`Account Name`, `Debit`, `Credit`) SELECT p1.`Journal ID`, p1.`Account Name`, p1.`Debit`, p1.`Credit`FROM `journal_transaction` p1 WHERE p1.`Journal ID` =".$ID;
+   if(mysqli_query($con, $sql) && mysqli_query($con, $sqlinsert)){
         header( "Refresh: .5; url=/ApplicationDomain/journalView.php" );
         echo "Journal Entry has been updated successfully.";
     } else {
