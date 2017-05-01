@@ -16,6 +16,8 @@ function getEntries(){
   //$sql = "SELECT `Account Code`,`Account Name`,`Normal Side`,SUM(`Debit`-`Credit`) AS \"Total\" FROM `ledger` Group BY `Account Name` Order BY `Normal Side`";
   $sql = "SELECT p2.`Account Code`,p1.`Account Name`,p2.`Normal Side`,SUM(p1.`Debit`-p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` Group BY `Account Name` Order BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
+  $firstdeb = 0;
+  $firstcred = 0;
   while($record = mysqli_fetch_array($myData)){
     echo "  <tr>";
     echo    "<td>";
@@ -26,6 +28,10 @@ function getEntries(){
     echo    "</td>";
     if($record['Normal Side'] == "Left"){
       echo    "<td>";
+      if($firstdeb ==0){
+        echo "$";
+        $firstdeb = $firstdeb +1;
+      }
       if($record['Total'] < 0){
         echo "(";
       }
@@ -43,6 +49,10 @@ function getEntries(){
 
       echo    "</td>";
       echo    "<td>";
+      if($firstcred ==0){
+        echo "$";
+        $firstcred = $firstcred +1;
+      }
       if($record['Total'] < 0){
         echo "(";
       }

@@ -15,6 +15,7 @@ function getBalanEntries($type1){
   // SQL statement and query to get all info for just selected account
   $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit` - p1.`Credit`) as \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"" . $type . "\" Group BY `Account Name`";
   $myData =  mysqli_query($link,$sql);
+  $first = 0;
   while($record = mysqli_fetch_array($myData)){
     echo "<tr>";
     echo "  <td>";
@@ -24,6 +25,10 @@ function getBalanEntries($type1){
     echo $record['Account Name'];
     echo "  </td>";
     echo "  <td>";
+    if($first ==0){
+      echo "$";
+      $first = $first+1;
+    }
     if($record['Total'] < 0){
       echo "(";
     }

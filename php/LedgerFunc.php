@@ -64,6 +64,8 @@ function getEntries($chosen){
     $sql = "SElECT p2.`Account Code`, p1.`Account Name`,p1.`Debit`,p1.`Credit` FROM `ledger` p1, `possible_accounts` p2 WHERE p1.`Account Name` = p2.`Account Name` AND p1.`Account Name` =\"". $chosen."\"";
 
   }
+  $firstdeb = 0;
+  $firstcred = 0;
     $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
     echo "<tr>";
@@ -75,12 +77,20 @@ function getEntries($chosen){
     echo"  </td>";
     echo"  <td>";
       if($record['Debit'] != 0){
+        if($firstdeb==0){
+          echo "$";
+        }
         echo number_format((float)abs($record['Debit']), 2, '.', ',');
+        $firstdeb = $firstdeb + 1;
       }
     echo"  </td>";
     echo"  <td>";
       if($record['Credit'] != 0){
+        if($firstcred ==0){
+          echo "$";
+        }
         echo number_format((float)abs($record['Credit']), 2, '.', ',');
+        $firstcred = $firstcred + 1;
       }
     echo"  </td>";
     echo"</tr>";

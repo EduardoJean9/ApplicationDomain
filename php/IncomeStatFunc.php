@@ -14,6 +14,7 @@ function getRevenueEntries(){
   // SQL statement and query to get all info for just selected account
   $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit`)-SUM(p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Revenue\" GROUP BY `Account Name` Order BY `Order`";
   $myData =  mysqli_query($link,$sql);
+  $first = 0;
   while($record = mysqli_fetch_array($myData)){
   echo "  <tr>";
   echo    "<td>";
@@ -23,6 +24,10 @@ function getRevenueEntries(){
   echo $record['Account Name'];
   echo    "</td>";
   echo    "<td>";
+  if($first ==0){
+    echo "$";
+    $first = $first+1;
+  }
         if($record['Total'] < 0){
           echo "(";
         }
@@ -84,15 +89,21 @@ function getExpenseEntries(){
   // SQL statement and query to get all info for just selected account
   $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit`)-SUM(p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Operating Expenses\" GROUP BY `Account Name` Order BY `Order`";
   $myData =  mysqli_query($link,$sql);
+  $first = 0;
   while($record = mysqli_fetch_array($myData)){
   echo "  <tr>";
   echo    "<td>";
 
   echo    "</td>";
   echo    "<td>";
+
   echo $record['Account Name'];
   echo    "</td>";
   echo    "<td>";
+  if($first ==0){
+    echo "$";
+    $first = $first+1;
+  }
         if($record['Total'] < 0){
           echo "(";
         }
