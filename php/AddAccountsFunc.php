@@ -135,8 +135,13 @@ function getAcccountInfo($accountName){
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
 
+  echo "<div class = \"panel panel-primary\">
+          <div class = \"panel-heading\">
+            <h4>". $record['Account Name'] . "</h4>
+          </div>
+          <div class =\"panel-body\">";
   // Retreives data from database and puts them in a table
-  echo "<table align=\"center\" class=\"table-fill\">" .
+  echo "<table class=\"table\">" .
           "<thead>" .
             "<tr>" .
               "<th> </th>" .
@@ -144,10 +149,7 @@ function getAcccountInfo($accountName){
             "</tr>" .
           "</thead>" .
           "<tbody class=\"tabel-hover\">" .
-            "<tr>" .
-              "<td class=\"text-left\">Account Name:    </td>" .
-              "<td class=\"text-left\">" . $record['Account Name'] . "</td>" .
-            "</tr>" .
+
             "<tr>" .
               "<td class=\"text-left\">Account Code:    </td>" .
               "<td class=\"text-left\">" . $record['Account Code'] . "</td>" .
@@ -193,7 +195,9 @@ function getAcccountInfo($accountName){
             "</tr>" .
           "</tbody>" .
         "</table>";
-
+        echo "            </table>
+                  </div>
+                </div>";
   // Creates SQL statement for event log
   $stringDescription = $_SESSION['logged_in_as'] . " accessed acount: " . $record['Account Name'];
 

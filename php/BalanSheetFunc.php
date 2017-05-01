@@ -13,7 +13,7 @@ function getBalanEntries($type1){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT `Account Name`, SUM(`Debit` - `Credit`) as \"Total\" FROM `ledger` WHERE `Account Type` = \"" . $type . "\" Group BY `Account Name`";
+  $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit` - p1.`Credit`) as \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"" . $type . "\" Group BY `Account Name`";
   $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
     echo "<tr>";
@@ -25,11 +25,11 @@ function getBalanEntries($type1){
     echo "  </td>";
     echo "  <td>";
     if($record['Total'] < 0){
-      echo "( ";
+      echo "(";
     }
-    echo number_format((float)abs($record['Total']), 2, '.', '');
+    echo number_format((float)abs($record['Total']), 2, '.', ',');
     if($record['Total'] < 0){
-      echo " )";
+      echo ")";
     }
     echo "  </td>";
     echo "</tr>";
@@ -48,15 +48,15 @@ function sum4Balance($type){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT SUM(`Debit`-`Credit`) as \"Total\" FROM `ledger` WHERE `Account Type` = \"".$type."\" GROUP BY `Account Type`";
+  $sql = "SELECT SUM(p1.`Debit`- p1.`Credit`) as \"Total\" FROM `ledger` p1,`possible_accounts` p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"".$type."\" GROUP BY `Account Type`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
   if($record['Total'] < 0){
-    echo "( ";
+    echo "(";
   }
-  echo number_format((float)abs($record['Total']), 2, '.', '');
+  echo number_format((float)abs($record['Total']), 2, '.', ',');
   if($record['Total'] < 0){
-    echo " )";
+    echo ")";
   }
 }
 

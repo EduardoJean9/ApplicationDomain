@@ -7,6 +7,7 @@
   }
   include 'php/LedgerFunc.php';
   include 'php/GeneralFunc.php';
+  include 'php/AddAccountsFunc.php';
  ?>
 
 <!DOCTYPE html>
@@ -73,8 +74,8 @@
                              "</li>".
                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                                 "<ul class="."'dropdown-menu'".">".
+                                "<li><a href="."'journalView.php'".">View Journals</a></li>".
                                   "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                                  "<li><a href="."'JournalView.php'".">View Journals</a></li>".
                                 "</ul>".
                             "</li>".
                             "<li>".
@@ -118,41 +119,29 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <!-- PASTE CONTENT HERE -->
-                <h2>Ledger</h2>
-                <h4>Black Bird Acccounting</h4>
-                <h4><?php getCurrentDate(); ?></h4>
-                <table class = "table-fill">
-                  <thead>
-                    <tr>
-                      <th>Account Number</th>
-                      <th>Account Name</th>
-                      <th>Debit</th>
-                      <th>Credit</th>
-                    </tr>
-                  </thead>
-                  <tbody class = "table-hover">
-                    <?php getEntries(); ?>
-                    <tr>
-                      <td>
-                      </td>
-                      <td>
-                      Total:
-                    </td>
-                      <td>
-                        <span class = "doubleUnderline">
-                          $
-                          <?php sumDebit(); ?>
-                        </span>
-                      </td>
-                      <td>
-                        <span class = "doubleUnderline">
-                          $
-                      <?php sumCredit(); ?>
-                      </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+
+                <div class="col-lg-12 text-center">
+                  <!-- PASTE CONTENT HERE -->
+                  <h4>Choose an Account to Display</h4>
+
+                  <form name="ChooseAccount" action="LedgerPage.php" method="POST">
+                    <select class="form-control" name="selectedAccount">
+                      <option value= "All">All Accounts</option>
+                      <?php
+                        getSelectOptions4Display(); // From php/AddAccountsFunc.php
+                      ?>
+                    </select>
+                    </br>
+                    <input name= "chooseLedgerAccountBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
+                  </form>
+
+                  <?php
+                    if(isset($_POST["chooseLedgerAccountBTN"])){
+                      $accountName = $_POST['selectedAccount'];
+                      loadLedgerAccountInfo($accountName);
+                  }
+                  ?>
+                </div>
 
             </div>
         </div>

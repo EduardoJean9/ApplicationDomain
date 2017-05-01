@@ -69,8 +69,8 @@
                   "</li>".
                   "<li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Journals<span class=\"caret\"></span></a>".
                     "<ul class=\"dropdown-menu\">".
+                    "<li><a href="."'journalView.php'".">View Journals</a></li>".
                       "<li><a href=\"JournalPage.php\">Add a Journal</a></li>".
-                      "<li><a href=\"#\">View Journals</a></li>".
                     "</ul>".
                   "</li>".
                   "<li>".
@@ -98,7 +98,7 @@
               echo $_SESSION['logged_in_as'];
           ?>
           </a></li>
-          
+
           <li><a href="/ApplicationDomain/php/logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
         <!-- /.user-info -->
@@ -125,7 +125,7 @@
           <input name= "showAccountsubmitBTN" type="submit" value="Submit" id= "submit" class="btn btn-primary">
         </form>
 
-        <?php 
+        <?php
           if(isset($_POST["showAccountsubmitBTN"])){
             $accountName = $_POST['selectedAccount'];
             getAcccountInfo($accountName);  // From php/AddAccountsFunc.php
@@ -135,7 +135,7 @@
 
       <button id="backButton" class="btn btn-primary" onclick="history.go(-1);">Back </button>
     </div>
-    
+
     <!-- /.row -->
     <hr>
     <footer>

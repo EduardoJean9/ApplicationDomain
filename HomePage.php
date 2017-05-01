@@ -7,6 +7,8 @@
 
    $connection = mysqli_connect("localhost", "root", null, "application_domain")
    or die('Error connecting to MySQL server.');
+
+   include 'php/dashBoardFunc.php';
 ?>
 
 <!DOCTYPE html>
@@ -66,8 +68,9 @@
                              "</li>".
                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                                 "<ul class="."'dropdown-menu'".">".
+                                "<li><a href="."'#'".">View Journals</a></li>".
                                   "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                                  "<li><a href="."'#'".">View Journals</a></li>".
+
                                 "</ul>".
                             "</li>".
                             "<li>".
@@ -127,6 +130,7 @@
                         echo "<div class=\"jumbotron\">";
                         echo "<h1>Hello, ".$_SESSION['logged_in_as']."</h1>";
                         echo "</br>";
+                        generatePanel();
                         echo "<form action="."'php/logout.php'"." method="."'POST'".">";
                         echo "<input class=\"btn\" type="."'submit'"." id="."'btn'"."value="."'Logout'".">";
                         echo "</form>";

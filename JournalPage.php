@@ -72,8 +72,8 @@
                      "</li>".
                      "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                         "<ul class="."'dropdown-menu'".">".
+                        "<li><a href="."'JournalView.php'".">View Journals</a></li>".
                           "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                          "<li><a href="."'JournalView.php'".">View Journals</a></li>".
                         "</ul>".
                     "</li>".
                     "<li>".
@@ -126,7 +126,7 @@
 
         <!-- PASTE CONTENT HERE -->
           <div class="well">
-          
+
                   <div class="modal-body">
                     <form name="journalInput" action="JournalPage.php" method="POST">
                       <table>
@@ -136,7 +136,7 @@
                           <th>Credit</th>
                         </tr>
                         <tr>
-                          <td> 
+                          <td>
                             <select class="form-control" name="Account">
                               <?php
                                 $servername = "localhost";
@@ -172,7 +172,7 @@
                       </table>
                       <input type="submit" value="Submit" class="submit btn btn-primary" name= "submitBTN">
                     </form>
-                   
+
           </div>
 <?php
     $servername = "localhost";
@@ -186,19 +186,19 @@
 
                 if(isset($_POST["submitBTN"]) )
                 {
-                    
+
     $Account = $_POST["Account"];
     $Debit = $_POST["amountD"];
     $Credit = $_POST["amountC"];
     $Date = date("Y-m-d");
-                        
+
     mysqli_select_db($con,"application_domain");
-    $sql1 = "SELECT DISTINCT(`Account`) FROM `journaltemp` WHERE `Account` = '$Account'";   
+    $sql1 = "SELECT DISTINCT(`Account`) FROM `journaltemp` WHERE `Account` = '$Account'";
 	$myData = mysqli_query($con,$sql1);
         if(!$myData){printf("Error: %s\n", mysqli_error($con)); exit();}
 	while($record = mysqli_fetch_array($myData))
     	 $CheckAccount = $record['Account'];
-           
+
     if ((empty($CheckAccount)))
     {
         if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit))|| empty($Account) )
@@ -222,8 +222,8 @@
     {
                     if($CheckAccount == $Account)
                     {
-                        
-                                    
+
+
          if ((empty($Account) && empty($Debit) && empty($Credit))||(empty($Debit) && empty($Credit)) )
     {
     echo 'Enter a valid entry!';
@@ -242,21 +242,21 @@
             $query ="UPDATE `journaltemp` SET `Debit`= `Debit` + '$Debit' Where `Account` = '$Account'";
        mysqli_query($con, $query)
 				or die("Error. Could not insert into the table. "
-                   . mysqli_error($con)); 
-            
+                   . mysqli_error($con));
+
         }
                 else
                 {
-                    
-                }        
-                    }}
-    } 
-        
+
                 }
-                
+                    }}
+    }
+
+                }
+
    mysqli_close($con);
-                
-                
+
+
 ?>
                       </div>
 
@@ -285,7 +285,7 @@
                 </form>
 
                  <?php
-   
+
     $new="new";
 
 	$con = new mysqli("localhost","root","", "application_domain");
@@ -293,7 +293,7 @@
     {
  	   die("Can not connect: " . $con->connect_error);
 	}
-               
+
 
         if(isset($_POST['validateBTN']))
             {
@@ -328,7 +328,7 @@
 	while($record = mysqli_fetch_array($myData))
     	 $Credit= $record['Credit'];
 
-    if (empty($Account) &&  empty($Debit) && empty($Credit)) 
+    if (empty($Account) &&  empty($Debit) && empty($Credit))
     {
     echo 'There is no Journal Entry to sumbit, please add a Journal Entry!';
     }
@@ -352,12 +352,12 @@
 echo "<div class='alert alert-dange'>
                     <strong> Successful Journal Entry.</strong>
                 </div>";
-    
+
 
 			mysqli_stmt_execute($query)
 				or die("Error. Could not insert into the table."
-                   . mysqli_error($con));  
-          
+                   . mysqli_error($con));
+
       }
 
        else

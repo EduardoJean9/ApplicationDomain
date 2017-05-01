@@ -28,10 +28,10 @@ include 'php/journalFunct.php';
         text-align: center;
       }
         hr
-        { 
+        {
             color:black;
-        }       
-        
+        }
+
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,8 +70,8 @@ include 'php/journalFunct.php';
                   "</li>".
                   "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                     "<ul class="."'dropdown-menu'".">".
+                    "<li><a href="."'#'".">View Journals</a></li>".
                       "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
-                      "<li><a href="."'JournalView.php'".">View Journals</a></li>".
                     "</ul>".
                   "</li>".
                   "<li>".
@@ -130,6 +130,15 @@ include 'php/journalFunct.php';
         </div>
         <!-- /.row -->
       </div>
+      <hr>
+      <footer>
+          <div class="row">
+              <div class="col-lg-12">
+                  <p>Copyright &copy; Black Bird Accounting</p>
+              </div>
+          </div>
+          <!-- /.row -->
+      </footer>
       <!-- /.container -->
     </div>
     <!-- jQuery Version 1.11.1 -->

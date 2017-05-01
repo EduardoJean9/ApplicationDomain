@@ -13,7 +13,8 @@ function getEntries(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT `Account Code`,`Account Name`,`Normal Side`,SUM(`Debit`-`Credit`) AS \"Total\" FROM `ledger` Group BY `Account Name` Order BY `Normal Side`";
+  //$sql = "SELECT `Account Code`,`Account Name`,`Normal Side`,SUM(`Debit`-`Credit`) AS \"Total\" FROM `ledger` Group BY `Account Name` Order BY `Normal Side`";
+  $sql = "SELECT p2.`Account Code`,p1.`Account Name`,p2.`Normal Side`,SUM(p1.`Debit`-p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` Group BY `Account Name` Order BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
     echo "  <tr>";
@@ -26,11 +27,11 @@ function getEntries(){
     if($record['Normal Side'] == "Left"){
       echo    "<td>";
       if($record['Total'] < 0){
-        echo "( ";
+        echo "(";
       }
-      echo number_format((float)abs($record['Total']), 2, '.', '');
+      echo number_format((float)abs($record['Total']), 2, '.', ',');
       if($record['Total'] < 0){
-        echo " ) ";
+        echo ") ";
       }
       echo    "</td>";
       echo    "<td>";
@@ -43,11 +44,11 @@ function getEntries(){
       echo    "</td>";
       echo    "<td>";
       if($record['Total'] < 0){
-        echo "( ";
+        echo "(";
       }
-      echo number_format((float)abs($record['Total']), 2, '.', '');
+      echo number_format((float)abs($record['Total']), 2, '.', ',');
       if($record['Total'] < 0){
-        echo " )";
+        echo ")";
       }
       echo    "</td>";
     }
@@ -68,10 +69,10 @@ function getDebitSum(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT SUM(`Debit`-`Credit`) AS \"Total\", `Account Name`,`Normal Side` FROM `ledger` WHERE `Normal Side` = \"Left\" GROUP BY `Normal Side`";
+  $sql = "SELECT SUM(p1.`Debit`-p1.`Credit`) AS \"Total\", p1.`Account Name`,p2.`Normal Side` FROM `ledger`p1, `possible_accounts`p2 WHERE `Normal Side` = \"Left\" AND p1.`Account Name` = p2.`Account Name` GROUP BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo number_format((float)abs($record['Total']), 2, '.', '');
+  echo number_format((float)abs($record['Total']), 2, '.', ',');
 
 
 }
@@ -88,10 +89,10 @@ function getCreditSum(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT SUM(`Debit`-`Credit`) AS \"Total\", `Account Name`,`Normal Side` FROM `ledger` WHERE `Normal Side` = \"Right\" GROUP BY `Normal Side`";
+  $sql = "SELECT SUM(p1.`Debit`-p1.`Credit`) AS \"Total\", p1.`Account Name`,p2.`Normal Side` FROM `ledger`p1, `possible_accounts`p2 WHERE `Normal Side` = \"Right\" AND p1.`Account Name` = p2.`Account Name` GROUP BY `Normal Side`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
-  echo number_format((float)abs($record['Total']), 2, '.', '');
+  echo number_format((float)abs($record['Total']), 2, '.', ',');
 }
 
  ?>

@@ -232,7 +232,7 @@ function loadJournal(){
          $Debit = $record['Debit'];
          $Credit = $record['Credit'];
 				 $AN = $record['Account Name'];
-
+				 $ID = $record['ID'];
                  if($Credit == 0.00)
         {
     	 echo "<tr>";
@@ -290,7 +290,6 @@ function loadJournal(){
                              "</form></td>";
 
 
-
             }
             else
             {
@@ -321,7 +320,7 @@ function loadJournal(){
                         "</form></td>";
            echo "<td><form action=\"comment.php\" id=\"usrform\" enctype=\"multipart/form-data\">" .
                                  "<textarea rows=\"5\" cols=\"35\" name=\"comment\" form=\"usform\" />" .
-                                 "Enter Commnet here... </textarea>";
+                                 "Enter Comment Here... </textarea>";
 
                         "</form></td>";
 

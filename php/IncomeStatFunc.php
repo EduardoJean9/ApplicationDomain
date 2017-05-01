@@ -12,7 +12,7 @@ function getRevenueEntries(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT `Account Name`, SUM(`Debit`)-SUM(`Credit`) AS \"Total\" FROM `ledger` WHERE `Account Type` = \"Revenue\" GROUP BY `Account Name` Order BY `Order`";
+  $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit`)-SUM(p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Revenue\" GROUP BY `Account Name` Order BY `Order`";
   $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
   echo "  <tr>";
@@ -27,7 +27,7 @@ function getRevenueEntries(){
           echo "(";
         }
 
-  echo number_format((float)abs($record['Total']), 2, '.', '');
+  echo number_format((float)abs($record['Total']), 2, '.', ',');
 
         if($record['Total'] < 0){
           echo ")";
@@ -53,7 +53,7 @@ function sumRevenue(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT SUM(Debit-Credit) as \"Total\" FROM `ledger` WHERE `Account Type` = \"Revenue\" GROUP BY `Account Type`";
+  $sql = "SELECT SUM(p1.`Debit`- p1.`Credit`) as \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Revenue\" GROUP BY `Account Type`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
   return $record['Total'];
@@ -64,7 +64,7 @@ function printSumRevenue(){
   if($exp<0){
     echo "( ";
   }
-  echo number_format((float)abs($exp), 2, '.', '');
+  echo number_format((float)abs($exp), 2, '.', ',');
   if($exp<0){
     echo " )";
   }
@@ -82,7 +82,7 @@ function getExpenseEntries(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT `Account Name`, SUM(`Debit`)-SUM(`Credit`) AS \"Total\" FROM `ledger` WHERE `Account Type` = \"Operating Expenses\" GROUP BY `Account Name` Order BY `Order`";
+  $sql = "SELECT p1.`Account Name`, SUM(p1.`Debit`)-SUM(p1.`Credit`) AS \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Operating Expenses\" GROUP BY `Account Name` Order BY `Order`";
   $myData =  mysqli_query($link,$sql);
   while($record = mysqli_fetch_array($myData)){
   echo "  <tr>";
@@ -97,7 +97,7 @@ function getExpenseEntries(){
           echo "(";
         }
 
-  echo number_format((float)abs($record['Total']), 2, '.', '');
+  echo number_format((float)abs($record['Total']), 2, '.', ',');
 
         if($record['Total'] < 0){
           echo ")";
@@ -123,7 +123,7 @@ function sumExpenses(){
   // Establishes connection to database
   mysqli_select_db($link,"application_domain");
   // SQL statement and query to get all info for just selected account
-  $sql = "SELECT SUM(Debit-Credit) as \"Total\" FROM `ledger` WHERE `Account Type` = \"Operating Expenses\" GROUP BY `Account Type`";
+  $sql = "SELECT SUM(p1.`Debit`- p1.`Credit`) as \"Total\" FROM `ledger`p1, `possible_accounts`p2 WHERE p1.`Account Name` = p2.`Account Name` AND p2.`Account Type` = \"Operating Expenses\" GROUP BY `Account Type`";
   $myData =  mysqli_query($link,$sql);
   $record = mysqli_fetch_array($myData);
   return $record['Total'];
@@ -134,7 +134,7 @@ function printSumExpenses(){
   if($exp<0){
     echo "( ";
   }
-  echo number_format((float)abs($exp), 2, '.', '');
+  echo number_format((float)abs($exp), 2, '.', ',');
   if($exp<0){
     echo " )";
   }
@@ -150,9 +150,9 @@ function calcTotalIncome(){
 function printTotalIncome(){
   $total= calcTotalIncome();
   if($total<0){
-    echo "( $ ";
+    echo "$ ( ";
   }
-  echo number_format((float)abs($total), 2, '.', '');
+  echo number_format((float)abs($total), 2, '.', ',');
   if($total<0){
     echo " )";
   }

@@ -156,7 +156,7 @@
                       </td>
 
                       <td>
-                       $ <?php printTotalIncome(); ?>
+                       <?php printTotalIncome(); ?>
                       </td>
                     </tr>
                     <tr>
@@ -168,7 +168,7 @@
                       </td>
 
                       <td>
-
+                        $ <?php printDividends(); ?>
                       </td>
                     </tr>
 
@@ -181,7 +181,7 @@
                       </td>
                       <td>
                         <span class = "doubleUnderline">
-                          $ 00.00
+                          $ <?php printRE();  ?>
                         </span>
                       </td>
                     </tr>
