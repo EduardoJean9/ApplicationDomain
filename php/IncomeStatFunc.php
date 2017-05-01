@@ -143,7 +143,7 @@ function printSumExpenses(){
 function calcTotalIncome(){
   $revs = sumRevenue();
   $exps = sumExpenses();
-  $total = $revs - $exps;
+  $total = abs($revs) - abs($exps);
   return $total;
 }
 

@@ -68,7 +68,7 @@
                              "</li>".
                              "<li class="."'dropdown'"."><a class="."'dropdown-toggle'"." data-toggle="."'dropdown'"." href="."'#'".">Journals<span class="."'caret'"."></span></a>".
                                 "<ul class="."'dropdown-menu'".">".
-                                "<li><a href="."'#'".">View Journals</a></li>".
+                                "<li><a href="."'journalView.php'".">View Journals</a></li>".
                                   "<li><a href="."'JournalPage.php'".">Add a Journal</a></li>".
 
                                 "</ul>".

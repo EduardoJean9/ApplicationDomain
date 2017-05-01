@@ -39,6 +39,8 @@ function loadLedgerAccountInfo($chosen){
                       </tr>
                     </tbody>
                   </table>";
+            echo "<h2>Total Account: </h2>";
+            echo "<h2>". getAccountTotal($chosen) ."</h2>";
 }
 
 
@@ -145,6 +147,36 @@ function sumDebit($chosen){
 
   mysqli_close($link);
 
+}
+function getAccountTotal($chosen){
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+
+    // Establishes connection
+    $link = mysqli_connect($servername,$username,$password);
+    if(!$link){
+       die ("Can not connect: " . mysql_error());
+    }
+    // Establishes connection to database
+    mysqli_select_db($link,"application_domain");
+    // SQL statement and query to get all info for just selected account
+    if($chosen == "All"){
+        $sql = "SELECT SUM(`Debit`) AS `DEBIT` FROM ledger";
+        $sql2 = "SELECT SUM(`Credit`) AS `CREDIT` FROM ledger";
+    }
+    else{
+        $sql = "SELECT SUM(`Debit`) AS `DEBIT` FROM ledger WHERE `Account Name` =\"". $chosen."\"";
+        $sql2 = "SELECT SUM(`Credit`) AS `CREDIT` FROM ledger WHERE `Account Name` =\"". $chosen."\"";
+    }
+    $myData =  mysqli_query($link,$sql);
+    $myData2 = mysqli_query($link,$sql2);
+    $record = mysqli_fetch_array($myData);
+    $totaldebit = $record['DEBIT'];
+    $record2 = mysqli_fetch_array($myData2);
+    $totalcredit = $record2['CREDIT'];
+    $finaltotal = $totaldebit - $totalcredit;
+    echo number_format((float)$finaltotal, 2, '.', ',');
 }
 
  ?>
